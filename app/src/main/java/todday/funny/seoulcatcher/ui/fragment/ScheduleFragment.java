@@ -207,6 +207,7 @@ public class ScheduleFragment extends Fragment {
                         ScheduleDialog scheduleDialog = ScheduleDialog.newInstance(datee);
                         scheduleDialog.show(getFragmentManager(), "scheduleDialog");
 
+
                     }
                 }
             }
