@@ -1,17 +1,13 @@
 package todday.funny.seoulcatcher.ui.fragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,6 +27,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -38,9 +35,11 @@ import java.util.concurrent.Executors;
 
 import todday.funny.seoulcatcher.BaseActivity;
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.databinding.ScheduleBinding;
+import todday.funny.seoulcatcher.interactor.OnEduDateListener;
+import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.ui.adapter.ScheduleAdapter;
-import todday.funny.seoulcatcher.databinding.ScheduleBinding;
 import todday.funny.seoulcatcher.ui.dialog.ScheduleDialog;
 import todday.funny.seoulcatcher.util.CommonDecorator;
 import todday.funny.seoulcatcher.util.EventDecorator;
@@ -67,6 +66,8 @@ public class ScheduleFragment extends Fragment {
 
     private ArrayList<Schedule> schedules = new ArrayList<>();
     private ArrayList<String> scheduleModelsKey = new ArrayList<>();
+    private ArrayList<EduDate> eduDates ;
+
 
     private TextView textView;
 
@@ -98,7 +99,14 @@ public class ScheduleFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
 
         getScheduleDataBase();
-        settingCalendar();
+        model.setEducationDate(new OnEduDateListener() {
+            @Override
+            public void onComplete(ArrayList<EduDate> list) {
+                eduDates = list;
+                settingCalendar();
+            }
+        });
+
         return view;
     }
 
@@ -176,17 +184,22 @@ public class ScheduleFragment extends Fragment {
     }
 
     private void settingCalendar() {
-        final ArrayList<String> eventDay;
-        eventDay = model.getEventDay();
+
+
+
+        for(int i=0;i<eduDates.size();i++){
+            Log.e("!@!@",eduDates.get(i).getDate());
+        }
+
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 String year = String.valueOf(date.getYear());
                 String month = String.valueOf(date.getMonth() + 1);
                 String dayy = String.valueOf(date.getDay());
-                final String datee = year + "," + month + "," + dayy;
-                for (int i = 0; i < eventDay.size(); i++) {
-                    if (eventDay.get(i).equals(datee)) {
+                final String datee = year + "-" + month + "-" + dayy;
+                for (int i = 0; i < eduDates.size(); i++) {
+                    if ((eduDates.get(i).getDate()).equals(datee)) {
 
                         Bundle bundle = new Bundle();
                         bundle.putString("date", datee);
@@ -198,33 +211,50 @@ public class ScheduleFragment extends Fragment {
                 }
             }
         });
-        new CheckPointCalender(eventDay).executeOnExecutor(Executors.newSingleThreadExecutor());
+        if(eduDates.size() != 0) {
+            new CheckPointCalender(eduDates).executeOnExecutor(Executors.newSingleThreadExecutor());
+        }else {
+            Log.e("null","null");
+        }
         calendarView.addDecorators(commonDecorator, sundayDecorator, saturdayDecorator, todayDecorator);
     }
 
     private class CheckPointCalender extends AsyncTask<Void, Void, ArrayList<CalendarDay>> {
 
-        private ArrayList<String> timeResult = new ArrayList<String>();
+        private ArrayList<EduDate> timeResult ;
         private ArrayList<CalendarDay> list = new ArrayList<CalendarDay>();
 
-        public CheckPointCalender(ArrayList<String> timeResult) {
+        public CheckPointCalender(ArrayList<EduDate> timeResult) {
             this.timeResult = timeResult;
+            timeResult.add(timeResult.get(timeResult.size()-1));
         }
 
         @Override
         protected ArrayList<CalendarDay> doInBackground(Void... voids) {
             Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            for (int i = 0; i < timeResult.size(); i++) {
-                CalendarDay day = CalendarDay.from(calendar);
-                String[] time = timeResult.get(i).split(",");
-                int year = Integer.parseInt(time[0]);
-                int month = Integer.parseInt(time[1]);
-                int dayy = Integer.parseInt(time[2]);
-                calendar.set(year, month - 1, dayy);
-                if (i != 0) {
-                    list.add(day);
-                }
+            for (int i = 0; i < timeResult.size()+1; i++) {
+                try {
+                    CalendarDay day = CalendarDay.from(calendar);
+                    String[] time = timeResult.get(i).getDate().split("-");
+                    int year = Integer.parseInt(time[0]);
+                    int month = Integer.parseInt(time[1]);
+                    int dayy = Integer.parseInt(time[2]);
+
+                    /*Date date = sdf.parse(timeResult.get(i).getDate());
+
+                    Log.e("hahahah",timeResult.get(i).getDate().toString());*/
+
+                    calendar.set(year, month - 1, dayy);
+                    if (i != 0) {
+                        list.add(day);
+                    }
+                }catch (IndexOutOfBoundsException e){
+
+                } /*catch (ParseException e) {
+                    e.printStackTrace();
+                }*/
             }
 
             return list;
