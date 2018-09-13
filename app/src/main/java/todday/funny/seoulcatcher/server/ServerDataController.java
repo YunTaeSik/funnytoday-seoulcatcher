@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.Continuation;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
@@ -34,16 +36,21 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 import todday.funny.seoulcatcher.interactor.OnEduDateListener;
 import todday.funny.seoulcatcher.interactor.OnInitUserDataListener;
 import todday.funny.seoulcatcher.interactor.OnLoadMemberShipsListener;
 import todday.funny.seoulcatcher.interactor.OnLoadScheduleListListener;
 import todday.funny.seoulcatcher.interactor.OnLoadUserDataFinishListener;
+import todday.funny.seoulcatcher.interactor.OnScheduleListener;
 import todday.funny.seoulcatcher.interactor.OnUploadFinishListener;
+import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.MemberShip;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.model.User;
+import todday.funny.seoulcatcher.model.messageModel.Message;
+import todday.funny.seoulcatcher.model.messageModel.SendCallData;
 import todday.funny.seoulcatcher.util.ImageConverter;
 import todday.funny.seoulcatcher.util.Keys;
 
@@ -57,6 +64,7 @@ public class ServerDataController {
     private User mLoginUser;
     private String mLoginUserId;
     private int LIMIT_COUNT = 6;
+    private SeoulCatcherService mService;
 
     private static volatile ServerDataController singletonInstance = null;
 
@@ -317,7 +325,30 @@ public class ServerDataController {
         }
 
     }
+/*
+    public void getUserschedules(final OnScheduleListener onScheduleListener){
 
+        final ArrayList<Schedule> eduDates = new ArrayList<>();
+
+        FirebaseFirestore.getInstance().collection("users").document(model.userUid).collection("schedule").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                schedules.clear();
+                if (queryDocumentSnapshots == null) {
+                    Log.e("recyclerView", "없다!");
+                } else {
+                    textView.setVisibility(View.INVISIBLE);
+                    for(int i=0;i<queryDocumentSnapshots.getDocuments().size();i++) {
+                        Schedule scheduleModel = (queryDocumentSnapshots.getDocuments().get(i)).toObject(Schedule.class);
+                        Log.e("data",scheduleModel.getDate());
+                        //Log.e("aaaa", String.valueOf((queryDocumentSnapshots.getDocuments().get(i).getData())));
+                        schedules.add(scheduleModel);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
+    }*/
 
     /**
      * 멤버쉽
@@ -354,6 +385,7 @@ public class ServerDataController {
         }
     }
 
+
     /**
      * 멤버쉽 가져오기
      */
@@ -374,6 +406,20 @@ public class ServerDataController {
                 onLoadMemberShipsListener.onComplete(memberShips);
             }
         });
+    }
+
+    /**
+     * FCM  호출하기
+     */
+    public Observable<Response<Void>> call(Call call) {
+        SendCallData sendCallData = new SendCallData();
+        Message message = sendCallData.getMessage();
+        message.setTopic("test");
+        //    message.setNotification(new MessageNotification(call.getUser().getName(), "test입니다."));
+        message.setData(call);
+        return mService.getTokenObservable(Keys.FCM_AUTH_KEY, Keys.CONTENT_TYPE, sendCallData)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 

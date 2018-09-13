@@ -9,8 +9,8 @@ public class Call implements Parcelable {
     private String age;
     private String name;
     private String address;
-    private double latitude;
-    private double longitude;
+    private Double latitude;
+    private Double longitude;
 
 
     public String getKind() {
@@ -53,7 +53,7 @@ public class Call implements Parcelable {
         this.address = address;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
@@ -61,7 +61,7 @@ public class Call implements Parcelable {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
