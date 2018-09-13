@@ -318,23 +318,6 @@ public class ServerDataController {
             }
         });
     }
-    public void getAA( final OnScheduleListener onLoadScheduleListListener) {
-        FirebaseFirestore.getInstance().collection("memberShips").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                if (task.isSuccessful()) {
-                    for (int i = 0; i < task.getResult().getDocuments().size(); i++) {
-                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(i);
-                        Schedule schedule = documentSnapshot.toObject(Schedule.class);
-                        String key = documentSnapshot.getId();
-                        Log.e("getschedules",schedule.getDate()+"  "+key);
-
-                    }
-                }
-            }
-        });
-    }
 
     public void getEducationDate(final OnEduDateListener educationDate){
 
