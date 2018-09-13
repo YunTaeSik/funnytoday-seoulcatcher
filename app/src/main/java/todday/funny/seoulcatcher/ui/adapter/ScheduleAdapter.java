@@ -27,15 +27,13 @@ import todday.funny.seoulcatcher.util.Keys;
 public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<Schedule> schedules;
-    private ArrayList<String> scheduleModelsKey ;
     private String uid ;
     private Context context;
 
-    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules, ArrayList<String> scheduleModelsKey){
+    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules){
         this.context = context;
         this.uid =  FirebaseAuth.getInstance().getUid();
         this.schedules = schedules;
-        this.scheduleModelsKey = scheduleModelsKey;
     }
 
     @NonNull
