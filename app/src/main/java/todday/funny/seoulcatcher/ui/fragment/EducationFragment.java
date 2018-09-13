@@ -2,6 +2,7 @@ package todday.funny.seoulcatcher.ui.fragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +15,7 @@ import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.EducationBinding;
 import todday.funny.seoulcatcher.viewmodel.EducationViewModel;
 
-public class EducationFragment extends Fragment{
+public class EducationFragment extends Fragment implements TextToSpeech.OnInitListener{
 
     private EducationBinding binding = null;
     private EducationViewModel model = null;
@@ -34,8 +35,14 @@ public class EducationFragment extends Fragment{
             model = ((BaseActivity) getActivity()).getEducationViewModel();
             binding.setModel(model);
         }
+
+        TextToSpeech speech = new TextToSpeech(getContext(),this);
         return binding.getRoot();
     }
 
 
+    @Override
+    public void onInit(int i) {
+
+    }
 }
