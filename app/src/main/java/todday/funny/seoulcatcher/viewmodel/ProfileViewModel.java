@@ -76,6 +76,7 @@ public class ProfileViewModel extends BaseViewModel implements SwipeRefreshLayou
                         mProfileList.set(0, user);
                         mUser.set(user);
                         mUser.notifyChange();
+                        mServerDataController.setLoginUser(user);
                     }
                 }
             }

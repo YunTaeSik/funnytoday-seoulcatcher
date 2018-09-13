@@ -22,7 +22,7 @@ public class ImageBindingAdapter {
     public static void setLogoImage(final ImageView view, final String path) {
         final Context context = view.getContext();
         if (path != null) {
-            GlideApp.with(context).load(path).fitCenter().into(view);
+            GlideApp.with(context).load(path).fitCenter().thumbnail(0.1f).into(view);
         }
     }
 

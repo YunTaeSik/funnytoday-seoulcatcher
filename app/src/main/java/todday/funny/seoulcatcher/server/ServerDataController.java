@@ -91,6 +91,12 @@ public class ServerDataController {
         return mLoginUserId;
     }
 
+    public void setLoginUser(User user) {
+        if (user != null && user.getId().equals(mLoginUserId)) {
+            this.mLoginUser = user;
+        }
+    }
+
     //ur 가져오기
     private void getImageDownLoadURL(@NonNull UploadTask uploadTask, @NonNull OnCompleteListener onCompleteListener) {
         uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
