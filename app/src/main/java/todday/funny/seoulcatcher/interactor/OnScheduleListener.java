@@ -5,6 +5,6 @@ import java.util.ArrayList;
 import todday.funny.seoulcatcher.model.Schedule;
 
 public interface OnScheduleListener {
-    void onComplete(ArrayList<Schedule> list);
+    void onComplete(ArrayList<Schedule> scheduleList, ArrayList<String> schedulekeyList);
 
 }

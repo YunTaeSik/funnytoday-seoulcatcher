@@ -23,14 +23,13 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.concurrent.Executors;
 
 import todday.funny.seoulcatcher.BaseActivity;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.ScheduleBinding;
 import todday.funny.seoulcatcher.interactor.OnEduDateListener;
-import todday.funny.seoulcatcher.interactor.OnLoadScheduleListListener;
+import todday.funny.seoulcatcher.interactor.OnScheduleListener;
 import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.server.ServerDataController;
@@ -58,8 +57,9 @@ public class ScheduleFragment extends Fragment {
     private RecyclerView recyclerView;
     private ScheduleAdapter adapter;
 
-    private ArrayList<Schedule> schedules = new ArrayList<>();
-    private ArrayList<EduDate> eduDates ;
+    private ArrayList<Schedule> schedulesLists = new ArrayList<>();
+    private ArrayList<String> schedulesKeyLists = new ArrayList<>();
+    private ArrayList<EduDate> eduDatesLists;
 
     private ServerDataController serverDataController = ServerDataController.getInstance(getContext());
 
@@ -71,6 +71,7 @@ public class ScheduleFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,7 +89,7 @@ public class ScheduleFragment extends Fragment {
         recyclerView = view.findViewById(R.id.scheduleFragment_recyclerView);
         textView = view.findViewById(R.id.scheduleFragment_textView);
 
-        adapter = new ScheduleAdapter(getContext(), schedules);
+        adapter = new ScheduleAdapter(getContext(), schedulesLists);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
 
@@ -103,7 +104,7 @@ public class ScheduleFragment extends Fragment {
         serverDataController.getEducationDate(new OnEduDateListener() {
             @Override
             public void onComplete(ArrayList<EduDate> list) {
-                eduDates = list;
+                eduDatesLists = list;
                 settingCalendar();
             }
         });
@@ -111,30 +112,29 @@ public class ScheduleFragment extends Fragment {
 
     private void getScheduleDataBase() {
         String uid =FirebaseAuth.getInstance().getUid();
-        serverDataController.getUserSchedule(uid, new OnLoadScheduleListListener() {
+        serverDataController.getUserSchedule(uid, new OnScheduleListener() {
             @Override
-            public void onComplete(List<Schedule> scheduleList) {
-                schedules = (ArrayList<Schedule>) scheduleList;
+            public void onComplete(ArrayList<Schedule> scheduleList, ArrayList<String> schedulekeyList) {
+                schedulesKeyLists= schedulekeyList;
+                schedulesKeyLists = schedulekeyList;
+                adapter.notifyDataSetChanged();
             }
         });
     }
 
-    private void deleteItem(String deleteKey) {
-        for (int i = 0; i < scheduleModelsKey.size(); i++) {
-            if (deleteKey.equals(scheduleModelsKey.get(i))) {
-                scheduleModelsKey.remove(i);
+    /*private void deleteItem(String deleteKey) {
+        for (int i = 0; i < schedulesList.size(); i++) {
+            if (deleteKey.equals(schedulesList.get(i))) {
+                schedulesList.remove(i);
             }
         }
-    }
-
+    }*/
 
 
     private void settingCalendar() {
 
-
-
-        for(int i=0;i<eduDates.size();i++){
-            Log.e("!@!@",eduDates.get(i).getDate());
+        for(int i = 0; i< eduDatesLists.size(); i++){
+            Log.e("!@!@", eduDatesLists.get(i).getDate());
         }
 
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
@@ -144,8 +144,8 @@ public class ScheduleFragment extends Fragment {
                 String month = String.valueOf(date.getMonth() + 1);
                 String dayy = String.valueOf(date.getDay());
                 final String datee = year + "-" + month + "-" + dayy;
-                for (int i = 0; i < eduDates.size(); i++) {
-                    if ((eduDates.get(i).getDate()).equals(datee)) {
+                for (int i = 0; i < eduDatesLists.size(); i++) {
+                    if ((eduDatesLists.get(i).getDate()).equals(datee)) {
 
                         Bundle bundle = new Bundle();
                         bundle.putString("date", datee);
@@ -158,8 +158,8 @@ public class ScheduleFragment extends Fragment {
                 }
             }
         });
-        if(eduDates.size() != 0) {
-            new CheckPointCalender(eduDates).executeOnExecutor(Executors.newSingleThreadExecutor());
+        if(eduDatesLists.size() != 0) {
+            new CheckPointCalender(eduDatesLists).executeOnExecutor(Executors.newSingleThreadExecutor());
         }else {
             Log.e("null","null");
         }

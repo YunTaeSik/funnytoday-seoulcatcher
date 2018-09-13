@@ -12,17 +12,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 
 import java.util.ArrayList;
 
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.model.Schedule;
-import todday.funny.seoulcatcher.util.Keys;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
@@ -58,7 +53,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Log.e("취소 확인!","성공!!!!!");
-                                FirebaseFirestore.getInstance().collection("users").document(uid).collection(Keys.SCHEDULES).document(scheduleModelsKey.get(position)).delete()
+                                /*FirebaseFirestore.getInstance().collection("users").document(uid).collection(Keys.SCHEDULES).document(scheduleModelsKey.get(position)).delete()
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
@@ -70,7 +65,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                     public void onFailure(@NonNull Exception e) {
                                         Log.e("schedule 삭제","삭제실패!");
                                     }
-                                });
+                                });*/
                             }
                         })
                         .setNegativeButton("취소", null);

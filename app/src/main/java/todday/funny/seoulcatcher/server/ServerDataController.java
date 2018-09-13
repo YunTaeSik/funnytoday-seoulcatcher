@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.Continuation;
@@ -298,10 +297,29 @@ public class ServerDataController {
             }
         });
     }
+    public void getUserSchedule(String userId, final OnScheduleListener onLoadScheduleListListener) {
+        db.collection(Keys.USERS).document(userId).collection(Keys.SCHEDULES).orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
+                ArrayList<String> scheduleArrayKeysList = new ArrayList<>();
+                if (task.isSuccessful()) {
+                    for (int i = 0; i < task.getResult().getDocuments().size(); i++) {
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(i);
+                        Schedule schedule = documentSnapshot.toObject(Schedule.class);
+                        String key = documentSnapshot.getId();
+                        Log.e("aa",schedule.getDate());
+                        scheduleArrayList.add(schedule);
+                        scheduleArrayKeysList.add(key);
+                    }
+                }
+                onLoadScheduleListListener.onComplete(scheduleArrayList,scheduleArrayKeysList);
+            }
+        });
+    }
 
     public void getEducationDate(final OnEduDateListener educationDate){
 
-        final ArrayList<EduDate> eduDates = new ArrayList<>();
 
         if(educationDate != null) {
             FirebaseFirestore.getInstance().collection("educationDate").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -310,15 +328,15 @@ public class ServerDataController {
                     if (queryDocumentSnapshots == null) {
                         Log.e("recyclerView", "없다!");
                     } else {
+                        final ArrayList<EduDate> eduDates = new ArrayList<>();
                         for(int i=0;i<queryDocumentSnapshots.getDocuments().size();i++) {
                             EduDate eduDate = (queryDocumentSnapshots.getDocuments().get(i)).toObject(EduDate.class);
                             Log.e("data",eduDate.getDate());
-                            //Log.e("aaaa", String.valueOf((queryDocumentSnapshots.getDocuments().get(i).getData())));
                             eduDates.add(eduDate);
                         }
+                        educationDate.onComplete(eduDates);
                     }
 
-                    educationDate.onComplete(eduDates);
                 }
             });
 
