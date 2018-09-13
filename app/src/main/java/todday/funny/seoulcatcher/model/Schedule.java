@@ -10,8 +10,9 @@ public class Schedule implements Parcelable {
     public Schedule() {
     }
 
-    public Schedule(String date) {
+    public Schedule(String date,String location) {
         this.date = date;
+        this.name = location;
     }
 
     public String getDate() {

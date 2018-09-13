@@ -34,7 +34,6 @@ import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.adapter.ScheduleAdapter;
-import todday.funny.seoulcatcher.ui.dialog.ScheduleDialog;
 import todday.funny.seoulcatcher.util.CommonDecorator;
 import todday.funny.seoulcatcher.util.EventDecorator;
 import todday.funny.seoulcatcher.util.SaturdayDecorator;
@@ -115,7 +114,7 @@ public class ScheduleFragment extends Fragment {
         serverDataController.getUserSchedule(uid, new OnScheduleListener() {
             @Override
             public void onComplete(ArrayList<Schedule> scheduleList, ArrayList<String> schedulekeyList) {
-                schedulesKeyLists= schedulekeyList;
+                schedulesLists= scheduleList;
                 schedulesKeyLists = schedulekeyList;
                 adapter.notifyDataSetChanged();
             }
@@ -150,10 +149,7 @@ public class ScheduleFragment extends Fragment {
                         Bundle bundle = new Bundle();
                         bundle.putString("date", datee);
 
-                        ScheduleDialog scheduleDialog = ScheduleDialog.newInstance(datee);
-                        scheduleDialog.show(getFragmentManager(), "scheduleDialog");
-
-
+                        model.openScheduleInfo(datee);
                     }
                 }
             }

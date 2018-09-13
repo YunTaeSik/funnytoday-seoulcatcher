@@ -2,22 +2,14 @@ package todday.funny.seoulcatcher.viewmodel;
 
 import android.content.Context;
 import android.databinding.ObservableField;
-import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import todday.funny.seoulcatcher.interactor.OnEduDateListener;
 import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.Schedule;
+import todday.funny.seoulcatcher.ui.dialog.ScheduleDialog;
 
 public class ScheduleViewModel extends BaseViewModel {
     final ArrayList<EduDate> eduDates = new ArrayList<>();
@@ -38,39 +30,11 @@ public class ScheduleViewModel extends BaseViewModel {
 
     }
 
-    public void setEducationDate(final OnEduDateListener educationDate){
-        if(educationDate != null) {
-            FirebaseFirestore.getInstance().collection("educationDate").addSnapshotListener(new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                    if (queryDocumentSnapshots != null) {
-                        if (queryDocumentSnapshots.getDocuments() == null) {
-                            Log.e("getDocuments", "aaaaaaaaa");
-
-                        } else {
-                            List<DocumentChange> query = queryDocumentSnapshots.getDocumentChanges();
-                            for (int i = 0; i < query.size(); i++) {
-                                EduDate eduDate = (query.get(i).getDocument()).toObject(EduDate.class);
-                                switch (query.get(i).getType()) {
-                                    case ADDED:
-                                        eduDates.add(eduDate);
-                                        listKeys.add(query.get(i).getDocument().getId());
-                                        educationDate.onComplete(eduDates);
-                                        break;
-                                    case REMOVED:
-                                        //deleteItem(query.get(i).getDocument().getId());
-                                        break;
-                                }
-                            }
-                        }
-                    } else {
-                        Log.e("queryDocumentSnapshots", "aaaaaaaaa");
-
-                    }
-                }
-            });
-        }
+    public void openScheduleInfo(String date){
+        ScheduleDialog dialog = ScheduleDialog.newInstance(date);
+        addFragmentDialog(dialog, android.R.transition.slide_top);
     }
+
 
     public ArrayList getEventDay() {
         final ArrayList<String> list = new ArrayList<>();
