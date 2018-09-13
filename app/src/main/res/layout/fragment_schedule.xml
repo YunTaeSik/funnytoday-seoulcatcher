@@ -32,6 +32,7 @@
             >
 
             <TextView
+                android:visibility="@{model.isSchedule ? View.GONE : View.VISIBLE}"
                 android:id="@+id/scheduleFragment_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

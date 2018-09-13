@@ -19,6 +19,8 @@ public class ScheduleViewModel extends BaseViewModel {
 
     public String userUid = FirebaseAuth.getInstance().getUid();
 
+    public boolean isSchedule = true;
+
     public ScheduleViewModel(Context context) {
         super(context);
         //setEducationDate();

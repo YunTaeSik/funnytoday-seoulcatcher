@@ -88,9 +88,12 @@ public class ScheduleFragment extends Fragment {
         recyclerView = view.findViewById(R.id.scheduleFragment_recyclerView);
         textView = view.findViewById(R.id.scheduleFragment_textView);
 
-        adapter = new ScheduleAdapter(getContext(), schedulesLists);
-        recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+
+        /*adapter = new ScheduleAdapter(getContext(), schedulesLists,schedulesKeyLists);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));*/
 
         getScheduleDataBase();
         setEducationDate();
@@ -114,9 +117,19 @@ public class ScheduleFragment extends Fragment {
         serverDataController.getUserSchedule(uid, new OnScheduleListener() {
             @Override
             public void onComplete(ArrayList<Schedule> scheduleList, ArrayList<String> schedulekeyList) {
-                schedulesLists= scheduleList;
-                schedulesKeyLists = schedulekeyList;
-                adapter.notifyDataSetChanged();
+
+                if(scheduleList.size() == 0) {
+                    model.isSchedule = true;
+                }else {
+                    model.isSchedule = false;
+                    schedulesLists = scheduleList;
+                    schedulesKeyLists = schedulekeyList;
+                    adapter = new ScheduleAdapter(getContext(), schedulesLists, schedulesKeyLists);
+                    recyclerView.setAdapter(adapter);
+                    for (int i = 0; i < schedulesLists.size(); i++)
+                        Log.e("eeeee", schedulesKeyLists.get(i));
+                }
+
             }
         });
     }
