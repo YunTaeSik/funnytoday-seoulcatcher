@@ -44,10 +44,13 @@ import todday.funny.seoulcatcher.interactor.OnLoadScheduleListListener;
 import todday.funny.seoulcatcher.interactor.OnLoadUserDataFinishListener;
 import todday.funny.seoulcatcher.interactor.OnScheduleListener;
 import todday.funny.seoulcatcher.interactor.OnUploadFinishListener;
+import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.MemberShip;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.model.User;
+import todday.funny.seoulcatcher.model.messageModel.Message;
+import todday.funny.seoulcatcher.model.messageModel.SendCallData;
 import todday.funny.seoulcatcher.util.ImageConverter;
 import todday.funny.seoulcatcher.util.Keys;
 
@@ -61,6 +64,7 @@ public class ServerDataController {
     private User mLoginUser;
     private String mLoginUserId;
     private int LIMIT_COUNT = 6;
+    private SeoulCatcherService mService;
 
     private static volatile ServerDataController singletonInstance = null;
 
@@ -295,20 +299,20 @@ public class ServerDataController {
         });
     }
 
-    public void getEducationDate(final OnEduDateListener educationDate){
+    public void getEducationDate(final OnEduDateListener educationDate) {
 
         final ArrayList<EduDate> eduDates = new ArrayList<>();
 
-        if(educationDate != null) {
+        if (educationDate != null) {
             FirebaseFirestore.getInstance().collection("educationDate").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     if (queryDocumentSnapshots == null) {
                         Log.e("recyclerView", "없다!");
                     } else {
-                        for(int i=0;i<queryDocumentSnapshots.getDocuments().size();i++) {
+                        for (int i = 0; i < queryDocumentSnapshots.getDocuments().size(); i++) {
                             EduDate eduDate = (queryDocumentSnapshots.getDocuments().get(i)).toObject(EduDate.class);
-                            Log.e("data",eduDate.getDate());
+                            Log.e("data", eduDate.getDate());
                             //Log.e("aaaa", String.valueOf((queryDocumentSnapshots.getDocuments().get(i).getData())));
                             eduDates.add(eduDate);
                         }
@@ -321,7 +325,7 @@ public class ServerDataController {
         }
 
     }
-
+/*
     public void getUserschedules(final OnScheduleListener onScheduleListener){
 
         final ArrayList<Schedule> eduDates = new ArrayList<>();
@@ -344,7 +348,7 @@ public class ServerDataController {
                 }
             }
         });
-    }
+    }*/
 
     /**
      * 멤버쉽
@@ -381,6 +385,7 @@ public class ServerDataController {
         }
     }
 
+
     /**
      * 멤버쉽 가져오기
      */
@@ -410,7 +415,7 @@ public class ServerDataController {
         SendCallData sendCallData = new SendCallData();
         Message message = sendCallData.getMessage();
         message.setTopic("test");
-    //    message.setNotification(new MessageNotification(call.getUser().getName(), "test입니다."));
+        //    message.setNotification(new MessageNotification(call.getUser().getName(), "test입니다."));
         message.setData(call);
         return mService.getTokenObservable(Keys.FCM_AUTH_KEY, Keys.CONTENT_TYPE, sendCallData)
                 .subscribeOn(Schedulers.io())
