@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.SingleEmitter;
 import io.reactivex.SingleOnSubscribe;
@@ -39,9 +40,13 @@ import todday.funny.seoulcatcher.interactor.OnLoadMemberShipsListener;
 import todday.funny.seoulcatcher.interactor.OnLoadScheduleListListener;
 import todday.funny.seoulcatcher.interactor.OnLoadUserDataFinishListener;
 import todday.funny.seoulcatcher.interactor.OnUploadFinishListener;
+import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.MemberShip;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.model.User;
+import todday.funny.seoulcatcher.model.messageModel.Message;
+import todday.funny.seoulcatcher.model.messageModel.MessageNotification;
+import todday.funny.seoulcatcher.model.messageModel.SendCallData;
 import todday.funny.seoulcatcher.util.ImageConverter;
 import todday.funny.seoulcatcher.util.Keys;
 
@@ -54,7 +59,7 @@ public class ServerDataController {
     private StorageReference storageReference;
     private User mLoginUser;
     private String mLoginUserId;
-    private int LIMIT_COUNT = 6;
+    private SeoulCatcherService mService;
 
     private static volatile ServerDataController singletonInstance = null;
 
@@ -80,6 +85,7 @@ public class ServerDataController {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
+        mService = SeoulCatcherService.Creator.create();
     }
 
     public String getLoginUserId() {
@@ -344,6 +350,20 @@ public class ServerDataController {
                 onLoadMemberShipsListener.onComplete(memberShips);
             }
         });
+    }
+
+    /**
+     * FCM  호출하기
+     */
+    public Observable<retrofit2.Response<Void>> call(Call call) {
+        SendCallData sendCallData = new SendCallData();
+        Message message = sendCallData.getMessage();
+        message.setTopic("test");
+    //    message.setNotification(new MessageNotification(call.getUser().getName(), "test입니다."));
+        message.setData(call);
+        return mService.getTokenObservable(Keys.FCM_AUTH_KEY, Keys.CONTENT_TYPE, sendCallData)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
 

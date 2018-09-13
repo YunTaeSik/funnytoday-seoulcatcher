@@ -6,19 +6,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.places.Places;
-import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.gun0912.tedpermission.PermissionListener;
 
 import java.util.ArrayList;
 
+import io.reactivex.functions.Consumer;
+import retrofit2.Response;
 import todday.funny.seoulcatcher.R;
-import todday.funny.seoulcatcher.interactor.OnUploadFinishListener;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.PlaceData;
 import todday.funny.seoulcatcher.model.User;
@@ -26,6 +25,7 @@ import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.util.PermissionCheck;
 import todday.funny.seoulcatcher.util.RequestCode;
 import todday.funny.seoulcatcher.util.ShowIntent;
+import todday.funny.seoulcatcher.util.ToastMake;
 
 public class CallViewModel extends BaseViewModel {
     public ObservableField<Call> mCall = new ObservableField<>(new Call());
@@ -36,6 +36,7 @@ public class CallViewModel extends BaseViewModel {
     public CallViewModel(Context context, User user) {
         super(context);
         mCall.get().setUser(user);
+        mCall.get().setKind(context.getString(R.string.fire)); //초기 셋팅값
     }
 
     public void onClickKind(View view) {
@@ -73,6 +74,39 @@ public class CallViewModel extends BaseViewModel {
 
             }
         });
+    }
+
+    public void call() {
+        Call call = mCall.get();
+        if (call != null) {
+            if (isCardiac.get()) {
+                if (call.getAge() == null || call.getAge().length() == 0) {
+                    ToastMake.make(mContext, R.string.error_age);
+                    return;
+                }
+            }
+        /*    if (call.getLatitude() == null || call.getLongitude() == null) {
+                ToastMake.make(mContext, R.string.hint_location);
+                return;
+            }*/
+
+            showLoading.set(true);
+            mCompositeDisposable.add(mServerDataController.call(call).subscribe(new Consumer<Response<Void>>() {
+                @Override
+                public void accept(Response<Void> response) throws Exception {
+                    close();
+                    showLoading.set(false);
+                }
+            }, new Consumer<Throwable>() {
+                @Override
+                public void accept(Throwable throwable) throws Exception {
+                    throwable.printStackTrace();
+                    ToastMake.make(mContext, R.string.network_error);
+                    showLoading.set(false);
+                }
+            }));
+
+        }
     }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {

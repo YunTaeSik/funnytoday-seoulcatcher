@@ -3,6 +3,10 @@ package todday.funny.seoulcatcher.util;
 public class Keys {
     public static final String TEST_QR_KEY = "todday.funny.seoulcatcher testQR";
 
+    public static final String FCM_URL_API = "https://fcm.googleapis.com/v1/";
+    public static final String FCM_AUTH_KEY = "AAAAkvBOprM:APA91bEpEPU65wiUDJlpDwijrZa6RQ0fju7Hh3WNkze6kjgsVQsIUZ2ss2EAtEEPsrKoYU3GUL0QdPbijIdT_hb4fh3KaPgH8fXiYut7UhcwGDZy7oohPNc47WCtPZStB_-ppWGB5gAT";
+    public static final String CONTENT_TYPE = "application/json";
+
 
     public static final String DEFAULT_USER_PROFILE_URL = "https://firebasestorage.googleapis.com/v0/b/funnytoday-seoulcatcher.appspot.com/o/users%2Fdefault%2Fboy-3646046_640.jpg?alt=media&token=a87d177f-d409-40ea-ae42-c1c228b48b24";
     public static final String DEFAULT_USER_BACKGROUND_URL = "https://firebasestorage.googleapis.com/v0/b/funnytoday-seoulcatcher.appspot.com/o/users%2Fdefault%2Fskyline-3581739_1280.jpg?alt=media&token=669f78c0-16a3-44a1-90e6-0e77b1ef47df";

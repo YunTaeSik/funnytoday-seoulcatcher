@@ -60,6 +60,7 @@
                     android:layout_gravity="center_vertical"
                     android:foreground="?android:selectableItemBackground"
                     android:gravity="center_vertical"
+                    android:onClick="@{()->model.call()}"
                     android:padding="16dp"
                     android:text="@string/call"
                     android:textColor="@color/white"
@@ -85,7 +86,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
+                android:checkedButton="@+id/btn_fire"
                 android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/btn_fire"
+                    style="@style/RadioButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{(v)->model.onClickKind(v)}"
+                    android:text="@string/fire" />
 
                 <RadioButton
                     android:id="@+id/btn_cardiac"
@@ -95,13 +105,6 @@
                     android:onClick="@{(v)->model.onClickKind(v)}"
                     android:text="@string/cardiac_arrest" />
 
-                <RadioButton
-                    android:id="@+id/btn_fire"
-                    style="@style/RadioButtonStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="@{(v)->model.onClickKind(v)}"
-                    android:text="@string/fire" />
             </RadioGroup>
 
             <View
