@@ -47,6 +47,14 @@
           }
         },
         {
+          "client_id": "631096911539-3vi8i8nht2cnrtagmppru8r7033vnlop.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "todday.funny.seoulcatcher",
+            "certificate_hash": "0d4d32bb901ba2ccce95fe5a41aa2afe6c9ce687"
+          }
+        },
+        {
           "client_id": "631096911539-q6pjsksj3i3thc3ecedtfe161bvslgqc.apps.googleusercontent.com",
           "client_type": 3
         }

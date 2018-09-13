@@ -16,8 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,6 +37,7 @@ import todday.funny.seoulcatcher.databinding.ScheduleBinding;
 import todday.funny.seoulcatcher.interactor.OnEduDateListener;
 import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.Schedule;
+import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.adapter.ScheduleAdapter;
 import todday.funny.seoulcatcher.ui.dialog.ScheduleDialog;
 import todday.funny.seoulcatcher.util.CommonDecorator;
@@ -68,6 +67,7 @@ public class ScheduleFragment extends Fragment {
     private ArrayList<String> scheduleModelsKey = new ArrayList<>();
     private ArrayList<EduDate> eduDates ;
 
+    private ServerDataController serverDataController = ServerDataController.getInstance(getContext());
 
     private TextView textView;
 
@@ -99,15 +99,20 @@ public class ScheduleFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
 
         getScheduleDataBase();
-        model.setEducationDate(new OnEduDateListener() {
+        setEducationDate();
+
+
+        return view;
+    }
+
+    private void setEducationDate(){
+        serverDataController.getEducationDate(new OnEduDateListener() {
             @Override
             public void onComplete(ArrayList<EduDate> list) {
                 eduDates = list;
                 settingCalendar();
             }
         });
-
-        return view;
     }
 
     private void getScheduleDataBase() {
@@ -168,20 +173,7 @@ public class ScheduleFragment extends Fragment {
         }
     }
 
-    private void inputScheduleDateBase(final String date) {
-        FirebaseFirestore.getInstance().collection(Keys.USERS).document(model.userUid).collection(Keys.SCHEDULES).document().set(new Schedule(date))
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.e("데이터 베이스 삽입 성공!", date);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("데이터 베이스 삽입 실패", e.toString());
-            }
-        });
-    }
+
 
     private void settingCalendar() {
 
