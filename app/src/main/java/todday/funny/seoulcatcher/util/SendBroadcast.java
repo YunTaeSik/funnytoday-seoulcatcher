@@ -3,6 +3,9 @@ package todday.funny.seoulcatcher.util;
 import android.content.Context;
 import android.content.Intent;
 
+import com.google.android.gms.location.places.Place;
+
+import todday.funny.seoulcatcher.model.PlaceData;
 import todday.funny.seoulcatcher.model.User;
 
 public class SendBroadcast {
@@ -21,5 +24,19 @@ public class SendBroadcast {
     public static void move(Context context, String action) {
         Intent send = new Intent(action);
         context.sendBroadcast(send);
+    }
+
+    public static void place(Context context, String action, Place place) {
+        if (place != null) {
+            String name = NullFilter.check(place.getName().toString());
+            String address = "";
+            if (place.getAddress() != null) {
+                address = place.getAddress().toString();
+            }
+            PlaceData placeData = new PlaceData(name, address, place.getLatLng());
+            Intent send = new Intent(action);
+            send.putExtra(Keys.PLACE, placeData);
+            context.sendBroadcast(send);
+        }
     }
 }

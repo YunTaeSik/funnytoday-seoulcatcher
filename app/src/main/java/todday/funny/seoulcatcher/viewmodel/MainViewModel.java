@@ -50,7 +50,6 @@ public class MainViewModel extends BaseViewModel {
         mainFragmentList.add(EducationFragment.newInstance());
         mainFragmentList.add(ProfileFragment.newInstance(mServerDataController.getLoginUserId()));
         mainFragmentList.add(HistoryFragment.newInstance());
-        mainFragmentList.add(SettingFragment.newInstance());
         if (mContext instanceof AppCompatActivity) {
             FragmentManager fragmentManager = ((AppCompatActivity) mContext).getSupportFragmentManager();
             if (fragmentManager != null) {
@@ -100,15 +99,18 @@ public class MainViewModel extends BaseViewModel {
                 case R.id.navigation_education:
                     moveFragment(EducationFragment.class.getSimpleName());
                     return true;
+                case R.id.navigation_call:
+                    openCall();
+                    return false;
                 case R.id.navigation_profile:
                     moveFragment(ProfileFragment.class.getSimpleName());
                     return true;
                 case R.id.navigation_history:
                     moveFragment(HistoryFragment.class.getSimpleName());
                     return true;
-                case R.id.navigation_setting:
-                    moveFragment(SettingFragment.class.getSimpleName());
-                    return true;
+     /*           case R.id.navigation_setting:
+                  //  moveFragment(SettingFragment.class.getSimpleName());
+                    return true;*/
             }
             return false;
         }

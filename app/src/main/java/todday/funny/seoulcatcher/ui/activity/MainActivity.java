@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.yalantis.ucrop.UCrop;
 
 import java.util.List;
@@ -69,6 +71,10 @@ public class MainActivity extends BaseActivity {
             } else if (requestCode == RequestCode.EDIT_USER_BACKGROUND_CROP) {
                 String path = UCrop.getOutput(data).getPath();
                 SendBroadcast.path(this, Keys.EDIT_USER_BACKGROUND, path);
+            } else if (requestCode == RequestCode.SELECT_CALL_LOCATION) {
+                Place place = PlacePicker.getPlace(this, data);
+                SendBroadcast.place(this, Keys.SELECT_CALL_LOCATION, place);
+
             }
         }
     }

@@ -50,7 +50,7 @@ public class ServerDataController {
     private Context mContext;
 
     private FirebaseFirestore db; //Cloud FireBase
-    private FirebaseStorage storage; //소티지
+    //  private FirebaseStorage storage; //소티지
     private StorageReference storageReference;
     private User mLoginUser;
     private String mLoginUserId;
@@ -78,7 +78,7 @@ public class ServerDataController {
                 .build();
         db.setFirestoreSettings(settings);
 
-        storage = FirebaseStorage.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
     }
 

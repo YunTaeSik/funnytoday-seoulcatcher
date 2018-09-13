@@ -30,7 +30,6 @@ public class ScheduleViewModel extends BaseViewModel {
     public ScheduleViewModel(Context context) {
         super(context);
         //setEducationDate();
-
     }
 
     public ScheduleViewModel(Context context, Schedule schedule) {
@@ -40,7 +39,6 @@ public class ScheduleViewModel extends BaseViewModel {
     }
 
     public void setEducationDate(final OnEduDateListener educationDate){
-
         if(educationDate != null) {
             FirebaseFirestore.getInstance().collection("educationDate").addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
@@ -64,7 +62,6 @@ public class ScheduleViewModel extends BaseViewModel {
                                         break;
                                 }
                             }
-                            //adapter.notifyDataSetChanged();
                         }
                     } else {
                         Log.e("queryDocumentSnapshots", "aaaaaaaaa");

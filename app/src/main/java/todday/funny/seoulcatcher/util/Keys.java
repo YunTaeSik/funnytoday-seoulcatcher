@@ -32,6 +32,8 @@ public class Keys {
 
     public static final String POSITION = "position";
 
+    public static final String PLACE = "place";
+
     public static final String TRANS_NAME_IMAGE = "image";
 
     //브로드캐스트
@@ -39,4 +41,5 @@ public class Keys {
     public static final String EDIT_USER_PROFILE = "edit_user_profile";
     public static final String EDIT_USER_BACKGROUND = "edit_user_background";
     public static final String APPLY_EDUCATION = "apply_education";
+    public static final String SELECT_CALL_LOCATION = "selectCallLocation";
 }

@@ -16,4 +16,6 @@ public class RequestCode {
 
     public static final int EDIT_USER_BACKGROUND_SELECT = 3100;
     public static final int EDIT_USER_BACKGROUND_CROP = 3101;
+
+    public static final int SELECT_CALL_LOCATION = 4000;
 }

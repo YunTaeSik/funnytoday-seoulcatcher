@@ -12,11 +12,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
 import todday.funny.seoulcatcher.BaseActivity;
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.dialog.AlertDialogCreate;
+import todday.funny.seoulcatcher.ui.dialog.CallDialog;
 import todday.funny.seoulcatcher.ui.dialog.ImageViewerDialog;
 import todday.funny.seoulcatcher.ui.dialog.MembershipDialog;
 import todday.funny.seoulcatcher.ui.dialog.QRDialog;
@@ -64,12 +67,6 @@ public class BaseViewModel extends BaseObservable {
         hideKeyBoard();
     }
 
-    public void finish() {
-        if (mContext instanceof Activity) {
-            ((Activity) mContext).finish();
-        }
-    }
-
     public void openImageViewer(String path) {
         ImageViewerDialog dialog = ImageViewerDialog.newInstance(path);
         startFragmentDialog(dialog, android.R.transition.slide_top);
@@ -83,6 +80,20 @@ public class BaseViewModel extends BaseObservable {
     public void openMemberShip(String level) {
         MembershipDialog dialog = MembershipDialog.newInstance(level);
         addFragmentDialog(dialog, android.R.transition.slide_top);
+    }
+
+    public void openCall() {
+        mCompositeDisposable.add(mServerDataController.getLoginUser().subscribe(new Consumer<User>() {
+            @Override
+            public void accept(User user) throws Exception {
+                if (user != null) {
+                    CallDialog dialog = CallDialog.newInstance(user);
+                    startFragmentDialog(dialog, android.R.transition.slide_bottom);
+                }
+
+            }
+        }));
+
     }
 
     public void openQR(final User user) {

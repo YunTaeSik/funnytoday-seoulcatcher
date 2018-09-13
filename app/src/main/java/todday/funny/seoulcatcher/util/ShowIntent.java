@@ -5,7 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -51,5 +55,16 @@ public class ShowIntent {
         uCrop.start(((Activity) context), requestCode);
     }
 
+    public static void location(Context context, int requestCode) {
+        if (context instanceof AppCompatActivity) {
+            try {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                ((AppCompatActivity) context).startActivityForResult(builder.build((AppCompatActivity) context), requestCode);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 
 }

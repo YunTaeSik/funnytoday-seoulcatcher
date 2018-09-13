@@ -10,6 +10,10 @@
         android:title="@string/education" />
 
     <item
+        android:id="@+id/navigation_call"
+        android:icon="@drawable/ic_add_alert_black_24dp"
+        android:title="@string/call" />
+    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/profile" />
@@ -17,9 +21,4 @@
         android:id="@+id/navigation_history"
         android:icon="@drawable/ic_medical_history"
         android:title="@string/history" />
-    <item
-        android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_settings_black_24dp"
-        android:title="@string/setting" />
-
 </menu>

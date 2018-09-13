@@ -21,4 +21,11 @@ public class PermissionCheck {
                 .setPermissions(Manifest.permission.CAMERA)
                 .check();
     }
+
+    public static void loactionCheck(Context context, PermissionListener permissionListener) {
+        TedPermission.with(context)
+                .setPermissionListener(permissionListener)
+                .setPermissions(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+                .check();
+    }
 }

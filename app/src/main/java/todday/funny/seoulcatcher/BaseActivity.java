@@ -69,7 +69,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() { //두번클릭해야 종료
         int childFragmentSize = getSupportFragmentManager().getFragments().size();
-        if (childFragmentSize > 6) { //6개인 이유? MainFragment 5개 + SupportRequestManagerFragment{6d43a4c #5 com.bumptech.glide.manager}{parent=null} 이게 추가되어서.. glide module 떄문에 생성되는건가? 총 6개
+        if (childFragmentSize > 5) { //5개인 이유? MainFragment 4개 + SupportRequestManagerFragment{6d43a4c #5 com.bumptech.glide.manager}{parent=null} 이게 추가되어서.. glide module 떄문에 생성되는건가? 총 5개
             super.onBackPressed();
         } else {
             if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
