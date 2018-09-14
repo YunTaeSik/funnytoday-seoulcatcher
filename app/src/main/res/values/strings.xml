@@ -64,6 +64,7 @@
     <!--guide-->
     <string name="msg_quit">"Pressing the "back" button ends."</string>
     <string name="msg_attendance">"Successfully attended. "</string>
+    <string name="msg_call">"Successfully Call. "</string>
     <string name="msg_logout">"Are you sure you want to log out?"</string>
 
     <!--empty-->

@@ -13,7 +13,12 @@ public class UserViewModel extends BaseViewModel {
 
     public UserViewModel(Context context, User user) {
         super(context);
-        isMy.set(user.getId().equals(mServerDataController.getLoginUserId()));
-        mUser.set(user);
+        if (user != null) {
+            mUser.set(user);
+            if (user.getId() != null) {
+                isMy.set(user.getId().equals(mServerDataController.getLoginUserId()));
+            }
+        }
+
     }
 }

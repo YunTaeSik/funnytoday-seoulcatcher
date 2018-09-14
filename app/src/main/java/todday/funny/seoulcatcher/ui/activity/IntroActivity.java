@@ -33,8 +33,6 @@ import todday.funny.seoulcatcher.util.StartActivity;
 import todday.funny.seoulcatcher.util.ToastMake;
 
 public class IntroActivity extends BaseActivity {
-    private IntroBinding binding;
-
     private boolean mAutoLogin;
     private final int RC_SIGN_IN = 123;
 
@@ -50,14 +48,14 @@ public class IntroActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_intro);
+        IntroBinding   binding = DataBindingUtil.setContentView(this, R.layout.activity_intro);
         binding.animationLoader.setSpeed(1.5f);
 
         mAutoLogin = FirebaseAuth.getInstance().getCurrentUser() != null;
         mCompositeDisposable = new CompositeDisposable();
         mServerDataController = ServerDataController.getInstance(this);
         long delay = mAutoLogin ? 0 : 1500;
-        compositeDisposable.add(Single.timer(delay, TimeUnit.MILLISECONDS)
+        mCompositeDisposable.add(Single.timer(delay, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Long>() {

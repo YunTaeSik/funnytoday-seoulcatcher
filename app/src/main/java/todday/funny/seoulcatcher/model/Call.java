@@ -4,13 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Call implements Parcelable {
-    private User user;
+    // private User user;
     private String kind;
     private String age;
     private String name;
     private String address;
-    private Double latitude;
-    private Double longitude;
+    private String latitude;
+    private String longitude;
 
 
     public String getKind() {
@@ -29,14 +29,14 @@ public class Call implements Parcelable {
         this.age = age;
     }
 
-    public User getUser() {
-        return user;
-    }
+    /*  public User getUser() {
+          return user;
+      }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
+      public void setUser(User user) {
+          this.user = user;
+      }
+  */
     public String getName() {
         return name;
     }
@@ -53,22 +53,24 @@ public class Call implements Parcelable {
         this.address = address;
     }
 
-    public Double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
-    public Double getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
+    public Call() {
+    }
 
     @Override
     public int describeContents() {
@@ -77,29 +79,24 @@ public class Call implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(this.user, flags);
         dest.writeString(this.kind);
         dest.writeString(this.age);
         dest.writeString(this.name);
         dest.writeString(this.address);
-        dest.writeDouble(this.latitude);
-        dest.writeDouble(this.longitude);
-    }
-
-    public Call() {
+        dest.writeString(this.latitude);
+        dest.writeString(this.longitude);
     }
 
     protected Call(Parcel in) {
-        this.user = in.readParcelable(User.class.getClassLoader());
         this.kind = in.readString();
         this.age = in.readString();
         this.name = in.readString();
         this.address = in.readString();
-        this.latitude = in.readDouble();
-        this.longitude = in.readDouble();
+        this.latitude = in.readString();
+        this.longitude = in.readString();
     }
 
-    public static final Parcelable.Creator<Call> CREATOR = new Parcelable.Creator<Call>() {
+    public static final Creator<Call> CREATOR = new Creator<Call>() {
         @Override
         public Call createFromParcel(Parcel source) {
             return new Call(source);

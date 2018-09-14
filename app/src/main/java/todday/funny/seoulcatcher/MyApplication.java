@@ -6,11 +6,13 @@ import android.support.multidex.MultiDexApplication;
 
 import com.google.firebase.messaging.FirebaseMessaging;
 
+import todday.funny.seoulcatcher.util.Keys;
+
 public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        FirebaseMessaging.getInstance().subscribeToTopic("test");
+        FirebaseMessaging.getInstance().subscribeToTopic(Keys.TOPIC_KEY);
         FirebaseMessaging.getInstance().setAutoInitEnabled(true);
     }
 

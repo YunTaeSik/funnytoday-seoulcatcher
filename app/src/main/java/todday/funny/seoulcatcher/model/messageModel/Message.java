@@ -3,9 +3,17 @@ package todday.funny.seoulcatcher.model.messageModel;
 import todday.funny.seoulcatcher.model.Call;
 
 public class Message {
+    private String name;
     private String topic;
-    //   private MessageNotification notification =new MessageNotification();
     private Call data;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getTopic() {
         return topic;
@@ -14,14 +22,7 @@ public class Message {
     public void setTopic(String topic) {
         this.topic = topic;
     }
-/*
-    public MessageNotification getNotification() {
-        return notification;
-    }
 
-    public void setNotification(MessageNotification notification) {
-        this.notification = notification;
-    }*/
 
     public Call getData() {
         return data;

@@ -51,7 +51,9 @@ public class ProfileAdapter extends RecyclerView.Adapter {
         if (mItemList != null) {
             if (mItemList.get(position) instanceof User) {
                 User user = (User) mItemList.get(position);
-                return user.getId().hashCode();
+                if (user != null && user.getId() != null) {
+                    return user.getId().hashCode();
+                }
             }
         }
         return position;

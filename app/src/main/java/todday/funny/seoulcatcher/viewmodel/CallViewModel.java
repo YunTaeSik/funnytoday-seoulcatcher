@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 import com.gun0912.tedpermission.PermissionListener;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.PlaceData;
 import todday.funny.seoulcatcher.model.User;
+import todday.funny.seoulcatcher.model.messageModel.Message;
 import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.util.PermissionCheck;
 import todday.funny.seoulcatcher.util.RequestCode;
@@ -35,7 +37,7 @@ public class CallViewModel extends BaseViewModel {
 
     public CallViewModel(Context context, User user) {
         super(context);
-        mCall.get().setUser(user);
+        //mCall.get().setUser(user);
         mCall.get().setKind(context.getString(R.string.fire)); //초기 셋팅값
     }
 
@@ -85,17 +87,18 @@ public class CallViewModel extends BaseViewModel {
                     return;
                 }
             }
-        /*    if (call.getLatitude() == null || call.getLongitude() == null) {
+            if (call.getLatitude() == null || call.getLongitude() == null) {
                 ToastMake.make(mContext, R.string.hint_location);
                 return;
-            }*/
+            }
 
             showLoading.set(true);
-            mCompositeDisposable.add(mServerDataController.call(call).subscribe(new Consumer<Response<Void>>() {
+            mCompositeDisposable.add(mServerDataController.call(call).subscribe(new Consumer<Message>() {
                 @Override
-                public void accept(Response<Void> response) throws Exception {
-                    close();
+                public void accept(Message message) throws Exception {
+                    ToastMake.make(mContext, R.string.msg_call);
                     showLoading.set(false);
+                    close();
                 }
             }, new Consumer<Throwable>() {
                 @Override
@@ -121,8 +124,8 @@ public class CallViewModel extends BaseViewModel {
 
                     mCall.get().setName(placeData.getName());
                     mCall.get().setAddress(placeData.getAddress());
-                    mCall.get().setLatitude(latLng.latitude);
-                    mCall.get().setLongitude(latLng.longitude);
+                    mCall.get().setLatitude(String.valueOf(latLng.latitude));
+                    mCall.get().setLongitude(String.valueOf(latLng.longitude));
                     mCall.notifyChange();
                 }
             }
