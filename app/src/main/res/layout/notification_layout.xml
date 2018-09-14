@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="16dp">
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/image_touser"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
@@ -26,9 +28,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
+            android:text="윤태식님에 호출"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:text="윤태식" />
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:text="심정지 / 어린이"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/test_where"
@@ -36,9 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
+            android:text="위치 : 서울특별시 도봉구 도봉로"
             android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="어디에서" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 
