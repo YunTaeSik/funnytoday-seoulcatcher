@@ -32,6 +32,8 @@ import java.util.Map;
 import todday.funny.seoulcatcher.GlideApp;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.model.Call;
+import todday.funny.seoulcatcher.model.History;
+import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.activity.IntroActivity;
 import todday.funny.seoulcatcher.util.DateFormat;
 
@@ -47,14 +49,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d(TAG, ": " + remoteMessage.getFrom());
         if (remoteMessage.getData().size() > 0) {
             onDestroy();
-            startNotify(this, remoteMessage.getData());
+
+            Gson gson = new Gson();
+            JsonElement jsonElement = gson.toJsonTree(remoteMessage.getData());
+            final Call call = gson.fromJson(jsonElement, Call.class);
+
+            //노티파이
+            startNotify(this, call);
+
+            //히스토리 저장
+            ServerDataController.getInstance(this).saveHistory(new History(call));
         }
     }
 
-    public static void startNotify(final Context context, Map<String, String> data) {
-        Gson gson = new Gson();
-        JsonElement jsonElement = gson.toJsonTree(data);
-        final Call call = gson.fromJson(jsonElement, Call.class);
+    public static void startNotify(final Context context, final Call call) {
+
         Intent intent = new Intent(context, IntroActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 

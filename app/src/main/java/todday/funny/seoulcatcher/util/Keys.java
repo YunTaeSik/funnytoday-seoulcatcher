@@ -27,6 +27,9 @@ public class Keys {
     public static final String ITEMS = "items";
     public static final String BARCODE = "barcode";
 
+    public static final String CALL = "call";
+
+    public static final String HISTORYS = "historys";
 
     public static final String LEVEL = "level";
 
@@ -34,7 +37,6 @@ public class Keys {
 
     public static final String TITLE = "title";
 
-    public static final String CALL = "call";
 
     public static final String DATA = "data";
 

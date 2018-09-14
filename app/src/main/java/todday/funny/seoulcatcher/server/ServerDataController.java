@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -56,6 +57,7 @@ import todday.funny.seoulcatcher.interactor.OnScheduleListener;
 import todday.funny.seoulcatcher.interactor.OnUploadFinishListener;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.EduDate;
+import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.model.MemberShip;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.model.User;
@@ -456,6 +458,23 @@ public class ServerDataController {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * 히스토리 저장
+     */
+    public void saveHistory(History history) {
+        String id = getLoginUserId();
+        if (id != null) {
+            DocumentReference documentReference = db.collection(Keys.USERS).document(id).collection(Keys.HISTORYS).document();
+            history.setId(documentReference.getId());
+            documentReference.set(history).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+
+                }
+            });
         }
     }
 
