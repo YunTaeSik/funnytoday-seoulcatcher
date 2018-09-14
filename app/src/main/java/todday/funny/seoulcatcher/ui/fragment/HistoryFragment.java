@@ -32,10 +32,8 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false);
-        if (getActivity() != null && getActivity() instanceof BaseActivity) {
-            model = ((BaseActivity) getActivity()).getHistoryViewModel();
-            binding.setModel(model);
-        }
+        model = new HistoryViewModel(getContext());
+        binding.setModel(model);
         return binding.getRoot();
     }
 

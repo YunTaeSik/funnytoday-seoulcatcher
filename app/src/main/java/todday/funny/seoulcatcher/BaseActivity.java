@@ -31,7 +31,6 @@ public class BaseActivity extends AppCompatActivity {
     private SettingViewModel settingViewModel;
     private EducationViewModel educationViewModel;
     private ScheduleViewModel scheduleViewModel;
-    private HistoryViewModel historyViewModel;
 
     //backpress
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
@@ -98,13 +97,6 @@ public class BaseActivity extends AppCompatActivity {
             educationViewModel = new EducationViewModel(this);
         }
         return educationViewModel;
-    }
-
-    public HistoryViewModel getHistoryViewModel() {
-        if (historyViewModel == null) {
-            historyViewModel = new HistoryViewModel(this);
-        }
-        return historyViewModel;
     }
 
     public SettingViewModel getSettingViewModel() {
