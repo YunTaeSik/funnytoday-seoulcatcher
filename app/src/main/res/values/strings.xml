@@ -77,6 +77,8 @@
     <!--empty-->
     <string name="empty_title">"Get Started"</string>
     <string name="empty_profile">"There is no education schedule you have applied for.\nPlease apply for a new education."</string>
+    <string name="empty_history">"There is no history."</string>
+
 
     <!--error-->
     <string name="error_permission">"Permissions must be allowed to use."</string>

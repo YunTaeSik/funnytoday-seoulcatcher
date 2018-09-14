@@ -63,6 +63,7 @@
     <!--empty-->
     <string name="empty_title">"시작하기"</string>
     <string name="empty_profile">"신청하신 교육일정이 없습니다.\n 새로운 교육을 신청해주세요."</string>
+    <string name="empty_history">"히스토리가 없습니다."</string>
 
     <!--error-->
     <string name="error_permission">"권한을 허용해야 사용 할 수 있습니다."</string>

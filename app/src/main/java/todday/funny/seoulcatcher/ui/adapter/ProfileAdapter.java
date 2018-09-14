@@ -4,9 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
@@ -70,7 +68,7 @@ public class ProfileAdapter extends RecyclerView.Adapter {
             ProfileScheduleBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.item_profile_schedule, viewGroup, false);
             return new ProfileScheduleViewHolder(binding);
         } else {
-            ProfileEmptyBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.item_profile_empty, viewGroup, false);
+            ProfileEmptyBinding binding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.item_empty_profile, viewGroup, false);
             return new ProfileEmptyViewHolder(binding);
         }
     }
