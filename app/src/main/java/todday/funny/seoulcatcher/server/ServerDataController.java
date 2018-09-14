@@ -50,6 +50,7 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Response;
 import todday.funny.seoulcatcher.interactor.OnEduDateListener;
 import todday.funny.seoulcatcher.interactor.OnInitUserDataListener;
+import todday.funny.seoulcatcher.interactor.OnLoadHistoryListListener;
 import todday.funny.seoulcatcher.interactor.OnLoadMemberShipsListener;
 import todday.funny.seoulcatcher.interactor.OnLoadScheduleListListener;
 import todday.funny.seoulcatcher.interactor.OnLoadUserDataFinishListener;
@@ -473,10 +474,26 @@ public class ServerDataController {
             documentReference.set(history).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
-
                 }
             });
         }
+    }
+
+    public void getUserHistory(String userId, final OnLoadHistoryListListener onLoadHistoryListListener) {
+        db.collection(Keys.USERS).document(userId).collection(Keys.HISTORYS).orderBy("date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                ArrayList<History> historyArrayList = new ArrayList<>();
+                if (task.isSuccessful()) {
+                    for (int i = 0; i < task.getResult().getDocuments().size(); i++) {
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(i);
+                        History history = documentSnapshot.toObject(History.class);
+                        historyArrayList.add(history);
+                    }
+                }
+                onLoadHistoryListListener.onComplete(historyArrayList);
+            }
+        });
     }
 
 }
