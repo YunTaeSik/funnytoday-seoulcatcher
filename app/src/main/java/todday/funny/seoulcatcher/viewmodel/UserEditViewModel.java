@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.interactor.OnUploadFinishListener;
+import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.ui.activity.IntroActivity;
 import todday.funny.seoulcatcher.ui.dialog.AlertDialogCreate;
@@ -123,6 +124,7 @@ public class UserEditViewModel extends UserViewModel {
         }
         if (isUserNameModify.get() || isUserNickNameModify.get() || isUseProfileModify.get() || isUserBackgroundModify.get()) { // 하나라도변경시 업뎃 브로딩캐스트 -> Profile ViewModel 로 전송
             SendBroadcast.user(mContext, Keys.EDIT_USER, mUser.get());
+            mServerDataController.saveHistory(new History(mUser.get())); //프로필 수정
         }
         if (isUserNameModify.get() || isUserNickNameModify.get()) {
             showLoading.set(true);
