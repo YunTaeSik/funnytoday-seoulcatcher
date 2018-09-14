@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/image_touser"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:tint="@color/colorPrimary"
+        app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_to_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="윤태식" />
+
+        <TextView
+            android:id="@+id/test_where"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="어디에서" />
+    </LinearLayout>
+
+
+</LinearLayout>

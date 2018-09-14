@@ -4,7 +4,11 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Call implements Parcelable {
-    // private User user;
+    //여긴 무조건 String 만 넣어야댐
+
+    private String toUserId;
+    private String toUserName;
+    private String toUserPhotoUrl;
     private String kind;
     private String age;
     private String name;
@@ -12,6 +16,29 @@ public class Call implements Parcelable {
     private String latitude;
     private String longitude;
 
+    public String getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(String toUserId) {
+        this.toUserId = toUserId;
+    }
+
+    public String getToUserName() {
+        return toUserName;
+    }
+
+    public void setToUserName(String toUserName) {
+        this.toUserName = toUserName;
+    }
+
+    public String getToUserPhotoUrl() {
+        return toUserPhotoUrl;
+    }
+
+    public void setToUserPhotoUrl(String toUserPhotoUrl) {
+        this.toUserPhotoUrl = toUserPhotoUrl;
+    }
 
     public String getKind() {
         return kind;
@@ -29,14 +56,6 @@ public class Call implements Parcelable {
         this.age = age;
     }
 
-    /*  public User getUser() {
-          return user;
-      }
-
-      public void setUser(User user) {
-          this.user = user;
-      }
-  */
     public String getName() {
         return name;
     }
@@ -79,6 +98,9 @@ public class Call implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.toUserId);
+        dest.writeString(this.toUserName);
+        dest.writeString(this.toUserPhotoUrl);
         dest.writeString(this.kind);
         dest.writeString(this.age);
         dest.writeString(this.name);
@@ -88,6 +110,9 @@ public class Call implements Parcelable {
     }
 
     protected Call(Parcel in) {
+        this.toUserId = in.readString();
+        this.toUserName = in.readString();
+        this.toUserPhotoUrl = in.readString();
         this.kind = in.readString();
         this.age = in.readString();
         this.name = in.readString();

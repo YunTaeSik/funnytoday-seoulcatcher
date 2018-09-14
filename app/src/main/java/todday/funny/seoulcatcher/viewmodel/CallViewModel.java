@@ -37,8 +37,16 @@ public class CallViewModel extends BaseViewModel {
 
     public CallViewModel(Context context, User user) {
         super(context);
-        //mCall.get().setUser(user);
-        mCall.get().setKind(context.getString(R.string.fire)); //초기 셋팅값
+        initData(user);
+    }
+
+    private void initData(User user) {
+        if (user != null) {
+            mCall.get().setToUserId(user.getId());
+            mCall.get().setToUserName(user.getName());
+            mCall.get().setToUserPhotoUrl(user.getPhotoUrl());
+        }
+        mCall.get().setKind(mContext.getString(R.string.fire)); //초기 셋팅값
     }
 
     public void onClickKind(View view) {
