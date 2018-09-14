@@ -10,6 +10,7 @@ import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.util.Keys;
 
 public class HistoryViewModel extends BaseViewModel {
+    //TODO 히스토리 작업중
     public ObservableArrayList<Object> mHistoryList = new ObservableArrayList<>();
     private String mUserId;
 
