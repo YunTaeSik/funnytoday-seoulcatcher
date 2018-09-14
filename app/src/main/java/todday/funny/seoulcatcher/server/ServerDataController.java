@@ -344,30 +344,7 @@ public class ServerDataController {
         }
 
     }
-/*
-    public void getUserschedules(final OnScheduleListener onScheduleListener){
 
-        final ArrayList<Schedule> eduDates = new ArrayList<>();
-
-        FirebaseFirestore.getInstance().collection("users").document(model.userUid).collection("schedule").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                schedules.clear();
-                if (queryDocumentSnapshots == null) {
-                    Log.e("recyclerView", "없다!");
-                } else {
-                    textView.setVisibility(View.INVISIBLE);
-                    for(int i=0;i<queryDocumentSnapshots.getDocuments().size();i++) {
-                        Schedule scheduleModel = (queryDocumentSnapshots.getDocuments().get(i)).toObject(Schedule.class);
-                        Log.e("data",scheduleModel.getDate());
-                        //Log.e("aaaa", String.valueOf((queryDocumentSnapshots.getDocuments().get(i).getData())));
-                        schedules.add(scheduleModel);
-                    }
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        });
-    }*/
 
     /**
      * 멤버쉽
