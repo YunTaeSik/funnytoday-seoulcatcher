@@ -25,7 +25,7 @@
             android:value="barcode" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/notification_channel_id"/>
+            android:value="@string/notification_channel_id" />
 
         <activity
             android:name=".ui.activity.IntroActivity"
@@ -53,13 +53,11 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".service.MyFirebaseInstanceIDService">
+        <service android:name=".service.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
 
     </application>
 

@@ -3,9 +3,11 @@ package todday.funny.seoulcatcher.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Call implements Parcelable {
     //여긴 무조건 String 만 넣어야댐
-
     private String toUserId;
     private String toUserName;
     private String toUserPhotoUrl;
@@ -89,6 +91,18 @@ public class Call implements Parcelable {
     }
 
     public Call() {
+    }
+
+    public Call(Map<String, String> data) {
+        setToUserId(data.get("toUserId"));
+        setToUserName(data.get("toUserName"));
+        setToUserPhotoUrl(data.get("toUserPhotoUrl"));
+        setKind(data.get("kind"));
+        setAddress(data.get("age"));
+        setName(data.get("name"));
+        setAddress(data.get("address"));
+        setLatitude(data.get("latitude"));
+        setLongitude(data.get("longitude"));
     }
 
     @Override

@@ -4,7 +4,7 @@ public class Keys {
     public static final String TEST_QR_KEY = "todday.funny.seoulcatcher testQR";
 
     public static final String FCM_URL_API = "https://fcm.googleapis.com/v1/";
- //   public static final String FCM_AUTH_KEY = "Bearer AAAAkvBOprM:APA91bEpEPU65wiUDJlpDwijrZa6RQ0fju7Hh3WNkze6kjgsVQsIUZ2ss2EAtEEPsrKoYU3GUL0QdPbijIdT_hb4fh3KaPgH8fXiYut7UhcwGDZy7oohPNc47WCtPZStB_-ppWGB5gAT";
+    //   public static final String FCM_AUTH_KEY = "Bearer AAAAkvBOprM:APA91bEpEPU65wiUDJlpDwijrZa6RQ0fju7Hh3WNkze6kjgsVQsIUZ2ss2EAtEEPsrKoYU3GUL0QdPbijIdT_hb4fh3KaPgH8fXiYut7UhcwGDZy7oohPNc47WCtPZStB_-ppWGB5gAT";
     public static final String FCM_AUTH_KEY = "Bearer 631096911539";
     public static final String CONTENT_TYPE = "application/json";
 
@@ -33,6 +33,10 @@ public class Keys {
     public static final String EMPTY = "empty";
 
     public static final String TITLE = "title";
+
+    public static final String CALL = "call";
+
+    public static final String DATA = "data";
 
     public static final String PATH = "path";
     public static final String TRANS_NAME = "transName";

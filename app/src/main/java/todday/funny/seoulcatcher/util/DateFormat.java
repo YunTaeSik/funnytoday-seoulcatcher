@@ -12,6 +12,8 @@ import todday.funny.seoulcatcher.R;
 public class DateFormat {
     private final static String DATE_FORMAT = "yyyyy-MM-dd (E)";
 
+    private final static String TIME_FORMAT = "a HH:mm";
+
     public static String getDdayStringFromCalendar(Context context, String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         try {
@@ -34,7 +36,14 @@ public class DateFormat {
             e.printStackTrace();
             return "";
         }
+    }
 
+    public static String getCallTime(long time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(time);
+
+        return dateFormat.format(calendar.getTime());
     }
 
 }

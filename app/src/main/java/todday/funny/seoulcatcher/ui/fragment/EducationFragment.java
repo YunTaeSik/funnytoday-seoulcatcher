@@ -15,7 +15,7 @@ import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.EducationBinding;
 import todday.funny.seoulcatcher.viewmodel.EducationViewModel;
 
-public class EducationFragment extends Fragment implements TextToSpeech.OnInitListener{
+public class EducationFragment extends Fragment implements TextToSpeech.OnInitListener {
 
     private EducationBinding binding = null;
     private EducationViewModel model = null;
@@ -35,8 +35,11 @@ public class EducationFragment extends Fragment implements TextToSpeech.OnInitLi
             model = ((BaseActivity) getActivity()).getEducationViewModel();
             binding.setModel(model);
         }
-
-        TextToSpeech speech = new TextToSpeech(getContext(),this);
+        try {
+//            TextToSpeech speech = new TextToSpeech(getContext(), this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return binding.getRoot();
     }
 

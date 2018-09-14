@@ -51,6 +51,8 @@
 
     <string name="percent_type">"%"</string>
 
+    <string name="call_user_name">"Call %s"</string>
+
     <string name="days_ago">" days ago"</string>
     <string name="days_remaining">" days remaining"</string>
 
