@@ -469,6 +469,7 @@ public class ServerDataController {
         if (id != null) {
             DocumentReference documentReference = db.collection(Keys.USERS).document(id).collection(Keys.HISTORYS).document();
             history.setId(documentReference.getId());
+            history.setDate(System.currentTimeMillis());
             documentReference.set(history).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

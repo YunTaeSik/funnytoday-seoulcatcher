@@ -5,9 +5,18 @@ import android.os.Parcelable;
 
 public class History implements Parcelable {
     private String id;
+    private long date;
     private Call call;
     private User user;
     private Schedule schedule;
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
 
     public String getId() {
         return id;
@@ -65,6 +74,7 @@ public class History implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
+        dest.writeLong(this.date);
         dest.writeParcelable(this.call, flags);
         dest.writeParcelable(this.user, flags);
         dest.writeParcelable(this.schedule, flags);
@@ -72,6 +82,7 @@ public class History implements Parcelable {
 
     protected History(Parcel in) {
         this.id = in.readString();
+        this.date = in.readLong();
         this.call = in.readParcelable(Call.class.getClassLoader());
         this.user = in.readParcelable(User.class.getClassLoader());
         this.schedule = in.readParcelable(Schedule.class.getClassLoader());
