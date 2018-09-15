@@ -329,7 +329,7 @@ public class ServerDataController {
                         scheduleArrayKeysList.add(key);
                     }
                 }
-                onLoadScheduleListListener.onComplete(scheduleArrayList, scheduleArrayKeysList);
+                onLoadScheduleListListener.onComplete(scheduleArrayList);
             }
         });
     }

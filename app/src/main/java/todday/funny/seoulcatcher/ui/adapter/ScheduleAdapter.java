@@ -26,16 +26,14 @@ import todday.funny.seoulcatcher.util.Keys;
 public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private ArrayList<Schedule> schedules;
-    private ArrayList<String> schedulesKeyLists ;
 
     private String uid ;
     private Context context;
 
-    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules,ArrayList<String> schedulesKeyLists){
+    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules){
         this.context = context;
         this.uid =  FirebaseAuth.getInstance().getUid();
         this.schedules = schedules;
-        this.schedulesKeyLists = schedulesKeyLists;
     }
 
     @NonNull
@@ -60,14 +58,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 Log.e("취소 확인!","성공!!!!!");
-                                FirebaseFirestore.getInstance().collection("users").document(uid).collection(Keys.SCHEDULES).document(schedulesKeyLists.get(position)).delete()
+                                FirebaseFirestore.getInstance().collection("users").document(uid).collection(Keys.SCHEDULES).document(schedules.get(position).getKey()).delete()
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 Log.e("schedule 삭제","삭제성공!");
-                                                schedulesKeyLists.remove(position);
                                                 schedules.remove(position);
-
                                                 notifyDataSetChanged();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {

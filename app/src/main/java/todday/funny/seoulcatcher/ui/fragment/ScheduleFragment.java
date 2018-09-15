@@ -1,6 +1,9 @@
 package todday.funny.seoulcatcher.ui.fragment;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -36,6 +39,7 @@ import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.adapter.ScheduleAdapter;
 import todday.funny.seoulcatcher.util.CommonDecorator;
 import todday.funny.seoulcatcher.util.EventDecorator;
+import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.util.SaturdayDecorator;
 import todday.funny.seoulcatcher.util.SundayDecorator;
 import todday.funny.seoulcatcher.util.TodayDecorator;
@@ -57,7 +61,6 @@ public class ScheduleFragment extends Fragment {
     private ScheduleAdapter adapter;
 
     private ArrayList<Schedule> schedulesLists = new ArrayList<>();
-    private ArrayList<String> schedulesKeyLists = new ArrayList<>();
     private ArrayList<EduDate> eduDatesLists;
 
     private ServerDataController serverDataController = ServerDataController.getInstance(getContext());
@@ -95,6 +98,8 @@ public class ScheduleFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));*/
 
+        registerBroadCast();
+
         getScheduleDataBase();
         setEducationDate();
 
@@ -112,23 +117,38 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
+    private void registerBroadCast(){
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Keys.ADD_SCHEDULE);
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
+    }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(Keys.ADD_SCHEDULE)){
+                Schedule schedule = intent.getParcelableExtra("data");
+                schedulesLists.add(schedule);
+                adapter.notifyDataSetChanged();
+            }
+        }
+    };
+
     private void getScheduleDataBase() {
         String uid =FirebaseAuth.getInstance().getUid();
         serverDataController.getUserSchedule(uid, new OnScheduleListener() {
             @Override
-            public void onComplete(ArrayList<Schedule> scheduleList, ArrayList<String> schedulekeyList) {
+            public void onComplete(ArrayList<Schedule> scheduleList) {
 
                 if(scheduleList.size() == 0) {
                     model.isSchedule = true;
                 }else {
                     model.isSchedule = false;
-                    schedulesLists = scheduleList;
-                    schedulesKeyLists = schedulekeyList;
-                    adapter = new ScheduleAdapter(getContext(), schedulesLists, schedulesKeyLists);
-                    recyclerView.setAdapter(adapter);
-                    for (int i = 0; i < schedulesLists.size(); i++)
-                        Log.e("eeeee", schedulesKeyLists.get(i));
+
                 }
+                schedulesLists = scheduleList;
+                adapter = new ScheduleAdapter(getContext(), schedulesLists);
+                recyclerView.setAdapter(adapter);
 
             }
         });

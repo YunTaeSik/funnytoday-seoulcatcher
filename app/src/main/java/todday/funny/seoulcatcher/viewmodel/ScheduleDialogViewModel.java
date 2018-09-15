@@ -1,6 +1,7 @@
 package todday.funny.seoulcatcher.viewmodel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -37,6 +38,10 @@ public class ScheduleDialogViewModel extends BaseViewModel{
                         String key = reference.getId();
                         Schedule schedule = new Schedule(key,date,locationname);
                         FirebaseFirestore.getInstance().collection(Keys.USERS).document(uid).collection(Keys.SCHEDULES).document(key).set(schedule);
+
+                        Intent intent = new Intent(Keys.ADD_SCHEDULE);
+                        intent.putExtra("data",schedule);
+                        mContext.sendBroadcast(intent);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
