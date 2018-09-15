@@ -7,7 +7,11 @@ import android.util.Log;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.util.Keys;
@@ -23,13 +27,16 @@ public class ScheduleDialogViewModel extends BaseViewModel{
 
     public void inputScheduleDateBase(final String date) {
 
-        String uid = FirebaseAuth.getInstance().getUid();
+        final String uid = FirebaseAuth.getInstance().getUid();
         Log.e("aaaa","%%%%%%"+date+"    "+uid);
-        FirebaseFirestore.getInstance().collection(Keys.USERS).document(uid).collection(Keys.SCHEDULES).document().set(new Schedule(date,locationname))
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+        FirebaseFirestore.getInstance().collection(Keys.USERS).document(uid).collection(Keys.SCHEDULES).add(new Schedule(date,locationname))
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
-                    public void onSuccess(Void aVoid) {
+                    public void onSuccess(DocumentReference reference) {
                         Log.e("데이터 베이스 삽입 성공!", date);
+                        String key = reference.getId();
+                        Schedule schedule = new Schedule(key,date,locationname);
+                        FirebaseFirestore.getInstance().collection(Keys.USERS).document(uid).collection(Keys.SCHEDULES).document(key).set(schedule);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -39,3 +46,4 @@ public class ScheduleDialogViewModel extends BaseViewModel{
         });
     }
 }
+
