@@ -313,11 +313,11 @@ public class ServerDataController {
     }
 
     public void getUserSchedule(String userId, final OnScheduleListener onLoadScheduleListListener) {
+        final ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
         FirebaseFirestore.getInstance().collection(Keys.USERS).document(userId).collection(Keys.SCHEDULES).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                ArrayList<Schedule> scheduleArrayList = new ArrayList<>();
-                ArrayList<String> scheduleArrayKeysList = new ArrayList<>();
+
                 if (task.isSuccessful()) {
                     for (int i = 0; i < task.getResult().getDocuments().size(); i++) {
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(i);
@@ -326,10 +326,12 @@ public class ServerDataController {
                         Log.e("uid", documentSnapshot.getId());
                         Log.e("getschedules", schedule.getDate() + "  " + key);
                         scheduleArrayList.add(schedule);
-                        scheduleArrayKeysList.add(key);
                     }
+                    onLoadScheduleListListener.onComplete(scheduleArrayList);
+                }else {
+                    onLoadScheduleListListener.onComplete(scheduleArrayList);
                 }
-                onLoadScheduleListListener.onComplete(scheduleArrayList);
+
             }
         });
     }

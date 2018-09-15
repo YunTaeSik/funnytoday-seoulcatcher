@@ -32,6 +32,7 @@ import todday.funny.seoulcatcher.BaseActivity;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.ScheduleBinding;
 import todday.funny.seoulcatcher.interactor.OnEduDateListener;
+import todday.funny.seoulcatcher.interactor.OnListISizeZero;
 import todday.funny.seoulcatcher.interactor.OnScheduleListener;
 import todday.funny.seoulcatcher.model.EduDate;
 import todday.funny.seoulcatcher.model.Schedule;
@@ -46,7 +47,7 @@ import todday.funny.seoulcatcher.util.TodayDecorator;
 import todday.funny.seoulcatcher.viewmodel.ScheduleViewModel;
 
 
-public class ScheduleFragment extends Fragment {
+public class ScheduleFragment extends Fragment{
     private ScheduleBinding binding;
     private ScheduleViewModel model;
     private Context context;
@@ -127,6 +128,7 @@ public class ScheduleFragment extends Fragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getAction().equals(Keys.ADD_SCHEDULE)){
+                model.isSchedule = false;
                 Schedule schedule = intent.getParcelableExtra("data");
                 schedulesLists.add(schedule);
                 adapter.notifyDataSetChanged();
@@ -147,7 +149,7 @@ public class ScheduleFragment extends Fragment {
 
                 }
                 schedulesLists = scheduleList;
-                adapter = new ScheduleAdapter(getContext(), schedulesLists);
+                adapter = new ScheduleAdapter(getContext(), schedulesLists,onListISizeZero);
                 recyclerView.setAdapter(adapter);
 
             }
@@ -194,6 +196,13 @@ public class ScheduleFragment extends Fragment {
         }
         calendarView.addDecorators(commonDecorator, sundayDecorator, saturdayDecorator, todayDecorator);
     }
+
+    private OnListISizeZero onListISizeZero = new OnListISizeZero() {
+        @Override
+        public void sizeZero() {
+            model.isSchedule = true;
+        }
+    };
 
     private class CheckPointCalender extends AsyncTask<Void, Void, ArrayList<CalendarDay>> {
 

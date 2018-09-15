@@ -22,7 +22,7 @@
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:mcv_selectionColor="#a9dd03ff"
+            app:mcv_selectionColor="#a9047b2e"
             app:mcv_showOtherDates="defaults" />
 
         <RelativeLayout
@@ -32,7 +32,7 @@
             >
 
             <TextView
-                android:visibility="@{model.isSchedule ? View.GONE : View.VISIBLE}"
+                android:visibility="@{model.isSchedule ? View.VISIBLE : View.INVISIBLE}"
                 android:id="@+id/scheduleFragment_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

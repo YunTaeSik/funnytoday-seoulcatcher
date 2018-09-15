@@ -55,7 +55,6 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
         uid = FirebaseAuth.getInstance().getUid();
 
         button_ok = view.findViewById(R.id.schedueldialog_comfirm);
-        button_cancel = view.findViewById(R.id.schedueldialog_cancel);
         button_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,12 +62,7 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
                 dismiss();
             }
         });
-        button_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
+
 
         if(getArguments()!=null) {
             date = getArguments().getString("date");

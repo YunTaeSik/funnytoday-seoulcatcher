@@ -20,6 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.interactor.OnListISizeZero;
 import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.util.Keys;
 
@@ -29,11 +30,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private String uid ;
     private Context context;
-
-    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules){
+    private OnListISizeZero onListISizeZero;
+    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules, OnListISizeZero onListISizeZero){
         this.context = context;
         this.uid =  FirebaseAuth.getInstance().getUid();
         this.schedules = schedules;
+        this.onListISizeZero = onListISizeZero;
     }
 
     @NonNull
@@ -64,6 +66,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                             public void onSuccess(Void aVoid) {
                                                 Log.e("schedule 삭제","삭제성공!");
                                                 schedules.remove(position);
+                                                if(schedules.size()==0){
+                                                    onListISizeZero.sizeZero();
+                                                }
                                                 notifyDataSetChanged();
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {

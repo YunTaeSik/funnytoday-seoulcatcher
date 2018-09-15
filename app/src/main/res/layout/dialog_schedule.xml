@@ -16,75 +16,99 @@
         android:layout_height="match_parent"
         android:background="@android:color/background_light">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                >
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/btn_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?android:selectableItemBackground"
+                    android:onClick="@{() -> model.close()}"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_keyboard_backspace_black_24dp" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="109dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center|left"
+                    android:text="교육신청"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/btn_close"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
 
-        <com.google.android.gms.maps.MapView
-            android:id="@+id/schedueldialog_mapview"
-            android:layout_width="318dp"
-            android:layout_height="373dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/schedueldialog_textview_location" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                >
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/schedueldialog_textview_date"
+                    android:layout_width="205dp"
+                    android:layout_height="41dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="32dp"
+                    android:background="@android:color/background_light"
+                    android:text="@{model.textDate}"
+                    android:textSize="20sp"
+                    />
 
-        <TextView
-            android:id="@+id/schedueldialog_textview_date"
-            android:layout_width="202dp"
-            android:layout_height="36dp"
-            android:layout_marginLeft="44dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="36dp"
-            android:background="@android:color/background_light"
-            android:text="@{model.textDate}"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/schedueldialog_textview_location"
+                    android:layout_width="80dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@{model.locationname}"
+                    android:textSize="20sp"
+                     />
+            </LinearLayout>
 
-        <Button
-            android:id="@+id/schedueldialog_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-            android:text="취소"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/schedueldialog_comfirm"
-            app:layout_constraintHorizontal_bias="0.161"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/schedueldialog_mapview"
-            app:layout_constraintVertical_bias="1.0" />
+            <com.google.android.gms.maps.MapView
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:id="@+id/schedueldialog_mapview"
+                android:layout_width="318dp"
+                android:layout_height="373dp"
+                 />
 
-        <Button
-            android:id="@+id/schedueldialog_comfirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginEnd="68dp"
-            android:layout_marginRight="68dp"
-            android:layout_marginTop="8dp"
-            android:text="신청"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/schedueldialog_mapview"
-            app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/schedueldialog_textview_location"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="32dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
-            android:text="@{model.locationname}"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.944"
-            app:layout_constraintStart_toEndOf="@+id/schedueldialog_textview_date"
-            app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:id="@+id/schedueldialog_comfirm"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="신청" />
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
     </android.support.constraint.ConstraintLayout>
 </layout>

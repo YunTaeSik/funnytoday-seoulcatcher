@@ -16,6 +16,7 @@ public class ScheduleViewModel extends BaseViewModel {
     final ArrayList<String> listKeys = new ArrayList<>();
 
     public ObservableField<Schedule> mSchedule = new ObservableField<>();
+    //public ObservableField<Boolean> isSchedule = new ObservableField<>();
 
     public String userUid = FirebaseAuth.getInstance().getUid();
 
@@ -29,7 +30,7 @@ public class ScheduleViewModel extends BaseViewModel {
     public ScheduleViewModel(Context context, Schedule schedule) {
         super(context);
         mSchedule.set(schedule);
-
+        //isSchedule.set();
     }
 
     public void openScheduleInfo(String date){
