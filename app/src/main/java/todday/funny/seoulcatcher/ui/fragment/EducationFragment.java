@@ -8,6 +8,7 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,20 +28,19 @@ import todday.funny.seoulcatcher.databinding.EducationBinding;
 import todday.funny.seoulcatcher.util.HeartSpeech;
 import todday.funny.seoulcatcher.viewmodel.EducationViewModel;
 
-public class EducationFragment extends Fragment {
+public class EducationFragment extends Fragment implements View.OnClickListener{
 
     private EducationBinding binding = null;
     private EducationViewModel model = null;
 
-    private LinearLayout one;
-    private LinearLayout two;
-    private LinearLayout three;
+    private ConstraintLayout emerLayout;
+    private ConstraintLayout disasterLayout;
+    private ConstraintLayout accidentLayout;
+    private ConstraintLayout layout199;
 
-    private ExpandableLayout one_;
-    private ExpandableLayout two_;
-    private ExpandableLayout three_;
-
-    private boolean flag = true;
+    private ExpandableLayout expandable_emerLayout;
+    private ExpandableLayout expandable_disasterLayout;
+    private ExpandableLayout expandable_accidentLayout;
 
     public static EducationFragment newInstance() {
         Bundle args = new Bundle();
@@ -56,53 +56,69 @@ public class EducationFragment extends Fragment {
         if (getActivity() != null && getActivity() instanceof BaseActivity) {
             model = ((BaseActivity) getActivity()).getEducationViewModel();
             binding.setModel(model);
-
-
         }
-
         View view = binding.getRoot();
 
-        one = view.findViewById(R.id.one);
-        two = view.findViewById(R.id.two);
-        three = view.findViewById(R.id.three);
-
-        one_ = view.findViewById(R.id.expandable_layout_1);
-        two_ = view.findViewById(R.id.expandable_layout_2);
-        three_ = view.findViewById(R.id.expandable_layout_3);
-
-        one.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(one_.isExpanded())
-                    one_.collapse();
-                else
-                    one_.expand();
-            }
-        });
-
-        two.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(two_.isExpanded())
-                    two_.collapse();
-                else
-                    two_.expand();
-            }
-        });
-
-        three.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(three_.isExpanded())
-                    three_.collapse();
-                else
-                    three_.expand();
-            }
-        });
-
+        init(view);
 
         return view;
     }
 
+    private void init(View view){
+        emerLayout = view.findViewById(R.id.layout_emergency);
+        disasterLayout = view.findViewById(R.id.layout_disaster);
+        accidentLayout = view.findViewById(R.id.layout_accident);
+        layout199 = view.findViewById(R.id.layout_119);
 
+        expandable_emerLayout = view.findViewById(R.id.expandable_layout_1);
+        expandable_disasterLayout = view.findViewById(R.id.expandable_layout_2);
+        expandable_accidentLayout = view.findViewById(R.id.expandable_layout_3);
+
+        expandable_emerLayout.collapse();
+        expandable_disasterLayout.collapse();
+        expandable_accidentLayout.collapse();
+
+        emerLayout.setOnClickListener(this);
+
+        disasterLayout.setOnClickListener(this);
+
+        accidentLayout.setOnClickListener(this);
+        accidentLayout.setOnClickListener(this);
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.layout_emergency:
+                if(expandable_emerLayout.isExpanded())
+                    expandable_emerLayout.collapse();
+                else {
+                    expandable_accidentLayout.collapse();
+                    expandable_disasterLayout.collapse();
+                    expandable_emerLayout.expand();
+                }
+                break;
+            case R.id.layout_disaster:
+                if(expandable_disasterLayout.isExpanded())
+                    expandable_disasterLayout.collapse();
+                else {
+                    expandable_emerLayout.collapse();
+                    expandable_accidentLayout.collapse();
+                    expandable_disasterLayout.expand();
+                }
+                    break;
+            case R.id.layout_accident:
+                if(expandable_accidentLayout.isExpanded())
+                    expandable_accidentLayout.collapse();
+                else {
+                    expandable_disasterLayout.collapse();
+                    expandable_emerLayout.collapse();
+                    expandable_accidentLayout.expand();
+                }
+                break;
+            case R.id.layout_119:
+                break;
+        }
+    }
 }
