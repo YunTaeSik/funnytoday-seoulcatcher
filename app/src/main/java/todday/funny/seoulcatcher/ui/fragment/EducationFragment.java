@@ -14,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -29,7 +32,13 @@ public class EducationFragment extends Fragment {
     private EducationBinding binding = null;
     private EducationViewModel model = null;
 
-    private Button button;
+    private LinearLayout one;
+    private LinearLayout two;
+    private LinearLayout three;
+
+    private ExpandableLayout one_;
+    private ExpandableLayout two_;
+    private ExpandableLayout three_;
 
     private boolean flag = true;
 
@@ -47,39 +56,53 @@ public class EducationFragment extends Fragment {
         if (getActivity() != null && getActivity() instanceof BaseActivity) {
             model = ((BaseActivity) getActivity()).getEducationViewModel();
             binding.setModel(model);
+
+
         }
 
-
-
-
-        final HeartSpeech heartSpeech = new HeartSpeech(getContext());
-
         View view = binding.getRoot();
-        button = view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        one = view.findViewById(R.id.one);
+        two = view.findViewById(R.id.two);
+        three = view.findViewById(R.id.three);
+
+        one_ = view.findViewById(R.id.expandable_layout_1);
+        two_ = view.findViewById(R.id.expandable_layout_2);
+        three_ = view.findViewById(R.id.expandable_layout_3);
+
+        one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(flag == true){
-                    flag = false;
-                    heartSpeech.speakTTS();
-
-                }else {
-                    flag = true;
-                    heartSpeech.stopTTS();
-                }
-
-
-
+                if(one_.isExpanded())
+                    one_.collapse();
+                else
+                    one_.expand();
             }
         });
 
+        two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(two_.isExpanded())
+                    two_.collapse();
+                else
+                    two_.expand();
+            }
+        });
+
+        three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(three_.isExpanded())
+                    three_.collapse();
+                else
+                    three_.expand();
+            }
+        });
+
+
         return view;
     }
-
-
-
-
 
 
 }
