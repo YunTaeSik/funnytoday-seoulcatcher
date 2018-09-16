@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.MembershipListBinding;
+import todday.funny.seoulcatcher.databinding.UsingstifBinding;
 import todday.funny.seoulcatcher.ui.dialog.MembershipDialog;
 import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.viewmodel.MembershipListViewModel;
+import todday.funny.seoulcatcher.viewmodel.educationViewModel.UsingStifViewModel;
 
 public class UsingStifFragmentDialog extends DialogFragment {
     private UsingstifBinding binding;
@@ -21,7 +23,7 @@ public class UsingStifFragmentDialog extends DialogFragment {
     public static UsingStifFragmentDialog newInstance(String level) {
         Bundle args = new Bundle();
         args.putString(Keys.LEVEL, level);
-        MembershipDialog fragment = new MembershipDialog();
+        UsingStifFragmentDialog fragment = new UsingStifFragmentDialog();
         fragment.setArguments(args);
         return fragment;
     }
@@ -32,7 +34,7 @@ public class UsingStifFragmentDialog extends DialogFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_membership, container, false);
         if (getArguments() != null) {
             String level = getArguments().getString(Keys.LEVEL);
-            MembershipListViewModel model = new MembershipListViewModel(getActivity(),level);
+            UsingStifViewModel model = new UsingStifViewModel(getActivity());
             binding.setModel(model);
         }
         return binding.getRoot();

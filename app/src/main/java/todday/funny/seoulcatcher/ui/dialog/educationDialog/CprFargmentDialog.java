@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.databinding.CprBinding;
 import todday.funny.seoulcatcher.databinding.MembershipListBinding;
 import todday.funny.seoulcatcher.ui.dialog.MembershipDialog;
 import todday.funny.seoulcatcher.util.Keys;

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.MembershipListBinding;
+import todday.funny.seoulcatcher.databinding.SunnyboomBinding;
 import todday.funny.seoulcatcher.ui.dialog.MembershipDialog;
 import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.viewmodel.MembershipListViewModel;
