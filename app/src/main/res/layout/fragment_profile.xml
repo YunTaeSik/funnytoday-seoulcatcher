@@ -43,7 +43,7 @@
                 android:onClick="@{()->model.openQR(model.mUser)}"
                 android:padding="8dp"
                 android:tint="@color/gray_dark"
-                app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+                app:srcCompat="@drawable/ic_qr_code_24dp" />
 
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="wrap_content"

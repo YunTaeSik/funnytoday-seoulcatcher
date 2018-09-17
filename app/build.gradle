@@ -24,7 +24,7 @@ android {
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
     }
-    buildToolsVersion '28.0.1'
+    buildToolsVersion '28.0.2'
 }
 
 dependencies {
