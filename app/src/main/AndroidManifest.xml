@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAnrr1JXXw6Abpc2isaI3z6p8dbgqR99cQ" />
+            android:value="@string/google_api_key" />
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
@@ -45,8 +45,12 @@
             android:name=".ui.activity.ImageViewerActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait" />
+
 
         <service android:name=".service.MyFirebaseMessagingService">
             <intent-filter>

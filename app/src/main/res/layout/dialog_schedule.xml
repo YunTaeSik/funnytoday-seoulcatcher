@@ -88,8 +88,7 @@
                 android:layout_gravity="center"
                 android:id="@+id/schedueldialog_mapview"
                 android:layout_width="318dp"
-                android:layout_height="373dp"
-                 />
+                android:layout_height="373dp" />
 
 
             <Button

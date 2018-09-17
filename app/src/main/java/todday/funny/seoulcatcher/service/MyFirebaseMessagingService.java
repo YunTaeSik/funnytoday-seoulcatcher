@@ -20,13 +20,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 
-
 import todday.funny.seoulcatcher.GlideApp;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.activity.IntroActivity;
+import todday.funny.seoulcatcher.ui.activity.MapActivity;
 import todday.funny.seoulcatcher.util.DateFormat;
 
 
@@ -56,8 +56,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     public static void startNotify(final Context context, final Call call) {
 
-        Intent intent = new Intent(context, IntroActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        Intent main = new Intent(context, IntroActivity.class);
+        Intent map = new Intent(context, MapActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivities(context, 0, new Intent[]{main, map}, PendingIntent.FLAG_ONE_SHOT);
 
         final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_layout);
         remoteViews.setTextViewText(R.id.text_time, DateFormat.getCallTime(System.currentTimeMillis()));

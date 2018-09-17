@@ -1,6 +1,7 @@
 <resources>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-
+    <string name="google_api_key">"AIzaSyAnrr1JXXw6Abpc2isaI3z6p8dbgqR99cQ"</string>
+    <string name="tmap_api_key">"4af07278-8a47-4171-b910-69cde5f881f6"</string>
 
     <string name="notification_channel_id">"notification_ts_channel_id"</string>
     <string name="notification_channel_name">"notification_ts_channel_name"</string>

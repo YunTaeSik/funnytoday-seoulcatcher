@@ -35,12 +35,16 @@ public class CallViewModel extends BaseViewModel {
     public ObservableBoolean isSelectLocation = new ObservableBoolean(false);
 
 
-    public CallViewModel(Context context, User user) {
+    public CallViewModel(Context context) {
         super(context);
-        initData(user);
     }
 
-    private void initData(User user) {
+    public CallViewModel(Context context, Call call) {
+        super(context);
+        mCall.set(call);
+    }
+
+    public void initData(User user) {
         if (user != null) {
             mCall.get().setToUserId(user.getId());
             mCall.get().setToUserName(user.getName());
@@ -95,7 +99,7 @@ public class CallViewModel extends BaseViewModel {
                     return;
                 }
             }
-            if (call.getLatitude() == null || call.getLongitude() == null) {
+            if (call.getAddress() == null || call.getAddress().length() == 0 || call.getLatitude() == null || call.getLongitude() == null) {
                 ToastMake.make(mContext, R.string.hint_location);
                 return;
             }

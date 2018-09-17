@@ -58,7 +58,8 @@ public class CallDialog extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
         if (binding != null && getActivity() != null && getArguments() != null) {
             User user = getArguments().getParcelable(Keys.USER);
-            CallViewModel model = new CallViewModel(getActivity(), user);
+            CallViewModel model = new CallViewModel(getActivity());
+            model.initData(user);
             getActivity().registerReceiver(model.getBroadcastReceiver(), model.getIntentFilter());
             binding.setModel(model);
         }
