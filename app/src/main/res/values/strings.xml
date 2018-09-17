@@ -1,7 +1,7 @@
 <resources>
     <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
-    <string name="google_api_key">"AIzaSyAnrr1JXXw6Abpc2isaI3z6p8dbgqR99cQ"</string>
-    <string name="tmap_api_key">"4af07278-8a47-4171-b910-69cde5f881f6"</string>
+    <string name="app_google_api_key">"AIzaSyAnrr1JXXw6Abpc2isaI3z6p8dbgqR99cQ"</string>
+    <string name="app_tmap_api_key">"4af07278-8a47-4171-b910-69cde5f881f6"</string>
 
     <string name="notification_channel_id">"notification_ts_channel_id"</string>
     <string name="notification_channel_name">"notification_ts_channel_name"</string>
@@ -49,6 +49,7 @@
     <string name="education_schedule">"Education schedule"</string>
     <string name="level_text">"Level %s"</string>
     <string name="edit_image">"Edit Image"</string>
+    <string name="location_settings">"Location Settings"</string>
 
     <string name="percent_type">"%"</string>
 
@@ -85,6 +86,8 @@
     <string name="msg_attendance">"Successfully attended. "</string>
     <string name="msg_call">"Successfully Call. "</string>
     <string name="msg_logout">"Are you sure you want to log out?"</string>
+    <string name="msg_location_on">"You must set the location for route navigation."</string>
+
 
     <!--empty-->
     <string name="empty_title">"Get Started"</string>

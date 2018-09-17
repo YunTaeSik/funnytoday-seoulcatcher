@@ -34,6 +34,7 @@ public class AlertDialogCreate {
     }
 
     public void deleteSchedule(DialogInterface.OnClickListener clickListener) {
+        alertDialog.setCancelable(true);
         alertDialog.setTitle("교육");
         alertDialog.setMessage("해당 교육을 취소하시겠습니까?");
         alertDialog.setPositiveButton("확인", clickListener);
@@ -41,9 +42,19 @@ public class AlertDialogCreate {
     }
 
     public void logout(DialogInterface.OnClickListener clickListener) {
+        alertDialog.setCancelable(true);
         alertDialog.setTitle(mContext.getString(R.string.account));
         alertDialog.setMessage(mContext.getString(R.string.msg_logout));
         alertDialog.setPositiveButton(mContext.getString(R.string.log_out), clickListener);
+        alertDialog.show();
+    }
+
+    public void locationOn(DialogInterface.OnClickListener clickListener, DialogInterface.OnClickListener negetiveClickListener) {
+        alertDialog.setCancelable(false);
+        alertDialog.setTitle(R.string.location_settings);
+        alertDialog.setMessage(R.string.msg_location_on);
+        alertDialog.setPositiveButton(R.string.setting, clickListener);
+        alertDialog.setNegativeButton(R.string.cancel, negetiveClickListener);
         alertDialog.show();
     }
 }
