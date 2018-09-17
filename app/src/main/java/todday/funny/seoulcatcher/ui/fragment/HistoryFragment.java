@@ -34,10 +34,18 @@ public class HistoryFragment extends Fragment {
         if (getArguments() != null) {
             String userId = getArguments().getString(Keys.USER_ID);
             model = new HistoryListViewModel(getContext(), userId);
+            getActivity().registerReceiver(model.getBroadcastReceiver(), model.getIntentFilter());
             binding.setModel(model);
         }
-
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (getActivity() != null && binding != null && binding.getModel() != null) {
+            getActivity().unregisterReceiver(binding.getModel().getBroadcastReceiver());
+        }
     }
 }
 

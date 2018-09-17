@@ -66,6 +66,7 @@ import todday.funny.seoulcatcher.model.messageModel.Message;
 import todday.funny.seoulcatcher.model.messageModel.SendCallData;
 import todday.funny.seoulcatcher.util.ImageConverter;
 import todday.funny.seoulcatcher.util.Keys;
+import todday.funny.seoulcatcher.util.SendBroadcast;
 
 public class ServerDataController {
     private String TAG = ServerDataController.class.getSimpleName();
@@ -328,7 +329,7 @@ public class ServerDataController {
                         scheduleArrayList.add(schedule);
                     }
                     onLoadScheduleListListener.onComplete(scheduleArrayList);
-                }else {
+                } else {
                     onLoadScheduleListListener.onComplete(scheduleArrayList);
                 }
 
@@ -467,7 +468,7 @@ public class ServerDataController {
     /**
      * 히스토리 저장
      */
-    public void saveHistory(History history) {
+    public void saveHistory(final History history) {
         String id = getLoginUserId();
         if (id != null) {
             DocumentReference documentReference = db.collection(Keys.USERS).document(id).collection(Keys.HISTORYS).document();
@@ -476,6 +477,7 @@ public class ServerDataController {
             documentReference.set(history).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
+                    SendBroadcast.history(mContext, Keys.ADD_HISTORY, history);
                 }
             });
         }

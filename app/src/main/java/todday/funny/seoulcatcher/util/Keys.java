@@ -30,6 +30,7 @@ public class Keys {
     public static final String CALL = "call";
 
     public static final String HISTORYS = "historys";
+    public static final String HISTORY = "history";
 
     public static final String LEVEL = "level";
 
@@ -56,4 +57,5 @@ public class Keys {
     public static final String APPLY_EDUCATION = "apply_education";
     public static final String SELECT_CALL_LOCATION = "selectCallLocation";
     public static final String ADD_SCHEDULE = "add_schedule";
+    public static final String ADD_HISTORY = "addHistory";
 }
