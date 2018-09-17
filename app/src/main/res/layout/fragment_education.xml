@@ -72,6 +72,7 @@
                 android:layout_width="match_parent"
                 >
                 <LinearLayout
+                    android:id="@+id/cprFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -92,6 +93,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/burnFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -106,12 +108,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="화상"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/extinguisherFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -126,12 +129,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="소화기사용법"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/stiffFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -146,7 +150,7 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="완강기사용법"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -210,6 +214,7 @@
                 android:layout_width="match_parent"
                 >
                 <LinearLayout
+                    android:id="@+id/dustFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -224,12 +229,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="미세먼지"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/earthquakeFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -244,12 +250,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="지진"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/coldboomFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -264,12 +271,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="한파"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/sunnyFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -284,7 +292,7 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="폭염"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -346,6 +354,7 @@
                 android:layout_width="match_parent"
                 >
                 <LinearLayout
+                    android:id="@+id/caraccidentFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -360,12 +369,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="도로교통사고"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/subwayFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -380,12 +390,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="지하철사고"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/fireaccidentFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -400,12 +411,13 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="화재사고"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/collapseFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -420,7 +432,7 @@
                         />
                     <TextView
                         android:gravity="center"
-                        android:text="심폐소생술"
+                        android:text="붕괴사고"
                         android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
