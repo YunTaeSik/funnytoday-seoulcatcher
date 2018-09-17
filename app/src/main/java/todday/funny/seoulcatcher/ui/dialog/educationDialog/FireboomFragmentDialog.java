@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.FireboomViewModel;
 public class FireboomFragmentDialog extends DialogFragment {
     private FireboomBinding binding;
 
-    public static FireboomFragmentDialog newInstance(String level) {
+    public static FireboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         FireboomFragmentDialog fragment = new FireboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;

@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.SubwayboomViewMode
 public class SubwayboomFragmentDialog extends DialogFragment {
     private SubwayboomBinding binding;
 
-    public static SubwayboomFragmentDialog newInstance(String level) {
+    public static SubwayboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         SubwayboomFragmentDialog fragment = new SubwayboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;

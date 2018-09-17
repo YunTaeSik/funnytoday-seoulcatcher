@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.SunnyboomViewModel
 public class SunnyboomFragmentDialog extends DialogFragment {
     private SunnyboomBinding binding;
 
-    public static SunnyboomFragmentDialog newInstance(String level) {
+    public static SunnyboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         SunnyboomFragmentDialog fragment = new SunnyboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;

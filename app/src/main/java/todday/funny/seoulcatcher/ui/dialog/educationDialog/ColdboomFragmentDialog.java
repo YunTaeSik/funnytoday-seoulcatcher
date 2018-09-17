@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.ColdboomViewModel;
 public class ColdboomFragmentDialog extends DialogFragment {
     private ColdboomBinding binding;
 
-    public static ColdboomFragmentDialog newInstance(String level) {
+    public static ColdboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         ColdboomFragmentDialog fragment = new ColdboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;

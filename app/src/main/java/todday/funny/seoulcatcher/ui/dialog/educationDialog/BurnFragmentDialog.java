@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.BurnViewModel;
 public class BurnFragmentDialog extends DialogFragment {
     private BurnBinding binding;
 
-    public static BurnFragmentDialog newInstance(String level) {
+    public static BurnFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         BurnFragmentDialog fragment = new BurnFragmentDialog();
         fragment.setArguments(args);
         return fragment;

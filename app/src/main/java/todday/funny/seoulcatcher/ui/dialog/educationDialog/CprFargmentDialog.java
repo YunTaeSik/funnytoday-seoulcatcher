@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.CprViewModel;
 public class CprFargmentDialog extends DialogFragment {
     private CprBinding binding;
 
-    public static CprFargmentDialog newInstance(String level) {
+    public static CprFargmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         CprFargmentDialog fragment = new CprFargmentDialog();
         fragment.setArguments(args);
         return fragment;

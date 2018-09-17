@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.UsingStifViewModel
 public class UsingStifFragmentDialog extends DialogFragment {
     private UsingstifBinding binding;
 
-    public static UsingStifFragmentDialog newInstance(String level) {
+    public static UsingStifFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         UsingStifFragmentDialog fragment = new UsingStifFragmentDialog();
         fragment.setArguments(args);
         return fragment;

@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.OneonenineViewMode
 public class OneonenineFragmentDialog extends DialogFragment {
     private OneonenineBinding binding;
 
-    public static OneonenineFragmentDialog newInstance(String level) {
+    public static OneonenineFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         OneonenineFragmentDialog fragment = new OneonenineFragmentDialog();
         fragment.setArguments(args);
         return fragment;

@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.TrafficboomViewMod
 public class TrafficboomFragmentDialog extends DialogFragment {
     private TrafficboomBinding binding;
 
-    public static TrafficboomFragmentDialog newInstance(String level) {
+    public static TrafficboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         TrafficboomFragmentDialog fragment = new TrafficboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;

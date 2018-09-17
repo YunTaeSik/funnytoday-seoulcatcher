@@ -18,9 +18,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.UsingFireViewModel
 public class UsingFireFragmentDialog extends DialogFragment {
     private UsingFireBinding binding;
 
-    public static UsingFireFragmentDialog newInstance(String level) {
+    public static UsingFireFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         UsingFireFragmentDialog fragment = new UsingFireFragmentDialog();
         fragment.setArguments(args);
         return fragment;

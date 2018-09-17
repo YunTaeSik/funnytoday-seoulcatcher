@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.CollapseViewModel;
 public class CollapseFragmentDialog extends DialogFragment {
     private CollapseBinding binding;
 
-    public static CollapseFragmentDialog newInstance(String level) {
+    public static CollapseFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         CollapseFragmentDialog fragment = new CollapseFragmentDialog();
         fragment.setArguments(args);
         return fragment;

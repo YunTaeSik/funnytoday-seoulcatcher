@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.DustboomViewModel;
 public class DustboomFragmentDialog extends DialogFragment {
     private DustboomBinding binding;
 
-    public static DustboomFragmentDialog newInstance(String level) {
+    public static DustboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         DustboomFragmentDialog fragment = new DustboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;

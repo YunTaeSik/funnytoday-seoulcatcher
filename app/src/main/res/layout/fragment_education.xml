@@ -72,6 +72,7 @@
                 android:layout_width="match_parent"
                 >
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_cprFragment()}"
                     android:id="@+id/cprFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -93,6 +94,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_burnFragment()}"
                     android:id="@+id/burnFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -114,6 +116,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_extinguisherFragment()}"
                     android:id="@+id/extinguisherFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -135,6 +138,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_stiffFragment()}"
                     android:id="@+id/stiffFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -214,6 +218,7 @@
                 android:layout_width="match_parent"
                 >
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_dustFragment()}"
                     android:id="@+id/dustFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -235,6 +240,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_earthquakeFragment()}"
                     android:id="@+id/earthquakeFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -256,6 +262,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_coldboomFragment()}"
                     android:id="@+id/coldboomFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -277,6 +284,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_sunnyFragment()}"
                     android:id="@+id/sunnyFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -354,6 +362,7 @@
                 android:layout_width="match_parent"
                 >
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_caraccidentFragment()}"
                     android:id="@+id/caraccidentFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -375,6 +384,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_subwayFragment()}"
                     android:id="@+id/subwayFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -396,6 +406,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_fireaccidentFragment()}"
                     android:id="@+id/fireaccidentFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -417,6 +428,7 @@
                         android:layout_height="match_parent" />
                 </LinearLayout>
                 <LinearLayout
+                    android:onClick="@{(v)->model.open_collapseFragment()}"
                     android:id="@+id/collapseFragment"
                     android:layout_weight="1"
                     android:orientation="vertical"
@@ -442,6 +454,7 @@
         </net.cachapa.expandablelayout.ExpandableLayout>
 
         <android.support.constraint.ConstraintLayout
+            android:onClick="@{(v)->model.open_layout_119()}"
             android:id="@+id/layout_119"
             android:layout_width="match_parent"
             android:layout_height="0dp"

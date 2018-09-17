@@ -20,9 +20,8 @@ import todday.funny.seoulcatcher.viewmodel.educationViewModel.EarthboomViewModel
 public class EarthboomFragmentDialog extends DialogFragment {
     private EarthboomBinding binding;
 
-    public static EarthboomFragmentDialog newInstance(String level) {
+    public static EarthboomFragmentDialog newInstance() {
         Bundle args = new Bundle();
-        args.putString(Keys.LEVEL, level);
         EarthboomFragmentDialog fragment = new EarthboomFragmentDialog();
         fragment.setArguments(args);
         return fragment;
