@@ -31,11 +31,8 @@ public class CprFargmentDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_cpr, container, false);
-        if (getArguments() != null) {
-            String level = getArguments().getString(Keys.LEVEL);
-            CprViewModel model = new CprViewModel(getActivity());
-            binding.setModel(model);
-        }
+        CprViewModel model = new CprViewModel(getActivity());
+        binding.setModel(model);
         return binding.getRoot();
     }
 

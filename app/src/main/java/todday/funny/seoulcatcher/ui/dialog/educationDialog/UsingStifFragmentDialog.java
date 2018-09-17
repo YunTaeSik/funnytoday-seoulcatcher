@@ -30,7 +30,7 @@ public class UsingStifFragmentDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_membership, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_usingstif, container, false);
         if (getArguments() != null) {
             String level = getArguments().getString(Keys.LEVEL);
             UsingStifViewModel model = new UsingStifViewModel(getActivity());

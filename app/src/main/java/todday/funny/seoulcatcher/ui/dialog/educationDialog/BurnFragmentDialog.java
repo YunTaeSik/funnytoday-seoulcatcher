@@ -31,11 +31,8 @@ public class BurnFragmentDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_burn, container, false);
-        if (getArguments() != null) {
-            String level = getArguments().getString(Keys.LEVEL);
-            BurnViewModel model = new BurnViewModel(getActivity());
-            binding.setModel(model);
-        }
+        BurnViewModel model = new BurnViewModel(getActivity());
+        binding.setModel(model);
         return binding.getRoot();
     }
 

@@ -1,6 +1,7 @@
 package todday.funny.seoulcatcher.viewmodel;
 
 import android.content.Context;
+import android.util.Log;
 
 import todday.funny.seoulcatcher.ui.dialog.ScheduleDialog;
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.BurnFragmentDialog;
@@ -21,8 +22,8 @@ public class EducationViewModel extends BaseViewModel {
         super(context);
     }
 
-
     public void open_cprFragment() {
+        Log.e("aaaa","!!!!!!");
         CprFargmentDialog dialog = CprFargmentDialog.newInstance();
         addFragmentDialog(dialog, android.R.transition.slide_top);
     }
