@@ -22,7 +22,8 @@
             android:id="@+id/layout_emergency"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
+            android:background="#f5ab99"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -31,15 +32,14 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginLeft="108dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginStart="108dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
+                app:layout_constraintHorizontal_bias="0.857"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.461"
+                app:layout_constraintVertical_bias="0.486"
                 app:srcCompat="@drawable/ic_siren" />
 
             <TextView
@@ -48,114 +48,125 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
-                android:layout_marginEnd="92dp"
-                android:layout_marginRight="92dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginTop="8dp"
                 android:text="긴급상황 대처"
+                android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.49" />
+                app:layout_constraintVertical_bias="0.493" />
         </android.support.constraint.ConstraintLayout>
 
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_layout_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#feb47b"
+            android:paddingTop="10dp"
             app:el_duration="1000"
             app:el_expanded="true">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                >
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <LinearLayout
                     android:id="@+id/cprFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/cprimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/cprimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="심폐소생술"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/burnFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/flameimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/flameimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="화상"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/extinguisherFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/extinguisherimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/extinguisherimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="소화기사용법"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/stiffFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/stiffimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/stiffimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="완강기사용법"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
             </LinearLayout>
+
 
         </net.cachapa.expandablelayout.ExpandableLayout>
 
@@ -163,7 +174,8 @@
             android:id="@+id/layout_disaster"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
+            android:background="#ff7e5f"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -172,13 +184,13 @@
                 android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="120dp"
-                android:layout_marginStart="120dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginStart="112dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.47"
+                app:layout_constraintVertical_bias="0.486"
                 app:srcCompat="@drawable/ic_forest_fire" />
 
             <TextView
@@ -192,6 +204,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="재난별 행동요령"
+                android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -205,97 +218,108 @@
             android:id="@+id/expandable_layout_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#765285"
+            android:paddingTop="10dp"
             app:el_duration="1000"
             app:el_expanded="true">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+
                 >
+
                 <LinearLayout
                     android:id="@+id/dustFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/dustimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/dustimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="미세먼지"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/earthquakeFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/earthquakeimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/earthquakeimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="지진"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/coldboomFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/cooldboomimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/cooldboomimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="한파"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/sunnyFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/sunimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/sunimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="폭염"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -305,7 +329,8 @@
             android:id="@+id/layout_accident"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
+            android:background="#351c4d"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -314,8 +339,8 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="120dp"
-                android:layout_marginStart="120dp"
+                android:layout_marginLeft="116dp"
+                android:layout_marginStart="116dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -334,9 +359,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="사고별 행동요령"
+                android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.162"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView3"
                 app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
@@ -345,97 +372,106 @@
             android:id="@+id/expandable_layout_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#e7593a"
+            android:paddingTop="10dp"
             app:el_duration="1000"
             app:el_expanded="true">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                >
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <LinearLayout
                     android:id="@+id/caraccidentFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/caraccidentimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/caraccidentimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="도로교통사고"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/subwayFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/subwayimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/subwayimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="지하철사고"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/fireaccidentFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/fireimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/fireimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="화재사고"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/collapseFragment"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/collapseimage"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        />
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/collapseimage" />
+
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:gravity="center"
                         android:text="붕괴사고"
-                        android:layout_weight="2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:textColor="#ffffff" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -446,7 +482,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            >
+            android:background="#fd031c">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/appCompatImageView4"
@@ -454,8 +490,8 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
-                android:layout_marginLeft="124dp"
-                android:layout_marginStart="124dp"
+                android:layout_marginLeft="116dp"
+                android:layout_marginStart="116dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -474,6 +510,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="119 안전 가이드"
+                android:textColor="#ffffff"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
