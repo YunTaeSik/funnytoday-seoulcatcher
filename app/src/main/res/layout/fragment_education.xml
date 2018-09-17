@@ -79,7 +79,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/cprimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/flameimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -121,7 +121,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/extinguisherimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/stiffimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -221,7 +221,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/dustimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -242,7 +242,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/earthquakeimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -263,7 +263,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/cooldboomimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -284,7 +284,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/sunimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -361,7 +361,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/caraccidentimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -382,7 +382,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/subwayimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -403,7 +403,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/fireimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -424,7 +424,7 @@
                     android:layout_height="match_parent"
                     >
                     <android.support.v7.widget.AppCompatImageView
-                        app:srcCompat="@drawable/car_collision"
+                        app:srcCompat="@drawable/collapseimage"
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
