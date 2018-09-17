@@ -5,6 +5,7 @@ import android.content.Context;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import todday.funny.seoulcatcher.R;
@@ -13,6 +14,31 @@ public class DateFormat {
     private final static String DATE_FORMAT = "yyyyy-MM-dd (E)";
 
     private final static String TIME_FORMAT = "a HH:mm";
+
+    public static String getStringFromDate(Context context, long date) {
+        long diffTime = (System.currentTimeMillis() - date) / 1000;
+        String text = "";
+        if (diffTime < 60) {
+            text = context.getString(R.string.just_before);
+        } else if ((diffTime /= 60) < 60) {
+            text = context.getString(R.string.minutes_ago, String.valueOf(diffTime));
+        } else if ((diffTime /= 60) < 24) {
+            text = context.getString(R.string.hours_ago, String.valueOf(diffTime));
+        } else if ((diffTime /= 24) < 3) {
+            text = context.getString(R.string.days_ago, String.valueOf(diffTime));
+        } else {
+            SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+            try {
+                Date d = formatter.parse(String.valueOf(date));
+                formatter.format(d);
+                text = formatter.format(d);
+                return formatter.format(d);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return text;
+    }
 
     public static String getDdayStringFromCalendar(Context context, String date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
@@ -29,7 +55,7 @@ public class DateFormat {
             if (dday == 0) {
                 return "D-Day";
             } else if (dday > 0) {
-                return dday + context.getString(R.string.days_ago);
+                return dday + context.getString(R.string.days_after);
             }
             return Math.abs(dday) + context.getString(R.string.days_remaining);
         } catch (Exception e) {

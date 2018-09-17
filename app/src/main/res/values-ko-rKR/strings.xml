@@ -38,12 +38,22 @@
 
     <string name="call_user_name">"%s님에 호출"</string>
 
-    <string name="days_ago">"일 지남"</string>
+    <string name="days_after">"일 지남"</string>
     <string name="days_remaining">"일 남음"</string>
+
+    <string name="just_before">"방금 전"</string>
+    <string name="minutes_ago">"%s분 전"</string>
+    <string name="hours_ago">"%s시간 전"</string>
+    <string name="days_ago">"%s일 전"</string>
+
 
     <string name="member_ship_user_level">"%s님은\nLevel %s 회원 입니다."</string>
     <string name="check_qr_code">"QR 코드 확인"</string>
 
+    <!--history-->
+    <string name="history_user">"%s님이 프로필을 변경했습니다."</string>
+    <string name="history_call">"%s님이 파수꾼을 호출했습니다."</string>
+    <string name="history_scheduel">"%s에 교육을 신청했습니다."</string>
 
     <!--hint-->
     <string name="hint_name">"이름을 입력해주세요."</string>

@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import todday.funny.seoulcatcher.R;
-import todday.funny.seoulcatcher.databinding.MembershipListBinding;
 import todday.funny.seoulcatcher.databinding.UsingFireBinding;
-import todday.funny.seoulcatcher.ui.dialog.MembershipDialog;
 import todday.funny.seoulcatcher.util.Keys;
-import todday.funny.seoulcatcher.viewmodel.MembershipListViewModel;
 import todday.funny.seoulcatcher.viewmodel.educationViewModel.TrafficboomViewModel;
+import todday.funny.seoulcatcher.viewmodel.educationViewModel.UsingFireViewModel;
 
 public class UsingFireFragmentDialog extends DialogFragment {
     private UsingFireBinding binding;
@@ -31,11 +29,11 @@ public class UsingFireFragmentDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_trafficboom, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_usingfire, container, false);
         if (getArguments() != null) {
             String level = getArguments().getString(Keys.LEVEL);
-            TrafficboomViewModel model = new TrafficboomViewModel(getActivity());
-            binding.setModel(model);
+         /*   TrafficboomViewModel model = new TrafficboomViewModel(getActivity());
+            binding.setModel(model);*/
         }
         return binding.getRoot();
     }

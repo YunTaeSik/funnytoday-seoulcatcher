@@ -9,20 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import todday.funny.seoulcatcher.BaseActivity;
 import todday.funny.seoulcatcher.R;
-import todday.funny.seoulcatcher.databinding.EducationBinding;
 import todday.funny.seoulcatcher.databinding.HistoryBinding;
-import todday.funny.seoulcatcher.viewmodel.EducationViewModel;
-import todday.funny.seoulcatcher.viewmodel.HistoryViewModel;
+import todday.funny.seoulcatcher.util.Keys;
+import todday.funny.seoulcatcher.viewmodel.HistoryListViewModel;
 
 public class HistoryFragment extends Fragment {
 
     private HistoryBinding binding = null;
-    private HistoryViewModel model = null;
+    private HistoryListViewModel model = null;
 
-    public static HistoryFragment newInstance() {
+    public static HistoryFragment newInstance(String userId) {
         Bundle args = new Bundle();
+        args.putString(Keys.USER_ID, userId);
         HistoryFragment fragment = new HistoryFragment();
         fragment.setArguments(args);
         return fragment;
@@ -32,8 +31,12 @@ public class HistoryFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false);
-        //model = new HistoryViewModel(getContext());
-        binding.setModel(model);
+        if (getArguments() != null) {
+            String userId = getArguments().getString(Keys.USER_ID);
+            model = new HistoryListViewModel(getContext(), userId);
+            binding.setModel(model);
+        }
+
         return binding.getRoot();
     }
 }

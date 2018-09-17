@@ -1,36 +1,28 @@
 package todday.funny.seoulcatcher.viewmodel;
 
 import android.content.Context;
-import android.databinding.ObservableArrayList;
+import android.databinding.ObservableField;
 
-import java.util.List;
-
-import todday.funny.seoulcatcher.interactor.OnLoadHistoryListListener;
+import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.History;
-import todday.funny.seoulcatcher.util.Keys;
+import todday.funny.seoulcatcher.model.Schedule;
+import todday.funny.seoulcatcher.model.User;
 
 public class HistoryViewModel extends BaseViewModel {
-    //TODO 히스토리 작업중
-    public ObservableArrayList<Object> mHistoryList = new ObservableArrayList<>();
-    private String mUserId;
+    public ObservableField<History> mHistory = new ObservableField<>();
+    public ObservableField<User> mUser = new ObservableField<>();
+    public ObservableField<Call> mCall = new ObservableField<>();
+    public ObservableField<Schedule> mSchedule = new ObservableField<>();
 
-    public HistoryViewModel(Context context, String userId) {
+    public HistoryViewModel(Context context, History history) {
         super(context);
-        mUserId = userId;
-    }
-
-    public void getUserHistory(String userId) {
-        mServerDataController.getUserHistory(userId, new OnLoadHistoryListListener() {
-            @Override
-            public void onComplete(List<History> historyList) {
-                mHistoryList.clear();
-                if (historyList != null && historyList.size() > 0) {
-                    mHistoryList.addAll(historyList);
-                } else {
-                    mHistoryList.add(Keys.EMPTY);
-                }
-
-            }
-        });
+        mHistory.set(history);
+        if (history.getUser() != null) {
+            mUser.set(history.getUser());
+        } else if (history.getCall() != null) {
+            mCall.set(history.getCall());
+        } else if (history.getSchedule() != null) {
+            mSchedule.set(history.getSchedule());
+        }
     }
 }

@@ -53,11 +53,22 @@
 
     <string name="call_user_name">"Call %s"</string>
 
-    <string name="days_ago">" days ago"</string>
+    <string name="days_after">" days ago"</string>
     <string name="days_remaining">" days remaining"</string>
+
+    <string name="just_before">"Just before"</string>
+    <string name="minutes_ago">"%s minutes ago"</string>
+    <string name="hours_ago">"%s hours ago"</string>
+    <string name="days_ago">"%s days ago"</string>
 
     <string name="member_ship_user_level">"%s is\n a member of level %s."</string>
     <string name="check_qr_code">"Check QR code"</string>
+
+
+    <!--history-->
+    <string name="history_user">"%s has changed his profile."</string>
+    <string name="history_call">"%s called the SeoulCatcher."</string>
+    <string name="history_scheduel">"I applied for education in %s."</string>
 
 
     <!--hint-->

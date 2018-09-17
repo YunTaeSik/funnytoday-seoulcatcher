@@ -49,7 +49,7 @@ public class MainViewModel extends BaseViewModel {
         mainFragmentList.add(ScheduleFragment.newInstance());
         mainFragmentList.add(EducationFragment.newInstance());
         mainFragmentList.add(ProfileFragment.newInstance(mServerDataController.getLoginUserId()));
-        mainFragmentList.add(HistoryFragment.newInstance());
+        mainFragmentList.add(HistoryFragment.newInstance(mServerDataController.getLoginUserId()));
         if (mContext instanceof AppCompatActivity) {
             FragmentManager fragmentManager = ((AppCompatActivity) mContext).getSupportFragmentManager();
             if (fragmentManager != null) {

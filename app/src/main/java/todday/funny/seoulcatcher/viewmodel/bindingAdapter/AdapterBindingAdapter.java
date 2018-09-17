@@ -8,6 +8,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import todday.funny.seoulcatcher.ui.adapter.HistoryAdapter;
 import todday.funny.seoulcatcher.ui.adapter.MemberShipAdapter;
 import todday.funny.seoulcatcher.ui.adapter.ProfileAdapter;
 
@@ -41,6 +42,22 @@ public class AdapterBindingAdapter {
         } else {
             LinearLayoutManager manager = new LinearLayoutManager(context);
             MemberShipAdapter memberShipAdapter = new MemberShipAdapter(context, itemList);
+            view.setLayoutManager(manager);
+            view.setAdapter(memberShipAdapter);
+        }
+    }
+
+    @BindingAdapter({"setHistoryAdapter"})
+    public static void setHistoryAdapter(RecyclerView view, List<Object> itemList) {
+        Context context = view.getContext();
+        RecyclerView.Adapter adapter = view.getAdapter();
+        if (adapter != null && adapter instanceof HistoryAdapter) {
+            Log.e("setWriteImageAdapter", "setItemList");
+            adapter.notifyDataSetChanged();
+            //  ((HomeListAdapter) adapter).setItemList(itemList);
+        } else {
+            LinearLayoutManager manager = new LinearLayoutManager(context);
+            HistoryAdapter memberShipAdapter = new HistoryAdapter(context, itemList);
             view.setLayoutManager(manager);
             view.setAdapter(memberShipAdapter);
         }

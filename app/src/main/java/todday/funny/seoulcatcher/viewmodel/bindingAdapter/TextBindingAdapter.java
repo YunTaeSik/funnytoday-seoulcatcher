@@ -9,6 +9,7 @@ import android.text.style.AbsoluteSizeSpan;
 import android.widget.TextView;
 
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.util.DateFormat;
 
@@ -29,6 +30,28 @@ public class TextBindingAdapter {
     public static void setDdayText(TextView view, String date) {
         Context context = view.getContext();
         view.setText(DateFormat.getDdayStringFromCalendar(context, date));
+    }
+
+    @BindingAdapter({"setHistoryText"})
+    public static void setHistoryText(TextView view, History history) {
+        Context context = view.getContext();
+        String text = "";
+        if (history.getUser() != null) {
+            text = context.getString(R.string.history_user, history.getUser().getName());
+        } else if (history.getCall() != null) {
+            text = context.getString(R.string.history_call, history.getCall().getToUserName());
+        } else if (history.getSchedule() != null) {
+            text = context.getString(R.string.history_scheduel, history.getSchedule().getName());
+        }
+        view.setText(text);
+    }
+
+    @BindingAdapter({"setHistoryDateText"})
+    public static void setHistoryDateText(TextView view, long date) {
+        view.setText(DateFormat.getStringFromDate(view.getContext(), date));
+        /*   Context context = view.getContext();
+
+        view.setText(DateFormat.getDdayStringFromCalendar(context, date));*/
     }
 
     @BindingAdapter({"setMemberShipLevelText"})

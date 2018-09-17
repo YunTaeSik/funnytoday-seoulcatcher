@@ -5,21 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.transition.TransitionInflater;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 
-import java.util.List;
-
 import io.reactivex.disposables.CompositeDisposable;
-import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.util.ToastMake;
 import todday.funny.seoulcatcher.viewmodel.EducationViewModel;
-import todday.funny.seoulcatcher.viewmodel.HistoryViewModel;
-import todday.funny.seoulcatcher.viewmodel.MainViewModel;
-import todday.funny.seoulcatcher.viewmodel.ProfileViewModel;
 import todday.funny.seoulcatcher.viewmodel.ScheduleViewModel;
 import todday.funny.seoulcatcher.viewmodel.SettingViewModel;
 
