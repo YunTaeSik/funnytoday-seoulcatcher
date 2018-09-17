@@ -1,6 +1,5 @@
 package todday.funny.seoulcatcher.server;
 
-import android.app.Notification;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -24,11 +23,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.google.gson.Gson;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +43,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Response;
+import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.interactor.OnEduDateListener;
 import todday.funny.seoulcatcher.interactor.OnInitUserDataListener;
 import todday.funny.seoulcatcher.interactor.OnLoadHistoryListListener;
@@ -64,6 +60,8 @@ import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.model.messageModel.Message;
 import todday.funny.seoulcatcher.model.messageModel.SendCallData;
+import todday.funny.seoulcatcher.model.routeModel.Route;
+import todday.funny.seoulcatcher.model.routeModel.SendRouteData;
 import todday.funny.seoulcatcher.util.ImageConverter;
 import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.util.SendBroadcast;
@@ -78,7 +76,9 @@ public class ServerDataController {
     private User mLoginUser;
     private String mLoginUserId;
     private int LIMIT_COUNT = 6;
-    private SeoulCatcherService mService;
+
+    private FcmService mFcmService;
+    private RouteService mRouteService;
 
     private static volatile ServerDataController singletonInstance = null;
 
@@ -103,7 +103,7 @@ public class ServerDataController {
         db.setFirestoreSettings(settings);
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
-        mService = SeoulCatcherService.Creator.create();
+        mFcmService = FcmService.Creator.create();
     }
 
     public String getLoginUserId() {
@@ -422,48 +422,6 @@ public class ServerDataController {
         });
     }
 
-    /**
-     * FCM  호출하기
-     */
-    public Observable<Message> call(final Call call) {
-        return Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("Bearer " + getAccessToken(mContext));
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .flatMap(new Function<String, ObservableSource<? extends Message>>() {
-                    @Override
-                    public ObservableSource<? extends Message> apply(String token) throws Exception {
-                        SendCallData sendCallData = new SendCallData();
-                        Message message = sendCallData.getMessage();
-                        message.setData(call);
-                        message.setTopic(Keys.TOPIC_KEY);
-                        return mService.call(token, Keys.CONTENT_TYPE, sendCallData)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread());
-                    }
-                });
-    }
-
-    /**
-     * FCM 토큰얻기...
-     */
-    private static String getAccessToken(Context context) {
-        GoogleCredential googleCredential = null;
-        try {
-            googleCredential = GoogleCredential
-                    .fromStream(context.getResources().getAssets().open("funnytoday-seoulcatcher-firebase-adminsdk-82a7x-6ad4959447.json"))
-                    .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging"));
-            googleCredential.refreshToken();
-            return googleCredential.getAccessToken();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     /**
      * 히스토리 저장
@@ -500,4 +458,55 @@ public class ServerDataController {
         });
     }
 
+    /**
+     * FCM  호출하기
+     */
+    public Observable<Message> call(final Call call) {
+        return Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("Bearer " + getAccessToken(mContext));
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .flatMap(new Function<String, ObservableSource<? extends Message>>() {
+                    @Override
+                    public ObservableSource<? extends Message> apply(String token) throws Exception {
+                        SendCallData sendCallData = new SendCallData();
+                        Message message = sendCallData.getMessage();
+                        message.setData(call);
+                        message.setTopic(Keys.TOPIC_KEY);
+                        return mFcmService.call(token, Keys.CONTENT_TYPE, sendCallData)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread());
+                    }
+                });
+    }
+
+    /**
+     * FCM 토큰얻기...
+     */
+    private static String getAccessToken(Context context) {
+        GoogleCredential googleCredential = null;
+        try {
+            googleCredential = GoogleCredential
+                    .fromStream(context.getResources().getAssets().open("funnytoday-seoulcatcher-firebase-adminsdk-82a7x-6ad4959447.json"))
+                    .createScoped(Arrays.asList("https://www.googleapis.com/auth/firebase.messaging"));
+            googleCredential.refreshToken();
+            return googleCredential.getAccessToken();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 경로 탐색
+     */
+
+    public Observable<Route> getRoute(SendRouteData sendRouteData) {
+        return mRouteService.route(mContext.getString(R.string.app_tmap_api_key), sendRouteData).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
 }

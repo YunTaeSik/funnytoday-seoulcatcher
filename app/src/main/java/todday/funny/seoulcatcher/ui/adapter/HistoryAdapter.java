@@ -93,7 +93,7 @@ public class HistoryAdapter extends RecyclerView.Adapter {
             holder.setViewModel(model);
         } else {
             HistoryEmptyViewHolder holder = (HistoryEmptyViewHolder) viewHolder;
-            EmptyViewModel model = new EmptyViewModel(mContext, mContext.getString(R.string.empty_profile));
+            EmptyViewModel model = new EmptyViewModel(mContext, mContext.getString(R.string.empty_history));
             holder.setViewModel(model);
         }
 

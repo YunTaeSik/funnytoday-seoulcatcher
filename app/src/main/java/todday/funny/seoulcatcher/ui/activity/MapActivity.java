@@ -16,6 +16,7 @@ import com.gun0912.tedpermission.PermissionListener;
 
 import java.util.ArrayList;
 
+import io.reactivex.disposables.CompositeDisposable;
 import todday.funny.seoulcatcher.BaseActivity;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.MapBinding;
@@ -31,6 +32,7 @@ public class MapActivity extends AppCompatActivity {
     private MapBinding binding;
     private MapViewModel model;
     private LocationManager mLocationManager;
+    private CompositeDisposable mCompositeDisposable;
 
 
     @Override
@@ -38,12 +40,15 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_map);
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
+        mCompositeDisposable = new CompositeDisposable();
         Call call = getIntent().getParcelableExtra(Keys.CALL);
-        model = new MapViewModel(this);
-        binding.setModel(model);
-        binding.map.onCreate(null);
-
+        if (call != null) {
+            model = new MapViewModel(this, call);
+            model.setCompositeDisposable(mCompositeDisposable);
+            binding.setModel(model);
+            binding.map.onCreate(savedInstanceState);
+            permissionLocation();
+        }
 
     }
 
@@ -94,35 +99,49 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
+/*
 
     @Override
     protected void onResume() {
         super.onResume();
-        binding.map.onResume();
+        if (binding.map != null) {
+            binding.map.onResume();
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        binding.map.onStart();
-        permissionLocation();
+        if (binding.map != null) {
+            binding.map.onStart();
+        }
     }
+*/
 
     @Override
     protected void onStop() {
         super.onStop();
-        binding.map.onStop();
+        if (binding.map != null) {
+            binding.map.onStop();
+        }
     }
 
     @Override
     protected void onPause() {
-        binding.map.onPause();
+        if (binding.map != null) {
+            binding.map.onPause();
+        }
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        binding.map.onDestroy();
+        if (binding.map != null) {
+            binding.map.onDestroy();
+        }
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.dispose();
+        }
         super.onDestroy();
     }
 

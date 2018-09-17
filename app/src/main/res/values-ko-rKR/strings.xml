@@ -23,6 +23,8 @@
     <string name="children">"어린이"</string>
     <string name="general">"일반"</string>
     <string name="location">"위치"</string>
+    <string name="origin">"출발지"</string>
+    <string name="destination">"도착지"</string>
 
     <string name="accident_location">"사고 위치"</string>
     <string name="old_age">"노인"</string>
