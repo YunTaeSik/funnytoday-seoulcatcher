@@ -65,6 +65,23 @@ public class DateFormat {
         }
     }
 
+    public static Calendar getCalendarString(String date) {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+        Calendar calendar = Calendar.getInstance();
+        try {
+            formatter.parse(date);
+            calendar.setTime(formatter.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return calendar;
+    }
+
+    public static String getStringCalendar(Calendar calendar) {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
+        return formatter.format(calendar.getTime());
+    }
+
     public static String getCallTime(long time) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);
         GregorianCalendar calendar = new GregorianCalendar();

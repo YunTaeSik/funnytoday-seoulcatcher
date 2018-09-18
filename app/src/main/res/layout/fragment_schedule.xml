@@ -17,34 +17,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_weight="8"
-            android:id="@+id/calendarView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:mcv_selectionColor="#a9047b2e"
-            app:mcv_showOtherDates="defaults" />
-
-        <RelativeLayout
-            android:layout_weight="5"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            >
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:visibility="@{model.isSchedule ? View.VISIBLE : View.INVISIBLE}"
-                android:id="@+id/scheduleFragment_textView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="스케쥴이 없습니다"
-                android:textSize="16sp"
-                />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/scheduleFragment_recyclerView"
-                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="16dp"
+                android:text="@string/educationSchedule"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                />
-        </RelativeLayout>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:mcv_selectionColor="#a9047b2e"
+                    app:mcv_showOtherDates="defaults" />
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/scheduleFragment_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
 </layout>

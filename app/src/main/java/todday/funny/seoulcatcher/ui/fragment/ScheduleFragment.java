@@ -39,6 +39,7 @@ import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.adapter.ScheduleAdapter;
 import todday.funny.seoulcatcher.util.CommonDecorator;
+import todday.funny.seoulcatcher.util.DateFormat;
 import todday.funny.seoulcatcher.util.EventDecorator;
 import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.util.SaturdayDecorator;
@@ -47,7 +48,7 @@ import todday.funny.seoulcatcher.util.TodayDecorator;
 import todday.funny.seoulcatcher.viewmodel.ScheduleViewModel;
 
 
-public class ScheduleFragment extends Fragment{
+public class ScheduleFragment extends Fragment {
     private ScheduleBinding binding;
     private ScheduleViewModel model;
     private Context context;
@@ -66,7 +67,6 @@ public class ScheduleFragment extends Fragment{
 
     private ServerDataController serverDataController = ServerDataController.getInstance(getContext());
 
-    private TextView textView;
 
     public static ScheduleFragment newInstance() {
         Bundle args = new Bundle();
@@ -90,14 +90,9 @@ public class ScheduleFragment extends Fragment{
 
         calendarView = view.findViewById(R.id.calendarView);
         recyclerView = view.findViewById(R.id.scheduleFragment_recyclerView);
-        textView = view.findViewById(R.id.scheduleFragment_textView);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
-
-        /*adapter = new ScheduleAdapter(getContext(), schedulesLists,schedulesKeyLists);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));*/
 
         registerBroadCast();
 
@@ -108,7 +103,15 @@ public class ScheduleFragment extends Fragment{
         return view;
     }
 
-    private void setEducationDate(){
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (getActivity() != null && broadcastReceiver != null) {
+            getActivity().unregisterReceiver(broadcastReceiver);
+        }
+    }
+
+    private void setEducationDate() {
         serverDataController.getEducationDate(new OnEduDateListener() {
             @Override
             public void onComplete(ArrayList<EduDate> list) {
@@ -118,7 +121,7 @@ public class ScheduleFragment extends Fragment{
         });
     }
 
-    private void registerBroadCast(){
+    private void registerBroadCast() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Keys.ADD_SCHEDULE);
         getActivity().registerReceiver(broadcastReceiver, intentFilter);
@@ -127,7 +130,7 @@ public class ScheduleFragment extends Fragment{
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if(intent.getAction().equals(Keys.ADD_SCHEDULE)){
+            if (intent.getAction().equals(Keys.ADD_SCHEDULE)) {
                 model.isSchedule = false;
                 Schedule schedule = intent.getParcelableExtra("data");
                 schedulesLists.add(schedule);
@@ -137,62 +140,42 @@ public class ScheduleFragment extends Fragment{
     };
 
     private void getScheduleDataBase() {
-        String uid =FirebaseAuth.getInstance().getUid();
+        String uid = FirebaseAuth.getInstance().getUid();
         serverDataController.getUserSchedule(uid, new OnScheduleListener() {
             @Override
             public void onComplete(ArrayList<Schedule> scheduleList) {
 
-                if(scheduleList.size() == 0) {
+                if (scheduleList.size() == 0) {
                     model.isSchedule = true;
-                }else {
+                } else {
                     model.isSchedule = false;
 
                 }
                 schedulesLists = scheduleList;
-                adapter = new ScheduleAdapter(getContext(), schedulesLists,onListISizeZero);
+                adapter = new ScheduleAdapter(getContext(), schedulesLists, onListISizeZero);
                 recyclerView.setAdapter(adapter);
 
             }
         });
     }
 
-    /*private void deleteItem(String deleteKey) {
-        for (int i = 0; i < schedulesList.size(); i++) {
-            if (deleteKey.equals(schedulesList.get(i))) {
-                schedulesList.remove(i);
-            }
-        }
-    }*/
-
 
     private void settingCalendar() {
-
-        for(int i = 0; i< eduDatesLists.size(); i++){
+        for (int i = 0; i < eduDatesLists.size(); i++) {
             Log.e("!@!@", eduDatesLists.get(i).getDate());
         }
-
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-                String year = String.valueOf(date.getYear());
-                String month = String.valueOf(date.getMonth() + 1);
-                String dayy = String.valueOf(date.getDay());
-                final String datee = year + "-" + month + "-" + dayy;
                 for (int i = 0; i < eduDatesLists.size(); i++) {
-                    if ((eduDatesLists.get(i).getDate()).equals(datee)) {
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("date", datee);
-
-                        model.openScheduleInfo(datee);
-                    }
+                    model.openScheduleInfo(DateFormat.getStringCalendar(date.getCalendar()));
                 }
             }
         });
-        if(eduDatesLists.size() != 0) {
+        if (eduDatesLists.size() != 0) {
             new CheckPointCalender(eduDatesLists).executeOnExecutor(Executors.newSingleThreadExecutor());
-        }else {
-            Log.e("null","null");
+        } else {
+            Log.e("null", "null");
         }
         calendarView.addDecorators(commonDecorator, sundayDecorator, saturdayDecorator, todayDecorator);
     }
@@ -206,42 +189,21 @@ public class ScheduleFragment extends Fragment{
 
     private class CheckPointCalender extends AsyncTask<Void, Void, ArrayList<CalendarDay>> {
 
-        private ArrayList<EduDate> timeResult ;
+        private ArrayList<EduDate> timeResult;
         private ArrayList<CalendarDay> list = new ArrayList<CalendarDay>();
 
         public CheckPointCalender(ArrayList<EduDate> timeResult) {
             this.timeResult = timeResult;
-            timeResult.add(timeResult.get(timeResult.size()-1));
+            timeResult.add(timeResult.get(timeResult.size() - 1));
         }
 
         @Override
         protected ArrayList<CalendarDay> doInBackground(Void... voids) {
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-            for (int i = 0; i < timeResult.size()+1; i++) {
-                try {
-                    CalendarDay day = CalendarDay.from(calendar);
-                    String[] time = timeResult.get(i).getDate().split("-");
-                    int year = Integer.parseInt(time[0]);
-                    int month = Integer.parseInt(time[1]);
-                    int dayy = Integer.parseInt(time[2]);
-
-                    /*Date date = sdf.parse(timeResult.get(i).getDate());
-
-                    Log.e("hahahah",timeResult.get(i).getDate().toString());*/
-
-                    calendar.set(year, month - 1, dayy);
-                    if (i != 0) {
-                        list.add(day);
-                    }
-                }catch (IndexOutOfBoundsException e){
-
-                } /*catch (ParseException e) {
-                    e.printStackTrace();
-                }*/
+            for (EduDate eduDate : timeResult) {
+                String time = eduDate.getDate();
+                Calendar calendar = DateFormat.getCalendarString(time);
+                list.add(CalendarDay.from(calendar));
             }
-
             return list;
         }
 

@@ -24,13 +24,11 @@ public class ScheduleViewModel extends BaseViewModel {
 
     public ScheduleViewModel(Context context) {
         super(context);
-        //setEducationDate();
     }
 
     public ScheduleViewModel(Context context, Schedule schedule) {
         super(context);
         mSchedule.set(schedule);
-        //isSchedule.set();
     }
 
     public void openScheduleInfo(String date){
@@ -39,13 +37,4 @@ public class ScheduleViewModel extends BaseViewModel {
     }
 
 
-    public ArrayList getEventDay() {
-        final ArrayList<String> list = new ArrayList<>();
-        /*list.add("2018,9,18");
-        list.add("2018,10,12");
-        list.add("2018,10,19");
-        list.add("2018,10,24");*/
-
-        return eduDates;
-    }
 }

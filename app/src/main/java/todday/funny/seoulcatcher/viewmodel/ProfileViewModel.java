@@ -77,7 +77,10 @@ public class ProfileViewModel extends BaseViewModel implements SwipeRefreshLayou
                         mUser.set(user);
                         mUser.notifyChange();
                         mServerDataController.setLoginUser(user);
+
                     }
+                } else if (action.equals(Keys.ADD_SCHEDULE)) {
+                    initData(mUserId.get());
                 }
             }
 
@@ -91,6 +94,7 @@ public class ProfileViewModel extends BaseViewModel implements SwipeRefreshLayou
     public IntentFilter getIntentFilter() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Keys.EDIT_USER);
+        intentFilter.addAction(Keys.ADD_SCHEDULE);
         return intentFilter;
     }
 

@@ -338,10 +338,8 @@ public class ServerDataController {
     }
 
     public void getEducationDate(final OnEduDateListener educationDate) {
-
-
         if (educationDate != null) {
-            FirebaseFirestore.getInstance().collection("educationDate").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            db.collection("educationDate").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                     if (queryDocumentSnapshots == null) {
@@ -360,7 +358,6 @@ public class ServerDataController {
             });
 
         }
-
     }
 
 
