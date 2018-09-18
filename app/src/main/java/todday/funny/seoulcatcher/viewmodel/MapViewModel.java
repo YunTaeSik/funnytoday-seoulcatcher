@@ -75,7 +75,8 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
     }
 
     @SuppressLint("MissingPermission")
-    private void getCurrentLocation() {
+    public void getCurrentLocation() {
+        map.clear();
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {

@@ -9,6 +9,7 @@ import android.text.style.AbsoluteSizeSpan;
 import android.widget.TextView;
 
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.util.DateFormat;
@@ -73,5 +74,15 @@ public class TextBindingAdapter {
             spannableString.setSpan(new AbsoluteSizeSpan(typeSize, true), text.length() - setTypeText.length(), text.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         view.setText(spannableString);
+    }
+
+
+    @BindingAdapter({"setGoldTimeText"})
+    public static void setMemberShipLevelText(TextView view, Call call) {
+        Context context = view.getContext();
+        /*if (user != null) {
+            String text = context.getString(R.string.member_ship_user_level, user.getName(), user.getLevel());
+            view.setText(text);
+        }*/
     }
 }
