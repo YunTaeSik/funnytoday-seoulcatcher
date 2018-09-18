@@ -14,7 +14,6 @@ import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.util.Keys;
 
 public class HistoryListViewModel extends BaseViewModel {
-    //TODO 히스토리 작업중
     public ObservableArrayList<Object> mHistoryList = new ObservableArrayList<>();
     private String mUserId;
 
@@ -48,10 +47,12 @@ public class HistoryListViewModel extends BaseViewModel {
                 if (action.equals(Keys.ADD_HISTORY)) {
                     History history = intent.getParcelableExtra(Keys.HISTORY);
                     if (mHistoryList != null && mHistoryList.size() > 0) {
-                        mHistoryList.add(0, history);
-                    } else {
-                        mHistoryList.clear();
-                        mHistoryList.add(0, history);
+                        if (mHistoryList.size() == 1 && mHistoryList.get(0) instanceof String) {
+                            mHistoryList.clear();
+                            mHistoryList.add(0, history);
+                        } else {
+                            mHistoryList.add(0, history);
+                        }
                     }
 
                 }
