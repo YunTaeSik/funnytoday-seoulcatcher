@@ -61,7 +61,6 @@ import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.model.messageModel.Message;
 import todday.funny.seoulcatcher.model.messageModel.SendCallData;
 import todday.funny.seoulcatcher.model.routeModel.Route;
-import todday.funny.seoulcatcher.model.routeModel.SendRouteData;
 import todday.funny.seoulcatcher.util.ImageConverter;
 import todday.funny.seoulcatcher.util.Keys;
 import todday.funny.seoulcatcher.util.SendBroadcast;
@@ -104,6 +103,7 @@ public class ServerDataController {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         storageReference = storage.getReference();
         mFcmService = FcmService.Creator.create();
+        mRouteService = RouteService.Creator.create();
     }
 
     public String getLoginUserId() {
@@ -505,8 +505,8 @@ public class ServerDataController {
      * 경로 탐색
      */
 
-    public Observable<Route> getRoute(SendRouteData sendRouteData) {
-        return mRouteService.route(mContext.getString(R.string.app_tmap_api_key), sendRouteData).subscribeOn(Schedulers.io())
+    public Observable<Route> getRoute(String startLon, String startLat, String endLon, String endLat, String startName, String endName) {
+        return mRouteService.route("4af07278-8a47-4171-b910-69cde5f881f6", startLon, startLat, endLon, endLat, startName, endName).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

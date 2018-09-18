@@ -28,6 +28,7 @@ import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.activity.IntroActivity;
 import todday.funny.seoulcatcher.ui.activity.MapActivity;
 import todday.funny.seoulcatcher.util.DateFormat;
+import todday.funny.seoulcatcher.util.Keys;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -58,7 +59,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Intent main = new Intent(context, IntroActivity.class);
         Intent map = new Intent(context, MapActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivities(context, 0, new Intent[]{main, map}, PendingIntent.FLAG_ONE_SHOT);
+        map.putExtra(Keys.CALL, call);
+        PendingIntent pendingIntent = PendingIntent.getActivities(context, 0, new Intent[]{main, map}, PendingIntent.FLAG_UPDATE_CURRENT);
 
         final RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_layout);
         remoteViews.setTextViewText(R.id.text_time, DateFormat.getCallTime(System.currentTimeMillis()));

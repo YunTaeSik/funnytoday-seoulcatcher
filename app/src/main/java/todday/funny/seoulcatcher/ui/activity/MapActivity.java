@@ -42,14 +42,11 @@ public class MapActivity extends AppCompatActivity {
         mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         mCompositeDisposable = new CompositeDisposable();
         Call call = getIntent().getParcelableExtra(Keys.CALL);
-        if (call != null) {
-            model = new MapViewModel(this, call);
-            model.setCompositeDisposable(mCompositeDisposable);
-            binding.setModel(model);
-            binding.map.onCreate(savedInstanceState);
-            permissionLocation();
-        }
-
+        model = new MapViewModel(this, call);
+        model.setCompositeDisposable(mCompositeDisposable);
+        binding.setModel(model);
+        binding.map.onCreate(savedInstanceState);
+        permissionLocation();
     }
 
 
@@ -99,46 +96,34 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
-/*
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (binding.map != null) {
-            binding.map.onResume();
-        }
+        binding.map.onResume();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (binding.map != null) {
-            binding.map.onStart();
-        }
+        binding.map.onStart();
     }
-*/
 
     @Override
     protected void onStop() {
         super.onStop();
-        if (binding.map != null) {
-            binding.map.onStop();
-        }
+        binding.map.onStop();
     }
 
     @Override
     protected void onPause() {
-        if (binding.map != null) {
-            binding.map.onPause();
-        }
+        binding.map.onPause();
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        if (binding.map != null) {
-            binding.map.onDestroy();
-        }
+        binding.map.onDestroy();
         if (mCompositeDisposable != null) {
             mCompositeDisposable.dispose();
         }

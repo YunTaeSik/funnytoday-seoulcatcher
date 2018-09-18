@@ -7,6 +7,8 @@ import android.content.pm.PackageManager;
 import android.databinding.ObservableField;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -14,15 +16,25 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.Cap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.RoundCap;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.routeModel.Route;
-import todday.funny.seoulcatcher.model.routeModel.SendRouteData;
+import todday.funny.seoulcatcher.model.routeModel.RouteFeature;
+import todday.funny.seoulcatcher.model.routeModel.RouteGeometry;
+import todday.funny.seoulcatcher.model.routeModel.RouteType;
 
 public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
     private float MAP_ZOOM_LEVEL_WORLD = 1.0f;
@@ -51,7 +63,6 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
     public void setMapView(MapView mapView) {
         if (mapView != null) {
             mapView.getMapAsync(this);
-            mapView.onResume();
         }
     }
 
@@ -79,15 +90,81 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
         });
     }
 
-    private void getRoute(Location location) {
+    private void getRoute(final Location location) {
         if (location != null && mCall.get() != null) {
-            SendRouteData sendRouteData = new SendRouteData(location.getLatitude(), location.getLongitude(), Double.parseDouble(mCall.get().getLatitude()), Double.parseDouble(mCall.get().getLongitude()), mContext.getString(R.string.origin), mCall.get().getAddress());
-            mCompositeDisposable.add(mServerDataController.getRoute(sendRouteData).subscribe(new Consumer<Route>() {
+            final Call call = mCall.get();
+
+            final String startLatitude = String.valueOf(location.getLatitude());
+            final String startLongitude = String.valueOf(location.getLongitude());
+            final LatLng startLatLng = new LatLng(Double.parseDouble(startLatitude), Double.parseDouble(startLongitude));
+
+            map.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title(mContext.getString(R.string.origin))).showInfoWindow();
+
+            final String endLatitude = call.getLatitude();
+            final String endLongitude = call.getLongitude();
+            final LatLng endLatLng = new LatLng(Double.parseDouble(endLatitude), Double.parseDouble(endLongitude));
+
+            String endName = call.getAddress();
+
+            map.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(call.getLatitude()), Double.parseDouble(call.getLongitude()))).title(endName)).showInfoWindow();
+
+            mCompositeDisposable.add(mServerDataController.getRoute(startLongitude, startLatitude, endLongitude, endLatitude, mContext.getString(R.string.origin), endName).subscribe(new Consumer<Route>() {
                 @Override
                 public void accept(Route route) throws Exception {
+                    if (route != null) {
+                        mRoute.set(route);
+                        drawRoute(startLatLng, endLatLng);
+                    }
 
                 }
+            }, new Consumer<Throwable>() {
+                @Override
+                public void accept(Throwable throwable) throws Exception {
+                    throwable.printStackTrace();
+                    PolylineOptions polylineOptions = new PolylineOptions();
+                    polylineOptions.startCap(new RoundCap());
+                    polylineOptions.endCap(new RoundCap());
+                    polylineOptions.width(25.f);
+                    polylineOptions.color(ContextCompat.getColor(mContext, R.color.colorPrimary));
+                    polylineOptions.add(startLatLng);
+                    polylineOptions.add(endLatLng);
+                    map.addPolyline(polylineOptions);
+                }
             }));
+        }
+    }
+
+    private void drawRoute(LatLng startLatLng, LatLng endLatLng) {
+        Route route = mRoute.get();
+        try {
+            if (route != null) {
+                PolylineOptions polylineOptions = new PolylineOptions();
+                polylineOptions.startCap(new RoundCap());
+                polylineOptions.endCap(new RoundCap());
+                polylineOptions.width(25.f);
+                polylineOptions.color(ContextCompat.getColor(mContext, R.color.colorPrimary));
+                polylineOptions.add(startLatLng);
+                ArrayList<RouteFeature> routeFeatures = route.getFeatures();
+                for (RouteFeature routeFeature : routeFeatures) {
+                    RouteGeometry routeGeometry = routeFeature.getGeometry();
+                    String type = routeGeometry.getType();
+                    List<Object> coordinateList = routeGeometry.getCoordinates();
+                    if (type.equals(RouteType.POINT)) {
+                        LatLng latLng = new LatLng((Double) coordinateList.get(1), (Double) coordinateList.get(0));
+                        polylineOptions.add(latLng);
+                    } else if (type.equals(RouteType.LINE_STRING)) {
+                        for (Object item : coordinateList) {
+                            ArrayList<Double> itemList = (ArrayList<Double>) item;
+                            LatLng latLng = new LatLng(itemList.get(1), itemList.get(0));
+                            polylineOptions.add(latLng);
+                        }
+                    }
+                }
+                polylineOptions.add(endLatLng);
+                map.addPolyline(polylineOptions);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -6,21 +6,28 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import todday.funny.seoulcatcher.model.messageModel.Message;
 import todday.funny.seoulcatcher.model.messageModel.SendCallData;
 import todday.funny.seoulcatcher.model.routeModel.Route;
-import todday.funny.seoulcatcher.model.routeModel.SendRouteData;
 import todday.funny.seoulcatcher.util.Keys;
 
 public interface RouteService {
 
     //FCM 보내기
-    @POST("routes/pedestrian?version=1")
+    @GET("routes/pedestrian")
     Observable<Route> route(
             @Header("appKey") String appKey,
-            @Body SendRouteData sendRouteData
+            @Query("startX") String startX,
+            @Query("startY") String startY,
+            @Query("endX") String endX,
+            @Query("endY") String endY,
+            @Query("startName") String startName,
+            @Query("endName") String endName
+
     );
 
     class Creator {

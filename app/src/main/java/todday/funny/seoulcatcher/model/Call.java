@@ -75,7 +75,7 @@ public class Call implements Parcelable {
     }
 
     public String getLatitude() {
-        return latitude;
+        return latitude != null ? latitude : "0";
     }
 
     public void setLatitude(String latitude) {
@@ -83,7 +83,7 @@ public class Call implements Parcelable {
     }
 
     public String getLongitude() {
-        return longitude;
+        return longitude != null ? longitude : "0";
     }
 
     public void setLongitude(String longitude) {

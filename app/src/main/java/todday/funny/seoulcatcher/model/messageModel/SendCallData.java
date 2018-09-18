@@ -11,5 +11,4 @@ public class SendCallData {
         this.message = message;
     }
 
-
 }
