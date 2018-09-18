@@ -27,6 +27,7 @@
     <string name="origin">"출발지"</string>
     <string name="destination">"도착지"</string>
     <string name="finish">"종료"</string>
+    <string name="list">"목록"</string>
 
     <string name="accident_location">"사고 위치"</string>
     <string name="old_age">"노인"</string>

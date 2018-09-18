@@ -51,10 +51,15 @@
                     android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp"
                     app:mcv_selectionColor="#a9047b2e"
                     app:mcv_showOtherDates="defaults" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_light" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/scheduleFragment_recyclerView"
