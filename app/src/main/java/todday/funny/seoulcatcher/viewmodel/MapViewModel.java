@@ -46,9 +46,9 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
 
     public ObservableField<Call> mCall = new ObservableField<>();
     public ObservableField<Route> mRoute = new ObservableField<>();
+    public CompositeDisposable mCompositeDisposable;
     private GoogleMap map;
     private FusedLocationProviderClient fusedLocationProviderClient;
-    private CompositeDisposable mCompositeDisposable;
 
     public MapViewModel(Context context, Call call) {
         super(context);

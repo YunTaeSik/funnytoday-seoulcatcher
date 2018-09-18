@@ -8,6 +8,13 @@ import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.History;
@@ -77,12 +84,37 @@ public class TextBindingAdapter {
     }
 
 
-    @BindingAdapter({"setGoldTimeText"})
-    public static void setMemberShipLevelText(TextView view, Call call) {
-        Context context = view.getContext();
-        /*if (user != null) {
-            String text = context.getString(R.string.member_ship_user_level, user.getName(), user.getLevel());
-            view.setText(text);
-        }*/
+    @BindingAdapter({"setCompositeDisposable", "setGoldTimeText"})
+    public static void setMemberShipLevelText(final TextView view, CompositeDisposable compositeDisposable, Call call) {
+        final Context context = view.getContext();
+        if (call != null) {
+            String kind = call.getKind();
+            long callDate = Long.parseLong(call.getDate());
+            long currentTime = System.currentTimeMillis();
+            if (kind.equals(context.getString(R.string.cardiac_arrest))) {
+                callDate += 4 * 60 * 1000;
+            } else {
+                callDate += 5 * 60 * 1000;
+            }
+            final long diffTime = callDate - currentTime;
+            if (diffTime > 0) {
+                compositeDisposable.add(Observable.interval(1000, TimeUnit.MILLISECONDS).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<Long>() {
+                            @Override
+                            public void accept(Long aLong) throws Exception {
+                                long timer = diffTime - aLong * 1000;
+                                if (timer > 0) {
+                                    view.setText(DateFormat.getTimer(timer));
+                                } else {
+                                    view.setText(context.getString(R.string.finish));
+                                }
+
+                            }
+                        }));
+            } else {
+                view.setText(context.getString(R.string.finish));
+            }
+        }
     }
 }

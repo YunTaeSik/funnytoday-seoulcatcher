@@ -105,6 +105,7 @@ public class CallViewModel extends BaseViewModel {
             }
 
             showLoading.set(true);
+            call.setDate(String.valueOf(System.currentTimeMillis()));
             mCompositeDisposable.add(mServerDataController.call(call).subscribe(new Consumer<Message>() {
                 @Override
                 public void accept(Message message) throws Exception {

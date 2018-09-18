@@ -14,6 +14,7 @@ public class DateFormat {
     private final static String DATE_FORMAT = "yyyyy-MM-dd (E)";
 
     private final static String TIME_FORMAT = "a HH:mm";
+    private final static String TIMER_FORMAT = "mm:ss";
 
     public static String getStringFromDate(Context context, long date) {
         long diffTime = (System.currentTimeMillis() - date) / 1000;
@@ -72,4 +73,11 @@ public class DateFormat {
         return dateFormat.format(calendar.getTime());
     }
 
+    public static String getTimer(long time) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(TIMER_FORMAT);
+        GregorianCalendar calendar = new GregorianCalendar();
+        calendar.setTimeInMillis(time);
+
+        return dateFormat.format(calendar.getTime());
+    }
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class Call implements Parcelable {
     //여긴 무조건 String 만 넣어야댐
+    private String date;
     private String toUserId;
     private String toUserName;
     private String toUserPhotoUrl;
@@ -17,6 +18,14 @@ public class Call implements Parcelable {
     private String address;
     private String latitude;
     private String longitude;
+
+    public String getDate() {
+        return date != null ? date : "0";
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getToUserId() {
         return toUserId;
@@ -112,6 +121,7 @@ public class Call implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.date);
         dest.writeString(this.toUserId);
         dest.writeString(this.toUserName);
         dest.writeString(this.toUserPhotoUrl);
@@ -124,6 +134,7 @@ public class Call implements Parcelable {
     }
 
     protected Call(Parcel in) {
+        this.date = in.readString();
         this.toUserId = in.readString();
         this.toUserName = in.readString();
         this.toUserPhotoUrl = in.readString();

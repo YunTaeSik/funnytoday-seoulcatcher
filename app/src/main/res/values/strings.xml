@@ -39,6 +39,7 @@
     <string name="location">"Location"</string>
     <string name="origin">"Origin"</string>
     <string name="destination">"Destination"</string>
+    <string name="finish">"Finish"</string>
 
     <string name="accident_location">"Accident location"</string>
     <string name="old_age">"Old age"</string>
@@ -52,6 +53,7 @@
     <string name="level_text">"Level %s"</string>
     <string name="edit_image">"Edit Image"</string>
     <string name="location_settings">"Location Settings"</string>
+    <string name="golden_time">"Golden Time"</string>
 
     <string name="percent_type">"%"</string>
 

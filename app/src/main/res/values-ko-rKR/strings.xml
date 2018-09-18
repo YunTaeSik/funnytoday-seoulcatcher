@@ -25,6 +25,7 @@
     <string name="location">"위치"</string>
     <string name="origin">"출발지"</string>
     <string name="destination">"도착지"</string>
+    <string name="finish">"종료"</string>
 
     <string name="accident_location">"사고 위치"</string>
     <string name="old_age">"노인"</string>
@@ -38,6 +39,7 @@
     <string name="level_text">"레벨 %s 파수꾼"</string>
     <string name="edit_image">"이미지 편집"</string>
     <string name="location_settings">"위치 설정"</string>
+    <string name="golden_time">"골든 타임"</string>
 
 
     <string name="call_user_name">"%s님에 호출"</string>
