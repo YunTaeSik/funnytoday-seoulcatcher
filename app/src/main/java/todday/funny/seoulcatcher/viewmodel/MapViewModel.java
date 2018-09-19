@@ -4,11 +4,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -35,6 +38,7 @@ import todday.funny.seoulcatcher.model.routeModel.Route;
 import todday.funny.seoulcatcher.model.routeModel.RouteFeature;
 import todday.funny.seoulcatcher.model.routeModel.RouteGeometry;
 import todday.funny.seoulcatcher.model.routeModel.RouteType;
+import todday.funny.seoulcatcher.util.HeartSpeech;
 
 public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
     private float MAP_ZOOM_LEVEL_WORLD = 1.0f;
@@ -44,16 +48,21 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
     private float MAP_ZOOM_LEVEL_STREETS_BULDINGS = 17.5f;
     private float MAP_ZOOM_LEVEL_BUILDINGS = 20.0f;
 
+
     public ObservableField<Call> mCall = new ObservableField<>();
     public ObservableField<Route> mRoute = new ObservableField<>();
     public CompositeDisposable mCompositeDisposable;
     private GoogleMap map;
     private FusedLocationProviderClient fusedLocationProviderClient;
+    private HeartSpeech heartSpeech;
+    public ObservableBoolean isKindFire = new ObservableBoolean(true);
 
     public MapViewModel(Context context, Call call) {
         super(context);
+        heartSpeech = new HeartSpeech(context);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context);
         mCall.set(call);
+        isKindFire.set(call.getKind().equals(context.getString(R.string.fire)));
     }
 
     public void setCompositeDisposable(CompositeDisposable mCompositeDisposable) {
@@ -63,6 +72,19 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
     public void setMapView(MapView mapView) {
         if (mapView != null) {
             mapView.getMapAsync(this);
+        }
+    }
+
+    public void speech(View view) {
+        if (view instanceof AppCompatImageView && heartSpeech != null) {
+            AppCompatImageView imageView = (AppCompatImageView) view;
+            if (heartSpeech.isSpeaking()) {
+                imageView.setImageResource(R.drawable.ic_volume_up_black_24dp);
+                heartSpeech.stopTTS();
+            } else {
+                imageView.setImageResource(R.drawable.ic_volume_off_black_24dp);
+                heartSpeech.speakTTS();
+            }
         }
     }
 
@@ -167,5 +189,15 @@ public class MapViewModel extends BaseViewModel implements OnMapReadyCallback {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void close() {
+        if (heartSpeech != null) {
+            if (heartSpeech.isSpeaking()) {
+                heartSpeech.stopTTS();
+            }
+        }
+        super.close();
     }
 }

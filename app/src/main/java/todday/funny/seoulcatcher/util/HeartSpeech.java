@@ -80,6 +80,13 @@ public class HeartSpeech {
         }
     }
 
+    public boolean isSpeaking() {
+        if (tts != null) {
+            return tts.isSpeaking();
+        }
+        return false;
+    }
+
     private void doThread(int flag) {
 
         switch (speakFlag) {

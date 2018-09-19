@@ -92,7 +92,7 @@ public class ScheduleFragment extends Fragment {
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
-
+        recyclerView.setNestedScrollingEnabled(false);
         registerBroadCast();
 
         getScheduleDataBase();
