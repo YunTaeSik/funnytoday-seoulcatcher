@@ -52,10 +52,12 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
         ScheduleViewHolder scheduleViewHolder = (ScheduleViewHolder) viewHolder;
-
-        scheduleViewHolder.textView.setText(schedules.get(position).getDate());
         final Schedule schedule = schedules.get(position);
-        scheduleViewHolder.button.setOnClickListener(new View.OnClickListener() {
+
+        scheduleViewHolder.textView.setText(schedule.getDate());
+        scheduleViewHolder.locationName.setText(schedule.getName());
+
+        scheduleViewHolder.btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialogCreate.getInstance(context).deleteSchedule(schedule.getDate() + " " + schedule.getName(), new DialogInterface.OnClickListener() {
@@ -87,13 +89,17 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private class ScheduleViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
-        private Button button;
+        private TextView locationName;
+        private TextView btn_cancel;
+      //  private Button button;
 
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
 
             textView = itemView.findViewById(R.id.scheduleItem_textView);
-            button = itemView.findViewById(R.id.scheduleItem_button_cancel);
+            locationName = itemView.findViewById(R.id.scheduleItem_name);
+            btn_cancel = itemView.findViewById(R.id.btn_cancel);
+           // button = itemView.findViewById(R.id.scheduleItem_button_cancel);
         }
     }
 

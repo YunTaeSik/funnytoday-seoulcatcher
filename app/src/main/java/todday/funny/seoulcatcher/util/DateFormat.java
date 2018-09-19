@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 import todday.funny.seoulcatcher.R;
 
 public class DateFormat {
-    private final static String DATE_FORMAT = "yyyyy-MM-dd (E)";
+    private final static String DATE_FORMAT = "yyyy-MM-dd (E)";
 
     private final static String TIME_FORMAT = "a HH:mm";
     private final static String TIMER_FORMAT = "mm:ss";
