@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:background="#f5ab99"
+            android:background="#66BB6A"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -64,7 +64,7 @@
             android:id="@+id/expandable_layout_1"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#feb47b"
+            android:background="#66BB6A"
             android:paddingTop="10dp"
             app:el_duration="1000"
             app:el_expanded="true">
@@ -179,7 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:background="#ff7e5f"
+            android:background="#66BB6A"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -222,7 +222,7 @@
             android:id="@+id/expandable_layout_2"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#765285"
+            android:background="#66BB6A"
             android:paddingTop="10dp"
             app:el_duration="1000"
             app:el_expanded="true">
@@ -338,7 +338,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:background="#351c4d"
+            android:background="#66BB6A"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatImageView
@@ -380,7 +380,7 @@
             android:id="@+id/expandable_layout_3"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#e7593a"
+            android:background="#66BB6A"
             android:paddingTop="10dp"
             app:el_duration="1000"
             app:el_expanded="true">
