@@ -54,7 +54,7 @@ public class HeartSpeech {
                         @Override
                         public void onDone(String s) {
                             Log.e("REERER", "ERERE");
-                            if(speakFlag != 8)
+                            if (speakFlag != 8)
                                 speakFlag++;
                             doThread(speakFlag);
                         }
@@ -64,8 +64,8 @@ public class HeartSpeech {
 
                         }
                     });
-                }else {
-                    Log.e("text error","error");
+                } else {
+                    Log.e("text error", "error");
                 }
 
 
@@ -73,8 +73,8 @@ public class HeartSpeech {
         });
     }
 
-    public void stopTTS(){
-        if(tts !=null){
+    public void stopTTS() {
+        if (tts != null) {
             tts.stop();
             tts.shutdown();
         }
@@ -193,7 +193,7 @@ public class HeartSpeech {
 
     @SuppressLint("NewApi")
     private void speak3() {
-        tts.speak("환자를 평평하고 단단한 바닥에 눞힌뒤 , 환자 옆에 무릎을 꿇고 앉습니다", TextToSpeech.QUEUE_FLUSH, bundle,"11");
+        tts.speak("환자를 평평하고 단단한 바닥에 눞힌뒤 , 환자 옆에 무릎을 꿇고 앉습니다", TextToSpeech.QUEUE_FLUSH, bundle, "11");
     }
 
     @SuppressLint("NewApi")
@@ -205,14 +205,17 @@ public class HeartSpeech {
     private void speak5() {
         tts.speak("환자의 가슴과 본인의 손 그리고 본인의 어깨가 수직이 되도록 합니다", TextToSpeech.QUEUE_FLUSH, bundle, "11");
     }
+
     @SuppressLint("NewApi")
     private void speak6() {
         tts.speak("이제 본격적인 가슴압박을 시작하겠습니다.", TextToSpeech.QUEUE_FLUSH, bundle, "11");
     }
+
     @SuppressLint("NewApi")
     private void speak7() {
         tts.speak("환자의 가슴을 깊고빠르게 5센치 정도 수직으로 누릅니다. 누른뒤에 가슴이 다시 올라오는지 확인하세요.", TextToSpeech.QUEUE_FLUSH, bundle, "11");
     }
+
     @SuppressLint("NewApi")
     private void speak8() {
         tts.setSpeechRate(1.5f);
