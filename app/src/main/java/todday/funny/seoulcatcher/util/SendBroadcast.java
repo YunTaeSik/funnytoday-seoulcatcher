@@ -7,6 +7,7 @@ import com.google.android.gms.location.places.Place;
 
 import todday.funny.seoulcatcher.model.History;
 import todday.funny.seoulcatcher.model.PlaceData;
+import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.model.User;
 
 public class SendBroadcast {
@@ -19,6 +20,12 @@ public class SendBroadcast {
     public static void user(Context context, String action, User user) {
         Intent send = new Intent(action);
         send.putExtra(Keys.USER, user);
+        context.sendBroadcast(send);
+    }
+
+    public static void schedule(Context context, String action, Schedule schedule) {
+        Intent send = new Intent(action);
+        send.putExtra(Keys.SCHEDULE, schedule);
         context.sendBroadcast(send);
     }
 

@@ -17,7 +17,6 @@ public class CommonDecorator implements DayViewDecorator {
     public boolean shouldDecorate(CalendarDay day) {
         day.copyTo(calendar);
         int weekDay = calendar.get(Calendar.DAY_OF_WEEK);
-
         return weekDay != Calendar.DAY_OF_WEEK;
     }
 

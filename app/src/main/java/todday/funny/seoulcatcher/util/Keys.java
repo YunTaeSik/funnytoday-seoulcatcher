@@ -22,6 +22,7 @@ public class Keys {
     public static final String USER_BACKGROUND = "userBackground";
 
 
+    public static final String SCHEDULE = "schedule";
     public static final String SCHEDULES = "schedules";
 
     public static final String MEMBER_SHIPS = "memberShips";

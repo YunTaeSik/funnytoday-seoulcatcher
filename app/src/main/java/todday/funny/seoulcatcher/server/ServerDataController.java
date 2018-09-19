@@ -1,6 +1,7 @@
 package todday.funny.seoulcatcher.server;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -358,6 +359,24 @@ public class ServerDataController {
             });
 
         }
+    }
+
+    public void saveUserSchedule(final Schedule schedule) {
+        DocumentReference documentReference = db.collection(Keys.USERS).document(mLoginUserId).collection(Keys.SCHEDULES).document();
+        schedule.setKey(documentReference.getId());
+        documentReference.set(schedule).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Intent intent = new Intent(Keys.ADD_SCHEDULE);
+                intent.putExtra(Keys.SCHEDULE, schedule);
+                mContext.sendBroadcast(intent);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
 

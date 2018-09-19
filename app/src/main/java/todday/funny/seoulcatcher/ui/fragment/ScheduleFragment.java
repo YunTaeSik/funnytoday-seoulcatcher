@@ -57,7 +57,6 @@ public class ScheduleFragment extends Fragment {
     private SaturdayDecorator saturdayDecorator = new SaturdayDecorator();
     private CommonDecorator commonDecorator = new CommonDecorator();
     private TodayDecorator todayDecorator = new TodayDecorator();
-    private TodayDecorator setModel = new TodayDecorator();
 
     private RecyclerView recyclerView;
     private ScheduleAdapter adapter;
@@ -81,7 +80,7 @@ public class ScheduleFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false);
         if (getActivity() != null && getActivity() instanceof BaseActivity) {
-            model = ((BaseActivity) getActivity()).getScheduleViewModel();
+            model = new ScheduleViewModel(getContext());
             binding.setModel(model);
         }
 
@@ -103,6 +102,12 @@ public class ScheduleFragment extends Fragment {
         return view;
     }
 
+    private void registerBroadCast() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Keys.ADD_SCHEDULE);
+        getActivity().registerReceiver(broadcastReceiver, intentFilter);
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -121,18 +126,13 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
-    private void registerBroadCast() {
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Keys.ADD_SCHEDULE);
-        getActivity().registerReceiver(broadcastReceiver, intentFilter);
-    }
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Keys.ADD_SCHEDULE)) {
                 model.isSchedule = false;
-                Schedule schedule = intent.getParcelableExtra("data");
+                Schedule schedule = intent.getParcelableExtra(Keys.SCHEDULE);
                 schedulesLists.add(schedule);
                 adapter.notifyDataSetChanged();
             }

@@ -68,7 +68,7 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
             date = getArguments().getString("date");
         }
 
-        model.textDate = date;
+       // model.textDate = date;
 
         mapView = view.findViewById(R.id.schedueldialog_mapview);
         if(mapView != null){
