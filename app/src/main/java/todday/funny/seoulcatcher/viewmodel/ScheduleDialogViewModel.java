@@ -2,6 +2,7 @@ package todday.funny.seoulcatcher.viewmodel;
 
 import android.content.Context;
 import android.content.Intent;
+import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -18,15 +19,19 @@ import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.util.Keys;
 
 public class ScheduleDialogViewModel extends BaseViewModel {
-    public String locationname = "광나루";
+    public ObservableField<String> mDate = new ObservableField<>();
+    public ObservableField<String> mLocationName = new ObservableField<>();
 
 
-    public ScheduleDialogViewModel(Context context) {
+    public ScheduleDialogViewModel(Context context, String date) {
         super(context);
+        mDate.set(date);
+        mLocationName.set("광나루");
     }
 
-    public void inputScheduleDateBase(final String date) {
-        mServerDataController.saveUserSchedule(new Schedule(date, locationname));
+    public void inputScheduleDateBase() {
+        mServerDataController.saveUserSchedule(new Schedule(mDate.get(), mLocationName.get()));
+        close();
     }
 }
 

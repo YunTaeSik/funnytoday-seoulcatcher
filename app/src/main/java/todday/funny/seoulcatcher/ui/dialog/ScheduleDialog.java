@@ -23,20 +23,15 @@ import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.ScheduleDialogBinding;
 import todday.funny.seoulcatcher.viewmodel.ScheduleDialogViewModel;
 
-public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback{
+public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback {
     private ScheduleDialogBinding binding;
     private ScheduleDialogViewModel model;
-    private Button button_ok;
-    private Button button_cancel;
     private GoogleMap map = null;
     private MapView mapView = null;
-    private String date;
-
-    private String uid;
 
     public static ScheduleDialog newInstance(String date) {
         Bundle args = new Bundle();
-        args.putString("date",date);
+        args.putString("date", date);
         ScheduleDialog fragment = new ScheduleDialog();
         fragment.setArguments(args);
         return fragment;
@@ -45,37 +40,21 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_schedule,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_schedule, container, false);
 
-        model = new ScheduleDialogViewModel(getActivity());
-        binding.setModel(model);
-
+        if (getArguments() != null) {
+            String date = getArguments().getString("date");
+            model = new ScheduleDialogViewModel(getActivity(), date);
+            binding.setModel(model);
+        }
         View view = binding.getRoot();
 
-        uid = FirebaseAuth.getInstance().getUid();
-
-        button_ok = view.findViewById(R.id.schedueldialog_comfirm);
-        button_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                model.inputScheduleDateBase(date);
-                dismiss();
-            }
-        });
-
-
-        if(getArguments()!=null) {
-            date = getArguments().getString("date");
-        }
-
-       // model.textDate = date;
 
         mapView = view.findViewById(R.id.schedueldialog_mapview);
-        if(mapView != null){
+        if (mapView != null) {
             mapView.onCreate(savedInstanceState);
         }
         mapView.getMapAsync(this);
-
 
 
         return view;
@@ -86,15 +65,15 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLng(37.551401,127.077142));
+        markerOptions.position(new LatLng(37.551401, 127.077142));
 
         markerOptions.title("광나루 안점체험관");
 
-        map.addMarker(markerOptions);
+        map.addMarker(markerOptions).showInfoWindow();
 
-        LatLng nowLang = new LatLng(37.551401,127.077142);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(nowLang, 12);
-        map.animateCamera(cameraUpdate);
+        LatLng nowLang = new LatLng(37.551401, 127.077142);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(nowLang, 17.5f);
+        map.moveCamera(cameraUpdate);
 
     }
 
@@ -109,11 +88,13 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
         super.onResume();
         mapView.onResume();
     }
+
     @Override
     public void onStop() {
         super.onStop();
         mapView.onStop();
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -125,6 +106,7 @@ public class ScheduleDialog extends DialogFragment implements OnMapReadyCallback
         super.onDestroy();
         mapView.onDestroy();
     }
+
     @Override
     public void onLowMemory() {
         super.onLowMemory();
