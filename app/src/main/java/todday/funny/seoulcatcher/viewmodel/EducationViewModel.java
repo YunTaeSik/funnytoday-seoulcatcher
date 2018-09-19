@@ -9,6 +9,7 @@ import todday.funny.seoulcatcher.ui.dialog.educationDialog.ColdboomFragmentDialo
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.CollapseFragmentDialog;
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.CprFargmentDialog;
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.DustboomFragmentDialog;
+import todday.funny.seoulcatcher.ui.dialog.educationDialog.EarthboomFragmentDialog;
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.FireboomFragmentDialog;
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.OneonenineFragmentDialog;
 import todday.funny.seoulcatcher.ui.dialog.educationDialog.SubwayboomFragmentDialog;
@@ -25,6 +26,7 @@ public class EducationViewModel extends BaseViewModel {
     public void open_cprFragment() {
         Log.e("aaaa","!!!!!!");
         CprFargmentDialog dialog = CprFargmentDialog.newInstance();
+        Log.e("aaaa","&^&^&E^&^&^&^");
         addFragmentDialog(dialog, android.R.transition.slide_top);
     }
 
@@ -49,7 +51,7 @@ public class EducationViewModel extends BaseViewModel {
     }
 
     public void open_earthquakeFragment() {
-        DustboomFragmentDialog dialog = DustboomFragmentDialog.newInstance();
+        EarthboomFragmentDialog dialog = EarthboomFragmentDialog.newInstance();
         addFragmentDialog(dialog, android.R.transition.slide_top);
     }
 

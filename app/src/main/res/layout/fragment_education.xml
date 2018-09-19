@@ -63,7 +63,7 @@
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_layout_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:background="#feb47b"
             android:paddingTop="10dp"
             app:el_duration="1000"
@@ -221,7 +221,7 @@
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_layout_2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:background="#765285"
             android:paddingTop="10dp"
             app:el_duration="1000"
@@ -379,7 +379,7 @@
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_layout_3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:background="#e7593a"
             android:paddingTop="10dp"
             app:el_duration="1000"
