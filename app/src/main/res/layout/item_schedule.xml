@@ -23,31 +23,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:text="광나루" />
 
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/scheduleItem_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="2dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:layout_marginTop="2dp"
             android:text="교육 취소"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorPrimary" />
 
         <!--<Button
             android:id="@+id/scheduleItem_button_cancel"

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,13 +32,11 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private ArrayList<Schedule> schedules;
 
-    private String uid;
     private Context context;
     private OnListISizeZero onListISizeZero;
 
     public ScheduleAdapter(Context context, ArrayList<Schedule> schedules, OnListISizeZero onListISizeZero) {
         this.context = context;
-        this.uid = FirebaseAuth.getInstance().getUid();
         this.schedules = schedules;
         this.onListISizeZero = onListISizeZero;
     }
@@ -90,8 +89,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         private TextView textView;
         private TextView locationName;
-        private TextView btn_cancel;
-      //  private Button button;
+        private LinearLayout btn_cancel;
 
         public ScheduleViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,7 +97,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             textView = itemView.findViewById(R.id.scheduleItem_textView);
             locationName = itemView.findViewById(R.id.scheduleItem_name);
             btn_cancel = itemView.findViewById(R.id.btn_cancel);
-           // button = itemView.findViewById(R.id.scheduleItem_button_cancel);
         }
     }
 
