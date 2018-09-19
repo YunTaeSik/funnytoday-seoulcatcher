@@ -161,9 +161,6 @@ public class ScheduleFragment extends Fragment {
 
 
     private void settingCalendar() {
-        for (int i = 0; i < eduDatesLists.size(); i++) {
-            Log.e("!@!@", eduDatesLists.get(i).getDate());
-        }
         calendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
@@ -173,10 +170,9 @@ public class ScheduleFragment extends Fragment {
             }
         });
         if (eduDatesLists.size() != 0) {
-            new CheckPointCalender(eduDatesLists).executeOnExecutor(Executors.newSingleThreadExecutor());
-        } else {
-            Log.e("null", "null");
+            new CheckPointCalender(eduDatesLists).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         }
+
         calendarView.addDecorators(commonDecorator, sundayDecorator, saturdayDecorator, todayDecorator);
     }
 
