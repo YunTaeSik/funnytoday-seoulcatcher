@@ -25,6 +25,7 @@ import todday.funny.seoulcatcher.model.Schedule;
 import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.dialog.AlertDialogCreate;
 import todday.funny.seoulcatcher.util.Keys;
+import todday.funny.seoulcatcher.util.SendBroadcast;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -67,6 +68,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                 if (schedules.size() == 0) {
                                     onListISizeZero.sizeZero();
                                 }
+                                SendBroadcast.schedule(context, Keys.DELETE_SCHEDULE, null);
                                 notifyDataSetChanged();
                             }
                         });
