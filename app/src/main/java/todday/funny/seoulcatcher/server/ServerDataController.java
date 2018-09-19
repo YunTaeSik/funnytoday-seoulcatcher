@@ -379,6 +379,11 @@ public class ServerDataController {
         });
     }
 
+    public void deleteUserSchedule(Schedule schedule, OnSuccessListener onSuccessListener) {
+        db.collection(Keys.USERS).document(mLoginUserId).collection(Keys.SCHEDULES).document(schedule.getKey()).delete()
+                .addOnSuccessListener(onSuccessListener);
+    }
+
 
     /**
      * 멤버쉽

@@ -22,18 +22,22 @@ import java.util.ArrayList;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.interactor.OnListISizeZero;
 import todday.funny.seoulcatcher.model.Schedule;
+import todday.funny.seoulcatcher.server.ServerDataController;
+import todday.funny.seoulcatcher.ui.dialog.AlertDialogCreate;
 import todday.funny.seoulcatcher.util.Keys;
+import todday.funny.seoulcatcher.util.SendBroadcast;
 
-public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<Schedule> schedules;
 
-    private String uid ;
+    private String uid;
     private Context context;
     private OnListISizeZero onListISizeZero;
-    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules, OnListISizeZero onListISizeZero){
+
+    public ScheduleAdapter(Context context, ArrayList<Schedule> schedules, OnListISizeZero onListISizeZero) {
         this.context = context;
-        this.uid =  FirebaseAuth.getInstance().getUid();
+        this.uid = FirebaseAuth.getInstance().getUid();
         this.schedules = schedules;
         this.onListISizeZero = onListISizeZero;
     }
@@ -41,46 +45,35 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_schedule,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_schedule, viewGroup, false);
         return new ScheduleViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int position) {
-        ScheduleViewHolder scheduleViewHolder = (ScheduleViewHolder)viewHolder;
+        ScheduleViewHolder scheduleViewHolder = (ScheduleViewHolder) viewHolder;
 
         scheduleViewHolder.textView.setText(schedules.get(position).getDate());
+        final Schedule schedule = schedules.get(position);
         scheduleViewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
-                        .setTitle("교육을 취소 하시겠습니까?")
-                        .setMessage(schedules.get(position).getDate()+ "  광나루")
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                AlertDialogCreate.getInstance(context).deleteSchedule(schedule.getDate() + " " + schedule.getName(), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ServerDataController.getInstance(context).deleteUserSchedule(schedule, new OnSuccessListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Log.e("취소 확인!","성공!!!!!");
-                                FirebaseFirestore.getInstance().collection("users").document(uid).collection(Keys.SCHEDULES).document(schedules.get(position).getKey()).delete()
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Log.e("schedule 삭제","삭제성공!");
-                                                schedules.remove(position);
-                                                if(schedules.size()==0){
-                                                    onListISizeZero.sizeZero();
-                                                }
-                                                notifyDataSetChanged();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Log.e("schedule 삭제","삭제실패!");
-                                    }
-                                });
+                            public void onSuccess(Object o) {
+                                schedules.remove(position);
+                                if (schedules.size() == 0) {
+                                    onListISizeZero.sizeZero();
+                                }
+                                SendBroadcast.schedule(context, Keys.DELETE_SCHEDULE, null);
+                                notifyDataSetChanged();
                             }
-                        })
-                        .setNegativeButton("취소", null);
-                alertDialog.show();
+                        });
+                    }
+                });
             }
         });
 
@@ -91,7 +84,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return schedules.size();
     }
 
-    private class ScheduleViewHolder extends RecyclerView.ViewHolder{
+    private class ScheduleViewHolder extends RecyclerView.ViewHolder {
 
         private TextView textView;
         private Button button;
