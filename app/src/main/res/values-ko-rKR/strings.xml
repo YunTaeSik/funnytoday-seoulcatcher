@@ -107,4 +107,17 @@
     <string name="edu_cpr_four">"머리를 뒤로 젖히고 턱을 위로 들어 올려 기도를 열어주세요"</string>
     <string name="edu_cpr_five">"가슴압박과 인공호흡의 반복"</string>
 
+    <!--education_usingfire-->
+    <string name="edu_usingfire_one">"소화기를 불이 난 곳으로 옮깁니다."</string>
+    <string name="edu_usingfire_two">"손잡이 부분의 안전핀을 뽑습니다."</string>
+    <string name="edu_usingfire_three">"바람을 등지고 서서 호스가 불을 향하게 합니다."</string>
+    <string name="edu_usingfire_four">"손잡이를 힘껏 움켜쥐고 빗자루로 쓸듯이 뿌립니다."</string>
+
+    <!--education_usingstif-->
+    <string name="edu_usingstif_one">"소화기를 불이 난 곳으로 옮깁니다."</string>
+    <string name="edu_usingstif_two">"손잡이 부분의 안전핀을 뽑습니다."</string>
+    <string name="edu_usingstif_three">"바람을 등지고 서서 호스가 불을 향하게 합니다."</string>
+    <string name="edu_usingstif_four">"손잡이를 힘껏 움켜쥐고 빗자루로 쓸듯이 뿌립니다."</string>
+
+
 </resources>

@@ -39,15 +39,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/list"
-                android:textColor="@color/gray_dark"
-                android:textSize="12sp" />
+
 
             <!--긴급 상황 대처-->
             <android.support.design.card.MaterialCardView
