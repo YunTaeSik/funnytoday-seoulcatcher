@@ -22,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/background"
             android:clickable="true"
             android:onClick="@{()->model.hideKeyBoard()}"
             android:orientation="vertical">
@@ -31,6 +31,7 @@
                 android:id="@+id/layout_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
                 android:elevation="4dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/layout_main"
@@ -45,6 +46,7 @@
                     android:background="?android:selectableItemBackground"
                     android:onClick="@{() -> model.close()}"
                     android:padding="16dp"
+                    android:tint="@color/white"
                     app:srcCompat="@drawable/ic_keyboard_backspace_black_24dp" />
 
                 <TextView
@@ -54,6 +56,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="@string/modify"
+                    android:textColor="@color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -66,6 +69,7 @@
                     android:onClick="@{()->model.editUser()}"
                     android:padding="16dp"
                     android:text="@string/ok"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
             </LinearLayout>
 

@@ -24,6 +24,7 @@
             android:id="@+id/layout_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:elevation="4dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/layout_main"
@@ -38,6 +39,7 @@
                 android:background="?android:selectableItemBackground"
                 android:onClick="@{() -> model.close()}"
                 android:padding="16dp"
+                android:tint="@color/white"
                 app:srcCompat="@drawable/ic_keyboard_backspace_black_24dp" />
 
             <TextView
@@ -47,6 +49,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="@string/check_qr_code"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 

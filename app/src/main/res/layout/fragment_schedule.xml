@@ -20,6 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -29,7 +30,9 @@
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="@string/educationSchedule"
-                android:textSize="18sp" />
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

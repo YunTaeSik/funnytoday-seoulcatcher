@@ -68,7 +68,7 @@
                     setLevelText="@{model.mUser.level}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     tools:text="레벨 1" />

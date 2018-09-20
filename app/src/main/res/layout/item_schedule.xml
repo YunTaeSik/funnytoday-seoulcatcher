@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="교육 취소"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <!--<Button
             android:id="@+id/scheduleItem_button_cancel"
