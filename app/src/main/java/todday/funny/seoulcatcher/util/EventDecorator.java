@@ -12,14 +12,14 @@ import java.util.HashSet;
 
 import todday.funny.seoulcatcher.R;
 
-public class EventDecorator implements DayViewDecorator{
+public class EventDecorator implements DayViewDecorator {
 
     private Drawable drawable = null;
     private int color;
     private HashSet<CalendarDay> dates = null;
 
-    public EventDecorator(int color , Collection<CalendarDay> dates, Context context){
-        drawable = context.getResources().getDrawable(R.drawable.more);
+    public EventDecorator(int color, Collection<CalendarDay> dates, Context context) {
+        drawable = context.getResources().getDrawable(R.drawable.image_calendar_item);
         this.color = color;
         this.dates = new HashSet<CalendarDay>(dates);
     }
