@@ -34,27 +34,39 @@ public class AlertDialogCreate {
     }
 
     public void logout(DialogInterface.OnClickListener clickListener) {
-        alertDialog.setCancelable(true);
-        alertDialog.setTitle(mContext.getString(R.string.account));
-        alertDialog.setMessage(mContext.getString(R.string.msg_logout));
-        alertDialog.setPositiveButton(mContext.getString(R.string.log_out), clickListener);
-        alertDialog.show();
+        try {
+            alertDialog.setCancelable(true);
+            alertDialog.setTitle(mContext.getString(R.string.account));
+            alertDialog.setMessage(mContext.getString(R.string.msg_logout));
+            alertDialog.setPositiveButton(mContext.getString(R.string.log_out), clickListener);
+            alertDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void locationOn(DialogInterface.OnClickListener clickListener, DialogInterface.OnClickListener negetiveClickListener) {
-        alertDialog.setCancelable(false);
-        alertDialog.setTitle(R.string.location_settings);
-        alertDialog.setMessage(R.string.msg_location_on);
-        alertDialog.setPositiveButton(R.string.setting, clickListener);
-        alertDialog.setNegativeButton(R.string.cancel, negetiveClickListener);
-        alertDialog.show();
+        try {
+            alertDialog.setCancelable(false);
+            alertDialog.setTitle(R.string.location_settings);
+            alertDialog.setMessage(R.string.msg_location_on);
+            alertDialog.setPositiveButton(R.string.setting, clickListener);
+            alertDialog.setNegativeButton(R.string.cancel, negetiveClickListener);
+            alertDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteSchedule(String message, DialogInterface.OnClickListener clickListener) {
-        alertDialog.setCancelable(true);
-        alertDialog.setTitle("교육을 취소하시겠습니까?");
-        alertDialog.setMessage(message);
-        alertDialog.setPositiveButton(mContext.getString(R.string.ok), clickListener);
-        alertDialog.show();
+        try {
+            alertDialog.setCancelable(true);
+            alertDialog.setTitle("교육을 취소하시겠습니까?");
+            alertDialog.setMessage(message);
+            alertDialog.setPositiveButton(mContext.getString(R.string.ok), clickListener);
+            alertDialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
