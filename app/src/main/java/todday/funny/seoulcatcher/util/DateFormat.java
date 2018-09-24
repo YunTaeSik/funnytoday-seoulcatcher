@@ -12,6 +12,7 @@ import todday.funny.seoulcatcher.R;
 
 public class DateFormat {
     private final static String DATE_FORMAT = "yyyy-MM-dd (E)";
+    private final static String DATE_FORMAT_NONDAY = "yyyy-MM-dd";
 
     private final static String TIME_FORMAT = "a HH:mm";
     private final static String TIMER_FORMAT = "mm:ss";
@@ -65,6 +66,8 @@ public class DateFormat {
         }
     }
 
+
+
     public static Calendar getCalendarString(String date) {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         Calendar calendar = Calendar.getInstance();
@@ -81,6 +84,7 @@ public class DateFormat {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_FORMAT);
         return formatter.format(calendar.getTime());
     }
+
 
     public static String getCallTime(long time) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(TIME_FORMAT);

@@ -165,7 +165,9 @@ public class ScheduleFragment extends Fragment {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
                 for (int i = 0; i < eduDatesLists.size(); i++) {
-                    model.openScheduleInfo(DateFormat.getStringCalendar(date.getCalendar()));
+                    if((DateFormat.getStringCalendar(date.getCalendar())).equals(eduDatesLists.get(i).getDate())) {
+                        model.openScheduleInfo(DateFormat.getStringCalendar(date.getCalendar()));
+                    }
                 }
             }
         });
