@@ -129,10 +129,11 @@
     <string name="edu_usingfire_four">"손잡이를 힘껏 움켜쥐고 빗자루로 쓸듯이 뿌립니다."</string>
 
     <!--education_usingstif-->
-    <string name="edu_usingstif_one">"소화기를 불이 난 곳으로 옮깁니다."</string>
-    <string name="edu_usingstif_two">"손잡이 부분의 안전핀을 뽑습니다."</string>
-    <string name="edu_usingstif_three">"바람을 등지고 서서 호스가 불을 향하게 합니다."</string>
-    <string name="edu_usingstif_four">"손잡이를 힘껏 움켜쥐고 빗자루로 쓸듯이 뿌립니다."</string>
+    <string name="edu_usingstif_one">"지지대를 창 밖으로 꺼낸다."</string>
+    <string name="edu_usingstif_two">"지지대 고리에 완강기 후크를 건다."</string>
+    <string name="edu_usingstif_three">"릴(줄)을 창밖으로 던진다."</string>
+    <string name="edu_usingstif_four">"완강기 벨트를 가슴에 안전하게 건다."</string>
+    <string name="edu_usingstif_five">"벽면을 타고 안전하게 내려간다."</string>
 
     <!--education_dust-->
     <string name="edu_dust_one">"장시간 또는 무리한 실외활동을 줄이세요."</string>
@@ -180,5 +181,19 @@
     <string name="edu_collapse_three">"노약자, 어린이, 여성 등을 우선하여 탈출하세요."</string>
     <string name="edu_collapse_four">"고립이 장기화될 경우를 고려해 음식과 물을 찾아 먹되, 오래 버틸 수 있도록 소비를 조절하세요"</string>
     <string name="edu_collapse_five">"가스누출 위험이 있을 경우 성냥, 스토브 등을 켜지않고 손전등을 사용하세요"</string>
+
+    <!--education_oneonenine-->
+    <string name="edu_oneonenine_one">"소방서(119)에 전화를 걸어 화재를 신고한다."</string>
+    <string name="edu_oneonenine_two">"소방대원이 먼저 전화를 끊을 때까지 전화를 끊지 않는다."</string>
+    <string name="edu_oneonenine_three">"낯선거리에서 119로 신고할 땐 가까운 상가 전화번호를 알려준다."</string>
+    <string name="edu_oneonenine_four">"고속도로에서는 시점 기준 현재 위치를 알려준다."</string>
+    <string name="edu_oneonenine_five">"장난전화를 절대 하지 않는다."</string>
+
+    <!--education_carboom-->
+    <string name="edu_carboom_one">"다른 차의 소통에 방해되지 않도록 길 가장자리나 공터 등 안전한 장소에 차를 정차시키고 엔진을 끈다."</string>
+    <string name="edu_carboom_two">"사고현장에 의사, 구급차 등이 도착할 때까지 부상자에게는 가제나 깨끗한 손수건으로 우선 지혈시키는 등 가능한 응급 조치를 한다."</string>
+    <string name="edu_carboom_three">"후속 사고의 우려가 있을 때는 부상자를 안전한 장소로 이동시킨다."</string>
+    <string name="edu_carboom_four">"경찰이 주변에 없을 때 에는 가장 가까운 경찰관서에 신고하여 지시를 받는다."</string>
+    <string name="edu_carboom_five">"가벼운 상처나 외상이 없어도 두부 등에 강한 충격을 받았을 때에는 의사의 진단을 받아 나중에 후유증이 생겼을 때 피해를 보지 않는다."</string>
 
 </resources>
