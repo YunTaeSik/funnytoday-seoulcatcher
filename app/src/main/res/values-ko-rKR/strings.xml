@@ -166,6 +166,20 @@
     <string name="edu_collapse_four">"고립이 장기화될 경우를 고려해 음식과 물을 찾아 먹되, 오래 버틸 수 있도록 소비를 조절하세요"</string>
     <string name="edu_collapse_five">"가스누출 위험이 있을 경우 성냥, 스토브 등을 켜지않고 손전등을 사용하세요"</string>
 
+    <!--education_oneonenine-->
+    <string name="edu_oneonenine_one">"건물이 붕괴한 경우에는 당황하지 말고 주변을 살펴서 대피로를 찾으세요."</string>
+    <string name="edu_oneonenine_two">"엘리베이터 홀, 계단실 등과 같이 견디는 힘이 강한 벽체가 있는 안전한 곳으로 임시 대피합시다."</string>
+    <string name="edu_oneonenine_three">"노약자, 어린이, 여성 등을 우선하여 탈출하세요."</string>
+    <string name="edu_oneonenine_four">"고립이 장기화될 경우를 고려해 음식과 물을 찾아 먹되, 오래 버틸 수 있도록 소비를 조절하세요"</string>
+    <string name="edu_oneonenine_five">"가스누출 위험이 있을 경우 성냥, 스토브 등을 켜지않고 손전등을 사용하세요"</string>
+
+    <!--education_carboom-->
+    <string name="edu_carboom_one">"건물이 붕괴한 경우에는 당황하지 말고 주변을 살펴서 대피로를 찾으세요."</string>
+    <string name="edu_carboom_two">"엘리베이터 홀, 계단실 등과 같이 견디는 힘이 강한 벽체가 있는 안전한 곳으로 임시 대피합시다."</string>
+    <string name="edu_carboom_three">"노약자, 어린이, 여성 등을 우선하여 탈출하세요."</string>
+    <string name="edu_carboom_four">"고립이 장기화될 경우를 고려해 음식과 물을 찾아 먹되, 오래 버틸 수 있도록 소비를 조절하세요"</string>
+    <string name="edu_carboom_five">"가스누출 위험이 있을 경우 성냥, 스토브 등을 켜지않고 손전등을 사용하세요"</string>
+
 
 
 </resources>

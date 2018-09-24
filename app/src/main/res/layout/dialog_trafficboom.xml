@@ -83,7 +83,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="left"
-                            android:text="신체부위 동상 조심!"
+                            android:text="차량 이동하기"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -93,7 +93,7 @@
                             android:layout_marginTop="30dp"
                             android:gravity="center"
                             android:textColor="#000000"
-                            android:text="@string/edu_dust_one"/>
+                            android:text="@string/edu_carboom_one"/>
                     </LinearLayout>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -121,17 +121,17 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="left"
-                            android:text="동상에 걸렸을 땐"
+                            android:text="응급조치 우선"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="15dp"
                             android:gravity="center"
                             android:textColor="#000000"
-                            android:text="@string/edu_coldboom_two"/>
+                            android:text="@string/edu_carboom_two"/>
                     </LinearLayout>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -159,7 +159,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="left"
-                            android:text="보온에 유의"
+                            android:text="부상자 이동"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -169,10 +169,48 @@
                             android:layout_marginTop="30dp"
                             android:gravity="center"
                             android:textColor="#000000"
-                            android:text="@string/edu_coldboom_three"/>
+                            android:text="@string/edu_carboom_three"/>
                     </LinearLayout>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="#ffffff"
+            android:layout_weight="1"
+            app:cardUseCompatPadding="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="left"
+                        android:text="경찰서에 신고하기"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:text="@string/edu_carboom_four"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -197,7 +235,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="left"
-                            android:text="난방 유의!"
+                            android:text="후유증 조심!"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -207,7 +245,7 @@
                             android:layout_marginTop="30dp"
                             android:gravity="center"
                             android:textColor="#000000"
-                            android:text="@string/edu_coldboom_four"/>
+                            android:text="@string/edu_carboom_five"/>
                     </LinearLayout>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
