@@ -22,8 +22,10 @@ import com.google.gson.JsonElement;
 
 import todday.funny.seoulcatcher.GlideApp;
 import todday.funny.seoulcatcher.R;
+import todday.funny.seoulcatcher.interactor.OnLoadUserDataFinishListener;
 import todday.funny.seoulcatcher.model.Call;
 import todday.funny.seoulcatcher.model.History;
+import todday.funny.seoulcatcher.model.User;
 import todday.funny.seoulcatcher.server.ServerDataController;
 import todday.funny.seoulcatcher.ui.activity.IntroActivity;
 import todday.funny.seoulcatcher.ui.activity.MapActivity;
@@ -48,10 +50,20 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             final Call call = gson.fromJson(jsonElement, Call.class);
 
             //노티파이
-            startNotify(this, call);
+            ServerDataController.getInstance(this).getUser(ServerDataController.getInstance(this).getLoginUserId(), new OnLoadUserDataFinishListener() {
+                @Override
+                public void onComplete(User user) {
+                    if (user != null) {
+                        int level = Integer.parseInt(user.getLevel());
+                        if (level > 0) {
+                            startNotify(MyFirebaseMessagingService.this, call);
+                            //히스토리 저장
+                            ServerDataController.getInstance(MyFirebaseMessagingService.this).saveHistory(new History(call));
+                        }
+                    }
+                }
+            });
 
-            //히스토리 저장
-            ServerDataController.getInstance(this).saveHistory(new History(call));
         }
     }
 
