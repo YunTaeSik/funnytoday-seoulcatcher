@@ -11,6 +11,7 @@
             name="model"
             type="todday.funny.seoulcatcher.viewmodel.educationViewModel.CprViewModel" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -53,59 +54,24 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray_light" />
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardBackgroundColor="#ffffff"
-            android:layout_weight="1"
-            app:cardUseCompatPadding="true">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="left"
-                        android:text="심정지 확인(반응확인)"
-                        android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:gravity="center"
-                        android:textColor="#000000"
-                        android:text="@string/edu_cpr_one"/>
-                </LinearLayout>
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:cardBackgroundColor="#ffffff"
-                android:layout_weight="1"
-                app:cardUseCompatPadding="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -118,32 +84,26 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:gravity="left"
-                            android:text="119신고 및 자동세제동기 요청"
-                            android:textColor="#000000"
+                            android:text="심정지 확인(반응확인)"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center"
-                            android:textColor="#000000"
-                            android:text="@string/edu_cpr_two"/>
+                            android:layout_marginTop="16dp"
+                            android:text="@string/edu_cpr_one" />
                     </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:cardBackgroundColor="#ffffff"
-                android:layout_weight="1"
-                app:cardUseCompatPadding="true">
+                </android.support.v7.widget.CardView>
 
-                <RelativeLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -156,32 +116,59 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:text="119신고 및 자동세제동기 요청"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/edu_cpr_two" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="left"
                             android:text="가슴압박 30회 시행"
-                            android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:gravity="center"
-                            android:textColor="#000000"
-                            android:text="@string/edu_cpr_three"/>
+                            android:layout_marginTop="16dp"
+                            android:text="@string/edu_cpr_three" />
                     </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:cardBackgroundColor="#ffffff"
-                android:layout_weight="1"
-                app:cardUseCompatPadding="true">
+                </android.support.v7.widget.CardView>
 
-                <RelativeLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -194,32 +181,26 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:gravity="left"
                             android:text="인공호흡 2회 시행"
-                            android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:gravity="center"
-                            android:textColor="#000000"
-                            android:text="@string/edu_cpr_four"/>
+                            android:layout_marginTop="16dp"
+                            android:text="@string/edu_cpr_four" />
                     </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:cardBackgroundColor="#ffffff"
-                android:layout_weight="1"
-                app:cardUseCompatPadding="true">
+                </android.support.v7.widget.CardView>
 
-                <RelativeLayout
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="2dp"
+                    app:cardUseCompatPadding="true">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -232,23 +213,18 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:gravity="left"
                             android:text="가슴압박과 인공호흡의 반복"
-                            android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:gravity="center"
-                            android:textColor="#000000"
-                            android:text="@string/edu_cpr_five"/>
+                            android:layout_marginTop="16dp"
+                            android:text="@string/edu_cpr_five" />
                     </LinearLayout>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-
-   </LinearLayout>
 </layout>
