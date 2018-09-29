@@ -108,10 +108,10 @@
     <string name="edu_cpr_five">"30회의 가슴압박과 2회의 인공 호흡을 119구급대원이" 도착할 때 까지 반복해서 시행하세요.</string>
 
     <!--education_usingfire-->
-    <string name="edu_usingfire_one">"소화기를 불이 난 곳으로 옮깁니다."</string>
-    <string name="edu_usingfire_two">"손잡이 부분의 안전핀을 뽑습니다."</string>
-    <string name="edu_usingfire_three">"바람을 등지고 서서 호스가 불을 향하게 합니다."</string>
-    <string name="edu_usingfire_four">"손잡이를 힘껏 움켜쥐고 빗자루로 쓸듯이 뿌립니다."</string>
+    <string name="edu_usingfire_one">"먼저 소화기의 안전핀을 뽑아주세요."</string>
+    <string name="edu_usingfire_two">"노즐을 빼고 불 쪽을 향해 서주세요."</string>
+    <string name="edu_usingfire_three">"노즐을 불 쪽으로 들고 위아래 손잡이를 힘껏 눌러주세요."</string>
+    <string name="edu_usingfire_four">"바람을 등지고 골고루 분사해주세요."</string>
 
     <!--education_usingstif-->
     <string name="edu_usingstif_one">"지지대 고리에 완강기 고리를 걸고 잠근다."</string>

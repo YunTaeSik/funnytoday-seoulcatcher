@@ -93,7 +93,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="#22c3bac6" />
+                            android:background="#22708aa3" />
 
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -137,7 +137,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textStyle="bold"
                     android:text="@string/edu_usingstif_one"
                     android:layout_height="match_parent" />
                 <TextView
@@ -145,7 +144,6 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:textColor="#000000"
-                    android:textStyle="bold"
                     android:text="@string/edu_usingstif_two"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -223,14 +221,12 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:text="@string/edu_usingstif_three"
                         android:layout_height="match_parent" />
                     <TextView
                         android:gravity="center"
                         android:layout_width="0dp"
                         android:textColor="#000000"
-                        android:textStyle="bold"
                         android:layout_weight="1"
                         android:text="@string/edu_usingstif_four"
                         android:layout_height="match_parent" />
