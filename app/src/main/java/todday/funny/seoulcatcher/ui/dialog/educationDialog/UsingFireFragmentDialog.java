@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import todday.funny.seoulcatcher.R;
 import todday.funny.seoulcatcher.databinding.UsingFireBinding;
 import todday.funny.seoulcatcher.util.Keys;
-import todday.funny.seoulcatcher.viewmodel.educationViewModel.TrafficboomViewModel;
 import todday.funny.seoulcatcher.viewmodel.educationViewModel.UsingFireViewModel;
 
 public class UsingFireFragmentDialog extends DialogFragment {
@@ -31,8 +30,8 @@ public class UsingFireFragmentDialog extends DialogFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.dialog_usingfire, container, false);
         if (getArguments() != null) {
             String level = getArguments().getString(Keys.LEVEL);
-         /*   TrafficboomViewModel model = new TrafficboomViewModel(getActivity());
-            binding.setModel(model);*/
+            UsingFireViewModel model = new UsingFireViewModel(getActivity());
+            binding.setModel(model);
         }
         return binding.getRoot();
     }
